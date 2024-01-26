@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -14,23 +14,9 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-   
   },
-  university: {
-    type: String,
-    required: true,
-  },
-  sem: {
-    type: Number,
-    required: true,
-  },
-  gender: {
-    type: String,
-    required: true,
-  },
-  profilePic: {
-    type: String, // Store the path of the uploaded image file
-  },
+
+ 
   isVerified: {
     type: Boolean,
     default: false, // Flag to determine if the OTP verification is completed
@@ -41,48 +27,8 @@ const userSchema = new mongoose.Schema({
   otpExpiry: {
     type: Date,
   },
-  resetToken:String,
-  expireToken:Date,
- 
-  birthdate: {
-    type: Date,
-  },
-  linkedinURL: {
-    type: String,
-  },
-  githubURL: {
-    type: String,
-  },
-  twitterURL: {
-    type: String,
-  },
-  codingURL: {
-    type: String,
-  },
-  instaURL: {
-    type: String,
-  },
-  resumeURL: {
-    type: String,
-  },
-  Roles: {
-    type: [String],
-  },
-  aboutMe: {
-    type: String,
-  },
-  Skills: {
-    type: [String],
-  },
-  cpi: {
-    type: Number,
-  },
-  hobbies: {
-    type: [String],
-  },
-  goals: {
-    type: String,
-  },
+  resetToken: String,
+  expireToken: Date,
 });
 
-mongoose.model('User', userSchema);
+mongoose.model("User", userSchema);
