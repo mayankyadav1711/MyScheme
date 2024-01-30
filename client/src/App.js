@@ -13,7 +13,7 @@ import OTP from "./components/OTP";
 import ResetPassword from "./components/ResetPassword";
 import ForgotPassword from "./components/ForgotPassword";
 import Scheme from "./components/Scheme";
-
+import Newscheme from "./components/Newscheme";
 
 export const UserContext = createContext();
 
@@ -29,7 +29,9 @@ const Routing = () => {
       "/otp",
       "/resetpassword",
       "/forgotpassword",
-      "/Scheme"
+      "/Scheme",
+      "/Newscheme",
+      
     ]; // Add the paths that don't require login
     const isAllowedPath = allowedPaths.some((path) =>
       window.location.pathname.startsWith(path)
@@ -53,6 +55,7 @@ const Routing = () => {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/otp" element={<OTP />} />
         <Route path="/Scheme" element={<Scheme/>} />
+        <Route path="/Newscheme" element={<Newscheme/>} />
       </Routes>
     </>
   );
