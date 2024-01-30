@@ -1,12 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-redundant-roles */
 
-import React, { useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
 const Home = () => {
-
+  const [showAnswer1, setShowAnswer1] = useState(false);
+  const [showAnswer2, setShowAnswer2] = useState(false);
+  const [showAnswer3, setShowAnswer3] = useState(false);
+  const [showAnswer4, setShowAnswer4] = useState(false);
+  const [showAnswer5, setShowAnswer5] = useState(false);
 
   return (
     <div>
@@ -205,7 +209,7 @@ const Home = () => {
         />
         <noscript data-n-css="" />
         <div id="__next">
-          <nav>
+          <nav className="bg-green-50">
             <header className="fixed inset-x-0 top-2 z-30 mx-auto w-full max-w-screen-md border border-gray-100 bg-green/80 py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
               <div className="px-5">
                 <div className="flex items-center justify-between">
@@ -267,7 +271,7 @@ const Home = () => {
                 </a>
               </div>
               <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                |             <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup" />
+                           <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup" />
               </div>
             </div>
           </section>
@@ -590,7 +594,7 @@ const Home = () => {
                             <span className="text-center">
                               <span>
                                 Start by entering your
-                                <strong>basic details!</strong>
+                                <strong> basic details!</strong>
                               </span>
                             </span>
                           </div>
@@ -727,7 +731,7 @@ const Home = () => {
                             <span className="text-center">
                               <span>
                                 Our search engine will
-                                <strong>find the relevant schemes</strong>!
+                                <strong> find the relevant schemes</strong>!
                               </span>
                             </span>
                           </div>
@@ -1138,185 +1142,183 @@ const Home = () => {
                           </h2>
                         </div>
                         <div className="py-4 first:pt-0 last:pb-0 undefined">
-                          <div className="cursor-pointer undefined">
-                            <div className="flex flex-row items-center justify-between">
-                              <p className="font-bold w-11/12">What is myScheme?</p>
-                              <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth={0}
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className="ml-1"
-                                height={25}
-                                width={25}
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className="rounded-b mt-3 hidden">
-                            <p className="text-base leading-relaxed">
-                              myScheme is an e-Marketplace for Govt. schemes and
-                              services. Using myScheme you can find various government
-                              schemes, check your eligibility, and apply for the
-                              schemes.
-                            </p>
-                          </div>
-                        </div>
+      <div className="cursor-pointer undefined" onClick={() => setShowAnswer1(!showAnswer1)}>
+        <div className="flex flex-row items-center justify-between">
+          <p className="font-bold w-11/12">What is myScheme?</p>
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth={0}
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+            className="ml-1"
+            height={25}
+            width={25}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </div>
+      </div>
+      <div className={`rounded-b mt-3 ${showAnswer1 ? '' : 'hidden'}`}>
+        <p className="text-base leading-relaxed">
+          myScheme is an e-Marketplace for Govt. schemes and services. Using myScheme you can find various government schemes, check your eligibility, and apply for the schemes.
+        </p>
+      </div>
+    </div>
                         <div className="py-4 first:pt-0 last:pb-0 undefined">
-                          <div className="cursor-pointer undefined">
-                            <div className="flex flex-row items-center justify-between">
-                              <p className="font-bold w-11/12">
-                                How myScheme will help common citizens?
-                              </p>
-                              <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth={0}
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className="ml-1"
-                                height={25}
-                                width={25}
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className="rounded-b mt-3 hidden">
-                            <p className="text-base leading-relaxed">
-                              myScheme will reduce the time and effort of citizens in
-                              searching for appropriate government schemes.The easy
-                              user interface of myScheme helps common people a lot in
-                              discovering and applying for schemes.
-                            </p>
-                          </div>
-                        </div>
+        <div className="cursor-pointer undefined" onClick={() => setShowAnswer2(!showAnswer2)}>
+          <div className="flex flex-row items-center justify-between">
+            <p className="font-bold w-11/12">
+              How myScheme will help common citizens?
+            </p>
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth={0}
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              className="ml-1"
+              height={25}
+              width={25}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+        <div className={`rounded-b mt-3 ${showAnswer2 ? '' : 'hidden'}`}>
+          <p className="text-base leading-relaxed">
+            myScheme will reduce the time and effort of citizens in
+            searching for appropriate government schemes.The easy
+            user interface of myScheme helps common people a lot in
+            discovering and applying for schemes.
+          </p>
+        </div>
+        </div>
                         <div className="py-4 first:pt-0 last:pb-0 undefined">
-                          <div className="cursor-pointer undefined">
-                            <div className="flex flex-row items-center justify-between">
-                              <p className="font-bold w-11/12">
-                                Can I apply for the schemes through myScheme?
-                              </p>
-                              <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth={0}
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className="ml-1"
-                                height={25}
-                                width={25}
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className="rounded-b mt-3 hidden">
-                            <p className="text-base leading-relaxed">
-                              For now, the platform shall direct you to the
+        <div className="cursor-pointer undefined" onClick={() => setShowAnswer3(!showAnswer3)}>
+          <div className="flex flex-row items-center justify-between">
+            <p className="font-bold w-11/12">
+            Can I apply for the schemes through myScheme?
+            </p>
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth={0}
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              className="ml-1"
+              height={25}
+              width={25}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+        <div className={`rounded-b mt-3 ${showAnswer3 ? '' : 'hidden'}`}>
+          <p className="text-base leading-relaxed">
+          For now, the platform shall direct you to the
                               application page of the scheme of your choice.It is
                               envisaged that in the upcoming phases, myScheme shall
                               have the feature to apply for schemes / services from
                               within the platform/ app.
-                            </p>
-                          </div>
-                        </div>
+          </p>
+        </div>
+        </div>
                         <div className="py-4 first:pt-0 last:pb-0 undefined">
-                          <div className="cursor-pointer undefined">
-                            <div className="flex flex-row items-center justify-between">
-                              <p className="font-bold w-11/12">
-                                How does myScheme work? How do I check for my
+        <div className="cursor-pointer undefined" onClick={() => setShowAnswer4(!showAnswer4)}>
+          <div className="flex flex-row items-center justify-between">
+            <p className="font-bold w-11/12">
+            How does myScheme work? How do I check for my
                                 eligibility through myScheme ?
-                              </p>
-                              <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth={0}
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className="ml-1"
-                                height={25}
-                                width={25}
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className="rounded-b mt-3 hidden">
-                            <p className="text-base leading-relaxed">
-                              myScheme offers a convenient three - step process for
+            </p>
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth={0}
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              className="ml-1"
+              height={25}
+              width={25}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+        <div className={`rounded-b mt-3 ${showAnswer4 ? '' : 'hidden'}`}>
+          <p className="text-base leading-relaxed">
+          myScheme offers a convenient three - step process for
                               the citizens to discover the government schemes for
-                              which they are eligible:
+                              which they are eligible: <br/>
                               {/* */}
-                              Step 1 - The user enters his / her attributes such as
-                              demographic, income, social details, etc.
-                              {/* */}Step 2 - The myScheme findsthe relevant schemes
-                              from hundreds of schemes for the user.
-                              {/* */}Step 3 - The user can select from the list of
+                             <strong> Step 1 </strong> - The user enters his / her attributes such as
+                              demographic, income, social details, etc. <br/>
+                              {/* */}<strong> Step 2 </strong> - The myScheme findsthe relevant schemes
+                              from hundreds of schemes for the user. <br/>
+                              {/* */}<strong> Step 3 </strong> - The user can select from the list of
                               eligible schemes and get more information from the
                               dedicated scheme page with detailed knowledge, FAQs, and
                               application process and traverse to the application URL
-                              to apply.
-                            </p>
-                          </div>
-                        </div>
+                              to apply. <br/>
+          </p>
+        </div>
+        </div>
                         <div className="py-4 first:pt-0 last:pb-0 undefined">
-                          <div className="cursor-pointer undefined">
-                            <div className="flex flex-row items-center justify-between">
-                              <p className="font-bold w-11/12">
-                                What all information about a particular scheme can I
+        <div className="cursor-pointer undefined" onClick={() => setShowAnswer5(!showAnswer5)}>
+          <div className="flex flex-row items-center justify-between">
+            <p className="font-bold w-11/12">
+            What all information about a particular scheme can I
                                 find on myScheme ?
-                              </p>
-                              <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth={0}
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className="ml-1"
-                                height={25}
-                                width={25}
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className="rounded-b mt-3 hidden">
-                            <p className="text-base leading-relaxed">
-                              myScheme provides details on the eligibility criteria,
+            </p>
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth={0}
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              className="ml-1"
+              height={25}
+              width={25}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+        <div className={`rounded-b mt-3 ${showAnswer5 ? '' : 'hidden'}`}>
+          <p className="text-base leading-relaxed">
+          myScheme provides details on the eligibility criteria,
                               application process, and benefits being offered under
                               that scheme. myScheme also answers the Frequently Asked
                               Questions(FAQs) about the scheme.
-                            </p>
-                          </div>
-                        </div>
+          </p>
+        </div>
+        </div>
+                        
                         <a className="undefined block normal-case" href="/faqs">
                           <button
                             aria-label="View More"

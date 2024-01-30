@@ -13,6 +13,7 @@ import OTP from "./components/OTP";
 import ResetPassword from "./components/ResetPassword";
 import ForgotPassword from "./components/ForgotPassword";
 import Scheme from "./components/Scheme";
+import NewScheme from "./components/NewScheme";
 
 
 export const UserContext = createContext();
@@ -52,7 +53,8 @@ const Routing = () => {
         <Route path="/resetpassword/:token" element={<ResetPassword />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/otp" element={<OTP />} />
-        <Route path="/Scheme" element={<Scheme/>} />
+        <Route path="/scheme" element={<Scheme/>} />
+        <Route path="/newscheme" element={<NewScheme/>} />
       </Routes>
     </>
   );
