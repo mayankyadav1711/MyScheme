@@ -30,7 +30,9 @@ const Routing = () => {
       "/otp",
       "/resetpassword",
       "/forgotpassword",
-      "/Scheme"
+      "/Scheme",
+      "/Newscheme",
+      
     ]; // Add the paths that don't require login
     const isAllowedPath = allowedPaths.some((path) =>
       window.location.pathname.startsWith(path)
