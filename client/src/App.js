@@ -13,7 +13,7 @@ import OTP from "./components/OTP";
 import ResetPassword from "./components/ResetPassword";
 import ForgotPassword from "./components/ForgotPassword";
 import Scheme from "./components/Scheme";
-import NewScheme from "./components/NewScheme";
+import NewScheme from "./components/Newscheme";
 
 
 export const UserContext = createContext();
