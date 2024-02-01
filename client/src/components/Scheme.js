@@ -215,215 +215,27 @@ const Scheme = () => {
                                                     <option>Converse</option>
                                                 </select>
                                             </div>
-                                            <div className="flex items-center justify-center flex-col">
-                                                <button
-                                                    id="dropdownDefault"
-                                                    data-dropdown-toggle="dropdown"
-                                                    className="text-green-700 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                                                    type="button"
+                                            <div className="flex flex-col">
+                                                <label
+                                                    htmlFor="brand"
+                                                    className="text-sm font-medium text-green-900"
                                                 >
-                                                    Filter by category
-                                                    <svg
-                                                        className="w-4 h-4 ml-2"
-                                                        aria-hidden="true"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="M19 9l-7 7-7-7"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                                {/* Dropdown menu */}
-                                                <div
-                                                    id="dropdown"
-                                                    className="z-10 hidden w-56 p-3 bg-green-100 rounded-lg shadow dark:bg-green-700"
+                                                    CATEGORIES
+                                                </label>
+                                                <select
+                                                    id="brand"
+                                                    className="block w-full px-2 py-2 mt-2 bg-green-100 border border-green-100 rounded-md shadow-sm outline-none cursor-pointer focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50"
                                                 >
-                                                    <h6 className="mb-3 text-sm font-medium text-green-900 dark:text-green">
-                                                        Category
-                                                    </h6>
-                                                    <ul className="space-y-2 text-sm" aria-labelledby="dropdownDefault">
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="apple"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                className="w-4 h-4 bg-green-100 border-green-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-green-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="apple"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Apple (56)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="fitbit"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="fitbit"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Fitbit (56)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="dell"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="dell"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Dell (56)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="asus"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                defaultChecked=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="asus"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Asus (97)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="logitech"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                defaultChecked=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="logitech"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Logitech (97)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="msi"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                defaultChecked=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="msi"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                MSI (97)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="bosch"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                defaultChecked=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="bosch"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Bosch (176)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="sony"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="sony"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Sony (234)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="samsung"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                defaultChecked=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="samsung"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Samsung (76)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="canon"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="canon"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Canon (49)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="microsoft"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="microsoft"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Microsoft (45)
-                                                            </label>
-                                                        </li>
-                                                        <li className="flex items-center">
-                                                            <input
-                                                                id="razor"
-                                                                type="checkbox"
-                                                                defaultValue=""
-                                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                                            />
-                                                            <label
-                                                                htmlFor="razor"
-                                                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                                                            >
-                                                                Razor (49)
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                    <option>Adidas</option>
+                                                    <option>Nike</option>
+                                                    <option>Rebook</option>
+                                                    <option>Puma</option>
+                                                    <option>Vans</option>
+                                                    <option>Converse</option>
+                                                </select>
                                             </div>
+                                            
+                                              
 
                                         </div>
                                         <div className="grid justify-start w-full grid-cols-2 mt-8 space-x-4 md:flex">

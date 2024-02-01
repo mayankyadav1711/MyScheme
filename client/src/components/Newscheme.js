@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Newscheme = () => {
+const NewScheme = () => {
 
     return (
 
@@ -299,7 +299,4 @@ const Newscheme = () => {
     );
 };
 
-export default Newscheme;
-
-
-
+export default NewScheme;
