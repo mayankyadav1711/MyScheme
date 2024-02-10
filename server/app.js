@@ -23,6 +23,7 @@ require("./models/doubts");
 require("./models/contact");
 require("./models/event_form");
 require("./models/feedback");
+require("./models/scheme");
 
 app.use(express.json());
 app.use(require("./routes/auth"));

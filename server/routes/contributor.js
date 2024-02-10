@@ -6,6 +6,8 @@ const Contributor = mongoose.model("Contributor");
 const Doubt = mongoose.model("Doubt");
 const Contact = mongoose.model("Contact");
 const EventForm = mongoose.model("EventForm");
+const SchemeModel = mongoose.model("Scheme"); // Import the Mongoose model
+
 const Feedback = mongoose.model("Feedback");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -22,6 +24,88 @@ const transporter = nodemailer.createTransport({
     pass: GPASS,
   },
 });
+
+
+
+
+
+router.post("/new-scheme", async (req, res) => {
+    try {
+      const {
+        schemeFullName,
+        schemeImageLink,
+        schemeDetails,
+        shortDetail,
+        city,
+        state,
+        ministry,
+        gender,
+        caste,
+        age,
+      } = req.body;
+  
+      // Create a new Scheme instance with the form data
+      const newScheme = new SchemeModel({
+        schemeFullName,
+        schemeImageLink,
+        schemeDetails,
+        shortDetail,
+        city,
+        state,
+        ministry,
+        gender,
+        caste,
+        age,
+        timestamp: new Date(),
+      });
+  
+      // Save the newScheme to the database
+      await newScheme.save();
+  
+      // Respond with a success message
+      res.status(201).json({ message: "Scheme submitted successfully!" });
+    } catch (error) {
+      // Handle errors
+      console.error("Error submitting scheme:", error);
+      res.status(500).json({ error: "Server error" });
+    }
+  });
+
+  router.get("/get-schemes", async (req, res) => {
+    try {
+      // Fetch all schemes from the database and sort by timestamp in descending order
+      const schemes = await SchemeModel.find().sort({ timestamp: -1 });
+  
+      console.log("Fetched Schemes:", schemes);
+      res.json(schemes);
+    } catch (error) {
+      console.error("Error in fetching schemes:", error);
+      res.status(500).json({ error: "Server error" });
+    }
+  });
+  
+
+  router.get("/scheme/:_id", async (req, res) => {
+    try {
+
+      console.log("called")
+        const { _id } = req.params;
+
+        // Fetch the scheme with the given ID from the database
+        const scheme = await SchemeModel.findById(_id);
+
+        if (!scheme) {
+            return res.status(404).json({ error: 'Scheme not found' });
+        }
+
+        console.log("Fetched Scheme:", scheme);
+        res.json(scheme);
+    } catch (error) {
+        console.error("Error in fetching scheme details:", error);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
 
 router.post("/contribute", requireLogin, async (req, res) => {
   try {

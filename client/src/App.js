@@ -30,8 +30,7 @@ const Routing = () => {
       "/otp",
       "/resetpassword",
       "/forgotpassword",
-      "/Scheme",
-      "/NewScheme",
+     
       
     ]; // Add the paths that don't require login
     const isAllowedPath = allowedPaths.some((path) =>
@@ -57,8 +56,7 @@ const Routing = () => {
         <Route path="/otp" element={<OTP />} />
         <Route path="/scheme" element={<Scheme/>} />
         <Route path="/newScheme" element={<NewScheme/>} />
-        <Route path="/Inscheme" element={<InScheme/>} />
-        
+        <Route path="/inscheme/:_id" element={<InScheme />} />
       </Routes>
     </>
   );

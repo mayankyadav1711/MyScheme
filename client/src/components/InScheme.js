@@ -1,9 +1,33 @@
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const InScheme = () => {
+  const { _id } = useParams();
+  const [schemeDetails, setSchemeDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchSchemeDetails = async () => {
+      try {
+        const response = await fetch(`/scheme/${_id}`);
+        const data = await response.json();
+        setSchemeDetails(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching scheme details:", error);
+        setLoading(false);
+      }
+    };
+  
+    fetchSchemeDetails();
+  }, [_id]);
+  
+
+  if (loading) {
+    return <p>Loading...</p>; // You can customize the loading indicator
+  }
 return (
 
 <div className=" bg-gray-100">
@@ -25,7 +49,7 @@ return (
   <div className="container px-6 md:px-12">
     <div className="block rounded-lg bg-[hsla(0,0%,100%,0.8)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]  md:py-16 md:px-12 -mt-[100px] backdrop-blur-[30px] border border-gray-300">
       <div className="flex flex-wrap">
-      <h2 className="text-6xl font-bold dark:text-black mb-6">MYSY YOJNA</h2>
+      <h2 className="text-6xl font-bold dark:text-black mb-6">{schemeDetails?.schemeFullName}</h2>
         <div>
         <section className="bg-white dark:bg-white-900">
   <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
