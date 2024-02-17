@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
+import HeroSection from "./HeroSection";
 
 const Scheme = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -99,27 +102,33 @@ const Scheme = () => {
   
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     const schemeCards = currentSchemes.map((scheme) => (
-   
-        <Link to={`/inscheme/${scheme._id}`} >
-        <div key={scheme._id}  className="rounded overflow-hidden shadow-lg">
+      <Link to={`/inscheme/${scheme._id}`} key={scheme._id}>
+        <div className="rounded overflow-hidden shadow-lg">
           <img
-            className="w-full"
-            src={scheme.schemeImageLink}  // Replace with the actual key for the image URL
-            alt={scheme.schemeFullName}  // Replace with the actual key for the scheme name
+            className="w-full h-48 object-cover"
+            src={scheme.schemeImageLink}
+            alt={scheme.schemeFullName}
           />
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2">
               {scheme.schemeFullName}
             </div>
             <p className="text-gray-700 text-base">
-              {scheme.shortDetail} {/* Replace with the actual key for the scheme description */}
+              {scheme.shortDetail}
             </p>
           </div>
-          
+          <div className="px-6 py-4 flex justify-end">
+            <Link
+              to={`/inscheme/${scheme._id}`}
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-green active:bg-green-800"
+            >
+              View Scheme
+            </Link>
+          </div>
         </div>
-         </Link>
-       
-      ));
+      </Link>
+    ));
+    
       const renderPagination = () => {
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(filteredSchemes.length / schemesPerPage); i++) {
@@ -146,102 +155,8 @@ const Scheme = () => {
     <>
       <>
         <div>
-          <nav className="bg-green-50">
-            <header className="fixed inset-x-0 top-2 z-30 mx-auto w-full max-w-screen-md border border-gray-100 bg-green-80 py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
-              <div className="px-5">
-                <div className="flex items-center justify-between">
-                  <div className="flex shrink-0">
-                    <a
-                      aria-current="page"
-                      className="flex items-center"
-                      href="/"
-                    >
-                      <img
-                        className="h-7 w-auto"
-                        src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                        alt=""
-                      />
-                      <p className="sr-only">Website Title</p>
-                    </a>
-                  </div>
-                  <div className="hidden md:flex md:items-center md:justify-center md:gap-5">
-                    <a
-                      aria-current="page"
-                      className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
-                      href="#"
-                    >
-                      How it works
-                    </a>
-                    <a
-                      className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
-                      href="#"
-                    >
-                      Pricing
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-end gap-3">
-                    <a
-                      className="hidden items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex"
-                      href="/login"
-                    >
-                      Sign in
-                    </a>
-                    <a
-                      className="inline-flex items-center justify-center rounded-xl bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-                      href="/login"
-                    >
-                      Login
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </header>
-          </nav>
-          <section class=" bg-green dark:bg-green-50">
-            <div class="grid max-w-screen-xl px-4 py-20 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-              <div class="mr-auto place-self-center lg:col-span-7">
-                <h1 class="max-w-2xl mb-4 text-5xl font-bold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-green">
-                  One Stop Platform To Find Scheme's
-                </h1>
-                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-                  Government scheme portals provide citizens easy access to
-                  information, applications, and tracking for public welfare
-                  initiatives and services online.
-                </p>
-                <a
-                  href="#"
-                  class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center  text-green rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
-                >
-                  Get started Now
-                  <svg
-                    class="w-5 h-5 ml-2 -mr-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-green-700 dark:focus:ring-gray-800"
-                >
-                  Sign Up Here
-                </a>
-              </div>
-              <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                |{" "}
-                <img
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
-                  alt="mockup"
-                />
-              </div>
-            </div>
-          </section>
+          <Navbar/>
+        <HeroSection/>
           <section className="flex flex-col items-center justify-center w-screen h-300 space-y-4 bg-white-100 md:flex-row md:space-y-0 md:space-x-4">
             <div className="w-screen max-w-screen m-10">
               <div className="flex flex-col">
@@ -311,8 +226,9 @@ const Scheme = () => {
       value={filters.gender}
     >
       <option value="">All</option>
-      <option value="FEMALE">FEMALE</option>
-      <option value="MALE">MALE</option>
+      <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
     </select>
   </div>
 
@@ -331,12 +247,41 @@ const Scheme = () => {
       value={filters.state}
     >
       <option value="">All</option>
-      <option value="Gujarat">Gujarat</option>
-      <option value="Rajasthan">Rajasthan</option>
-      <option value="Punjab">Punjab</option>
-      <option value="Delhi">Delhi</option>
-      <option value="Harayana">Harayana</option>
-      <option value="Bihar">Bihar</option>
+      <option value="andhra pradesh">Andhra Pradesh</option>
+  <option value="arunachal pradesh">Arunachal Pradesh</option>
+  <option value="assam">Assam</option>
+  <option value="bihar">Bihar</option>
+  <option value="chandigarh">Chandigarh</option>
+  <option value="chhattisgarh">Chhattisgarh</option>
+
+  <option value="delhi">Delhi</option>
+  <option value="goa">Goa</option>
+  <option value="gujarat">Gujarat</option>
+  <option value="haryana">Haryana</option>
+  <option value="himachal pradesh">Himachal Pradesh</option>
+  <option value="jammu and kashmir">Jammu and Kashmir</option>
+  <option value="jharkhand">Jharkhand</option>
+  <option value="karnataka">Karnataka</option>
+  <option value="kerala">Kerala</option>
+  <option value="ladakh">Ladakh</option>
+  <option value="lakshadweep">Lakshadweep</option>
+  <option value="madhya pradesh">Madhya Pradesh</option>
+  <option value="maharashtra">Maharashtra</option>
+  <option value="manipur">Manipur</option>
+  <option value="meghalaya">Meghalaya</option>
+  <option value="mizoram">Mizoram</option>
+  <option value="nagaland">Nagaland</option>
+  <option value="odisha">Odisha</option>
+  <option value="puducherry">Puducherry</option>
+  <option value="punjab">Punjab</option>
+  <option value="rajasthan">Rajasthan</option>
+  <option value="sikkim">Sikkim</option>
+  <option value="tamil nadu">Tamil Nadu</option>
+  <option value="telangana">Telangana</option>
+  <option value="tripura">Tripura</option>
+  <option value="uttar pradesh">Uttar Pradesh</option>
+  <option value="uttarakhand">Uttarakhand</option>
+  <option value="west bengal">West Bengal</option>
     </select>
   </div>
 
@@ -355,11 +300,11 @@ const Scheme = () => {
       value={filters.ministry}
     >
       <option value="">All</option>
-      <option value="NPTEL">NPTEL</option>
-      <option value="AYUSH">AYUSH</option>
-      <option value="AICTE">AICTE</option>
-      <option value="ISRO">ISRO</option>
-      <option value="KVPY">KVPY</option>
+      <option value="nptel">NPTEL</option>
+      <option value="ayush">AYUSH</option>
+      <option value="aicte">AICTE</option>
+      <option value="isro">ISRO</option>
+      <option value="kvpy">KVPY</option>
     </select>
   </div>
 
@@ -378,11 +323,12 @@ const Scheme = () => {
       value={filters.caste}
     >
       <option value="">All</option>
-      <option value="GENERAL">GENERAL</option>
-      <option value="OBC">OBC</option>
-      <option value="ST">ST</option>
-      <option value="SC">SC</option>
-      <option value="MINORITY">MINORITY</option>
+      <option value="general">GENERAL</option>
+        <option value="obc">OBC</option>
+        <option value="st">ST</option>
+        <option value="sc">SC</option>
+        <option value="ews">EWS</option>
+        <option value="minority">MINORITY</option>
     </select>
   </div>
 </div>
@@ -460,16 +406,46 @@ const Scheme = () => {
                 rel="stylesheet"
               />
 
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8">
-          {schemeCards}
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-12 m-16">
+  {currentSchemes.map((scheme) => (
+    <Link to={`/inscheme/${scheme._id}`} key={scheme._id}>
+      <div className="flex flex-col rounded overflow-hidden shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
+        <img
+          className="w-full h-48 object-cover"
+          src={scheme.schemeImageLink}
+          alt={scheme.schemeFullName}
+        />
+        <div className="px-6 py-4 flex-grow">
+          <div className="font-bold text-xl mb-2">
+            {scheme.schemeFullName}
+          </div>
+          <p className="text-gray-700 text-base">
+            {scheme.shortDetail}
+          </p>
         </div>
+        <div className="flex justify-center items-center mt-4 mb-4">
+          <Link
+            to={`/inscheme/${scheme._id}`}
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline-green active:bg-green-800"
+          >
+            View Scheme
+          </Link>
+        </div>
+      </div>
+    </Link>
+  ))}
+</div>
+
+
             </>
           </section>
-          <section>
+          <section className="m-24">
         {renderPagination()}
       </section>
         </div>
       </>
+
+      <Footer/>
     </>
   );
 };

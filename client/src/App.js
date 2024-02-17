@@ -13,8 +13,10 @@ import OTP from "./components/OTP";
 import ResetPassword from "./components/ResetPassword";
 import ForgotPassword from "./components/ForgotPassword";
 import Scheme from "./components/Scheme";
-import NewScheme from "./components/NewScheme";
 import InScheme from "./components/InScheme";
+import Aboutus from "./components/Aboutus";
+import Contactus from "./components/Contactus";
+import NewForm from "./components/newform";
 
 export const UserContext = createContext();
 
@@ -55,8 +57,11 @@ const Routing = () => {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/otp" element={<OTP />} />
         <Route path="/scheme" element={<Scheme/>} />
-        <Route path="/newScheme" element={<NewScheme/>} />
+    
         <Route path="/inscheme/:_id" element={<InScheme />} />
+        <Route path="/about" element={<Aboutus />} />
+        <Route path="/contact" element={<Contactus />} />
+        <Route path="/newform" element={<NewForm />} />
       </Routes>
     </>
   );

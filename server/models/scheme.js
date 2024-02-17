@@ -17,9 +17,7 @@ const schemeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  city: {
-    type: String,
-  },
+
   state: {
     type: String,
   },
@@ -38,7 +36,12 @@ const schemeSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  
+  benefits: {
+    type: String,  
+  },
+  originalSchemeLink: {
+    type: String, 
+  },
   timestamp: {
     type: Date,
     default: Date.now,

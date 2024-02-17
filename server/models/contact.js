@@ -14,10 +14,6 @@ const contactSchema = new mongoose.Schema({
     required: true,
   },
 
-  postedBy: {
-    type: ObjectId,
-    ref: "User",
-    required: true,
-  },
+  
 });
 mongoose.model("Contact", contactSchema);

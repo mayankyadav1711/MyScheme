@@ -20,7 +20,7 @@ const { EMAIL, GPASS } = require("../config/keys");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "",
+    user: "mykyadav17112003@gmail.com",
     pass: GPASS,
   },
 });
@@ -30,46 +30,50 @@ const transporter = nodemailer.createTransport({
 
 
 router.post("/new-scheme", async (req, res) => {
-    try {
-      const {
-        schemeFullName,
-        schemeImageLink,
-        schemeDetails,
-        shortDetail,
-        city,
-        state,
-        ministry,
-        gender,
-        caste,
-        age,
-      } = req.body;
-  
-      // Create a new Scheme instance with the form data
-      const newScheme = new SchemeModel({
-        schemeFullName,
-        schemeImageLink,
-        schemeDetails,
-        shortDetail,
-        city,
-        state,
-        ministry,
-        gender,
-        caste,
-        age,
-        timestamp: new Date(),
-      });
-  
-      // Save the newScheme to the database
-      await newScheme.save();
-  
-      // Respond with a success message
-      res.status(201).json({ message: "Scheme submitted successfully!" });
-    } catch (error) {
-      // Handle errors
-      console.error("Error submitting scheme:", error);
-      res.status(500).json({ error: "Server error" });
-    }
-  });
+  try {
+    const {
+      schemeFullName,
+      schemeImageLink,
+      schemeDetails,
+      shortDetail,
+      city,
+      state,
+      ministry,
+      gender,
+      caste,
+      age,
+      benefits,  // Include benefits field
+      originalSchemeLink,  // Include originalSchemeLink field
+    } = req.body;
+
+    // Create a new Scheme instance with the form data
+    const newScheme = new SchemeModel({
+      schemeFullName,
+      schemeImageLink,
+      schemeDetails,
+      shortDetail,
+      city,
+      state,
+      ministry,
+      gender,
+      caste,
+      age,
+      benefits,  // Include benefits field
+      originalSchemeLink,  // Include originalSchemeLink field
+      timestamp: new Date(),
+    });
+
+    // Save the newScheme to the database
+    await newScheme.save();
+
+    // Respond with a success message
+    res.status(201).json({ message: "Scheme submitted successfully!" });
+  } catch (error) {
+    // Handle errors
+    console.error("Error submitting scheme:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
   router.get("/get-schemes", async (req, res) => {
     try {
@@ -206,7 +210,7 @@ router.post("/doubt", requireLogin, async (req, res) => {
     res.status(500).json({ message: "Error submitting contribution." });
   }
 });
-router.post("/contact", requireLogin, async (req, res) => {
+router.post("/contact",  async (req, res) => {
   try {
     const {
       name,
@@ -227,14 +231,14 @@ router.post("/contact", requireLogin, async (req, res) => {
       name,
       email,
       message,
-      postedBy: req.user,
+    
     });
 
     // Save the contribution
     await contacts.save();
 
     transporter.sendMail({
-      from: "", // Your email address
+      from: "mykyadav17112003@gmail.com", // Your email address
       to: "mykyadav2003@gmail.com", // Your email address
       subject: "Someone tried to reach you (Contact Us Form)",
       html: `
@@ -243,8 +247,7 @@ router.post("/contact", requireLogin, async (req, res) => {
         <p>Email: ${email}</p>
         <p>Message: ${message}</p>
    
-        <p>Posted By Name: ${req.user.name}</p>
-        <p>Posted By Email: ${req.user.email}</p>
+      
       `,
     });
 

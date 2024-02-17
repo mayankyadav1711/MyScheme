@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./Footer";
 
 const Login = () =>{
     const {  dispatch } = useContext(UserContext);
@@ -171,7 +172,7 @@ const Login = () =>{
     </div>
 </div>
 
-     
+     <Footer/>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import React, {  useEffect, useState } from "react";
+import Footer from "./Footer";
 
 
 const  ForgotPassword = () => {
@@ -61,6 +62,8 @@ const  ForgotPassword = () => {
         </div>
     </div>
 </div>
+
+<Footer/>
 </>
   );
 }
