@@ -10,7 +10,7 @@ export default function Navbar() {
             <a aria-current="page" className="flex items-center" href="/">
               <img
                 className="h-7 w-auto"
-                src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+                src="https://cdn-icons-png.flaticon.com/512/1582/1582292.png"
                 alt=""
               />
               <p className="sr-only">Website Title</p>
@@ -19,16 +19,16 @@ export default function Navbar() {
           <div className="hidden md:flex md:items-center md:justify-center md:gap-5">
             <a
               aria-current="page"
-              className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+              className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 "
               href="#"
             >
-              How it works
+              ABOUT US
             </a>
             <a
-              className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+              className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200  hover:text-gray-900"
               href="#"
             >
-              Pricing
+              CONTACT US
             </a>
           </div>
           <div className="flex items-center justify-end gap-3">

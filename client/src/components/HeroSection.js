@@ -17,8 +17,8 @@ function HeroSection() {
                   Sign Up Here
                 </a>
               </div>
-              <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                           <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup" />
+              <div class=" lg:mt-2 lg:col-span-5 ">
+                           <img src="https://www.clipartmax.com/png/middle/216-2168554_luxurious-residential-property-in-india-mixed-use-development-diagram.png" alt="mockup" />
               </div>
             </div>
           </section>
