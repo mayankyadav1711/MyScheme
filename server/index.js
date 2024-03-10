@@ -43,13 +43,7 @@ app.use(require("./routes/admin_pdf"));
 app.use(require("./routes/profile"));
 app.use(require("./routes/contributor"));
 
-if(process.env.NODE_ENV=="production"){
-  app.use(express.static('build'))
-  const path = require('path')
-  app.get("*",(req,res)=>{
-      res.sendFile(path.resolve(__dirname,'build','index.html'))
-  })
-}
+
 
 
 
