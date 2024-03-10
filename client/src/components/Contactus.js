@@ -23,7 +23,7 @@ const  Contactus = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("/contact", {
+      const response = await fetch("https://myscheme-backend.vercel.app/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

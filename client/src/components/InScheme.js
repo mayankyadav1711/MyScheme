@@ -11,7 +11,7 @@ const InScheme = () => {
   useEffect(() => {
     const fetchSchemeDetails = async () => {
       try {
-        const response = await fetch(`/scheme/${_id}`);
+        const response = await fetch(`https://myscheme-backend.vercel.app/scheme/${_id}`);
         const data = await response.json();
         setSchemeDetails(data);
         setLoading(false);

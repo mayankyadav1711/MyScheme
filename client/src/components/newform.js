@@ -20,7 +20,7 @@ const NewForm = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("/new-scheme", {
+      const response = await fetch("https://myscheme-backend.vercel.app/new-scheme", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
