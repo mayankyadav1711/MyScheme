@@ -50,6 +50,12 @@ if(process.env.NODE_ENV=="production"){
       res.sendFile(path.resolve(__dirname,'build','index.html'))
   })
 }
+
+
+
+app.get("/", (req,res)=>{
+  res.json("Welcome to MyScheme")
+})
 app.listen(PORT, () => {
   console.log("Server is running on:", PORT);
 });
