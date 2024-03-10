@@ -1,7 +1,11 @@
 import React, {  useEffect, useState } from "react";
 import {  useNavigate,useParams  } from "react-router-dom";
 import Footer from "./Footer";
-
+import jatan from "./images/jatan.jpeg"
+import jay from "./images/jay.jpeg"
+import kashish from "./images/kashish.jpeg"
+import krishna from "./images/krishna.jpeg"
+import Navbar from "./Navbar";
 
 const  Aboutus = () => {
   
@@ -22,9 +26,9 @@ const  Aboutus = () => {
             </h1>
           </div>
           <p className="px-4 mb-10 text-base leading-7 text-gray-500 dark:text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam Lorem ipsum dolor sit amet.
+          Our vision is to make citizens life easier. 
+          Our mission is to streamline the government user interface for government schemes and benefits.
+          Reduce time and effort required to find and avail a government scheme
           </p>
           <div className="flex flex-wrap items-center">
             <div className="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
@@ -43,7 +47,7 @@ const  Aboutus = () => {
                   </svg>
                 </span>
                 <p className="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">
-                  2097
+                  20
                 </p>
                 <h2 className="text-sm text-gray-700 dark:text-gray-400">
                   Projects and Plans
@@ -92,7 +96,7 @@ const  Aboutus = () => {
                   </svg>
                 </span>
                 <p className="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">
-                  74
+                  4
                 </p>
                 <h2 className="text-sm text-gray-700 dark:text-gray-400">
                   Volunteer
@@ -171,8 +175,6 @@ const  Aboutus = () => {
           our talented team of professionals
         </h2>
         <p className="text-base text-gray-700 md:text-lg">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque rem aperiam, eaque ipsa quae.
         </p>
       </div>
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -180,16 +182,16 @@ const  Aboutus = () => {
           <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
             <img
               className="object-cover w-full h-56 md:h-64 xl:h-80"
-              src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-              alt="Person"
+               src={jay}
+               alt ="Person"
             />
             <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
               <p className="mb-1 text-lg font-bold text-gray-100">
-                Oliver Aguilerra
+               Jay Patel
               </p>
-              <p className="mb-4 text-xs text-gray-100">Product Manager</p>
+              <p className="mb-4 text-xs text-gray-100"></p>
               <p className="mb-4 text-xs tracking-wide text-gray-400">
-                Vincent Van Gogh’s most popular painting, The Starry Night.
+                
               </p>
               <div className="flex items-center justify-center space-x-3">
                 <a
@@ -216,16 +218,16 @@ const  Aboutus = () => {
           <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
             <img
               className="object-cover w-full h-56 md:h-64 xl:h-80"
-              src="https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              src={krishna}
               alt="Person"
             />
             <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
               <p className="mb-1 text-lg font-bold text-gray-100">
-                Marta Clermont
+                Krishna Patel
               </p>
-              <p className="mb-4 text-xs text-gray-100">Design Team Lead</p>
+              <p className="mb-4 text-xs text-gray-100"></p>
               <p className="mb-4 text-xs tracking-wide text-gray-400">
-                Amet I love liquorice jujubes pudding croissant I love pudding.
+                
               </p>
               <div className="flex items-center justify-center space-x-3">
                 <a
@@ -252,16 +254,16 @@ const  Aboutus = () => {
           <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
             <img
               className="object-cover w-full h-56 md:h-64 xl:h-80"
-              src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              src={jatan}
               alt="Person"
             />
             <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
               <p className="mb-1 text-lg font-bold text-gray-100">
-                Anthony Geek
+                Jatan Patel
               </p>
-              <p className="mb-4 text-xs text-gray-100">CTO, Lorem Inc.</p>
+              <p className="mb-4 text-xs text-gray-100"></p>
               <p className="mb-4 text-xs tracking-wide text-gray-400">
-                Apple pie macaroon toffee jujubes pie tart cookie caramels.
+                
               </p>
               <div className="flex items-center justify-center space-x-3">
                 <a
@@ -288,17 +290,16 @@ const  Aboutus = () => {
           <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
             <img
               className="object-cover w-full h-56 md:h-64 xl:h-80"
-              src="https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              src={kashish}
               alt="Person"
             />
             <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
               <p className="mb-1 text-lg font-bold text-gray-100">
-                Alice Melbourne
+                Kashish Patel
               </p>
-              <p className="mb-4 text-xs text-gray-100">Human Resources</p>
+              <p className="mb-4 text-xs text-gray-100"></p>
               <p className="mb-4 text-xs tracking-wide text-gray-400">
-                Lorizzle ipsum bling bling sit amizzle, consectetuer adipiscing
-                elit.
+                
               </p>
               <div className="flex items-center justify-center space-x-3">
                 <a

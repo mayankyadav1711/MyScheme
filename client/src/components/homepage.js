@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-redundant-roles */
 
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
@@ -212,8 +212,8 @@ const Home = () => {
         />
         <noscript data-n-css="" />
         <div id="__next">
-          <Navbar/>
-     <HeroSection/>
+          <Navbar />
+          <HeroSection />
 
 
           <main className="">
@@ -249,28 +249,28 @@ const Home = () => {
                         </ul>
 
                         <Link to="/scheme">
-                        <button
-                          aria-label="Find Schemes For You"
-                          className="px-7 py-3 text-lg rounded-md undefined undefined green bg-secondary text-white hover:bg-primary transition ease-in-out font-medium leading-none block mt-5 relative undefined"
-                          title="Find Schemes For You"
-                        >
-                          Find Schemes For You
-                          <svg
-                            aria-hidden="true"
-                            focusable="false"
-                            data-prefix="fas"
-                            data-icon="arrow-right-long"
-                            className="svg-inline--fa fa-arrow-right-long fa-xl ml-2 inline-block"
-                            role="img"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 512 512"
+                          <button
+                            aria-label="Find Schemes For You"
+                            className="px-7 py-3 text-lg rounded-md undefined undefined green bg-secondary text-white hover:bg-primary transition ease-in-out font-medium leading-none block mt-5 relative undefined"
+                            title="Find Schemes For You"
                           >
-                            <path
-                              fill="currentColor"
-                              d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"
-                            ></path>
-                          </svg>
-                        </button>
+                            Find Schemes For You
+                            <svg
+                              aria-hidden="true"
+                              focusable="false"
+                              data-prefix="fas"
+                              data-icon="arrow-right-long"
+                              className="svg-inline--fa fa-arrow-right-long fa-xl ml-2 inline-block"
+                              role="img"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 512 512"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"
+                              ></path>
+                            </svg>
+                          </button>
                         </Link>
                       </div>
                     </div>
@@ -313,6 +313,72 @@ const Home = () => {
                       <h2 className="text-2xl md:text-3xl font-extrabold leading-snug">
                         on categories
                       </h2>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-10 gap-6">
+                      <div className="grid gap-6">
+                        <div>
+                          <img
+                            className="h-auto max-w-full rounded-lg"
+                            src="https://cdn.myscheme.in/images/categories/Agriculture.svg"
+                            alt=""
+                          />
+                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
+                        Agriculture,Rural And Environment
+                      </h2>
+                        </div>
+                        <div>
+                          <img
+                            className="h-auto max-w-full rounded-lg"
+                            src="https://cdn.myscheme.in/images/categories/Banking.svg"
+                            alt=""
+                          />
+                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
+                        Banking,Financial Services and Insurance
+                      </h2>
+                        </div>
+                        <div>
+                          <img
+                            className="h-auto max-w-full rounded-lg"
+                            src="https://cdn.myscheme.in/images/categories/Business.svg"
+                            alt=""
+                          />
+                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
+                        Business and Intership
+                      </h2>
+                        </div>
+                      </div>
+                      <div className="grid gap-6">
+                        <div>
+                          <img
+                            className="h-auto max-w-full rounded-lg"
+                            src="https://cdn.myscheme.in/images/categories/Education.svg"
+                            alt=""
+                          />
+                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
+                        Education and Learning
+                      </h2>
+                        </div>
+                        <div>
+                          <img
+                            className="h-auto max-w-full rounded-lg"
+                            src="https://cdn.myscheme.in/images/categories/Health.svg"
+                            alt=""
+                          />
+                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
+                        Health and Wellness
+                      </h2>
+                        </div>
+                        <div>
+                          <img
+                            className="h-auto max-w-full rounded-lg"
+                            src="https://cdn.myscheme.in/images/categories/Women.svg"
+                            alt=""
+                          />
+                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
+                        Women and Child
+                      </h2>
+                        </div>
+                      </div>
                     </div>
                     <div className="bg-white z-0 relative mx-auto text-center lg:text-left justify-center rounded-xl">
                       <div className="absolute opacity-70 -bottom-10 -left-10 w-36 h-40 -z-10 bg-repeat bg-shape-one" />
@@ -530,6 +596,7 @@ const Home = () => {
                                 </noscript>
                               </span>
                             </div>
+                            < img src="https://cdn.myscheme.in/images/icons/check.svg" />
                             <h3 className="text-xl font-semibold text-green-600">
                               Enter Details
                             </h3>
@@ -667,6 +734,7 @@ const Home = () => {
                                 </noscript>
                               </span>
                             </div>
+                            < img src="https://cdn.myscheme.in/images/icons/search.svg" />
                             <h3 className="text-xl font-semibold text-green-600">
                               Search
                             </h3>
@@ -804,6 +872,7 @@ const Home = () => {
                                 </noscript>
                               </span>
                             </div>
+                            < img src="https://cdn.myscheme.in/images/icons/apply.svg" />
                             <h3 className="text-xl font-semibold text-green-600">
                               Select &amp; Apply
                             </h3>
@@ -903,7 +972,7 @@ const Home = () => {
                           >
                             <img
                               alt="Video about myScheme"
-                              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqyS05c4SOItquc0Une1dVGfZ-1nf76D9QIA&usqp=CAU"
                               decoding="async"
                               data-nimg="fill"
                               className="border-0 w-full h-full rounded-xl"
@@ -979,358 +1048,358 @@ const Home = () => {
                 </section>
               </section>
               <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-  <div className="sm:hidden">
-    <label htmlFor="tabs" className="sr-only">
-      Select tab
-    </label>
-    <select
-      id="tabs"
-      className="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    >
-      <option>Statistics</option>
-      <option>Services</option>
-      <option>FAQ</option>
-    </select>
-  </div>
-  <ul
-    className="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
-    id="fullWidthTab"
-    data-tabs-toggle="#fullWidthTabContent"
-    role="tablist"
-  >
-    <li className="w-full">
-      <button
-        id="stats-tab"
-        data-tabs-target="#stats"
-        type="button"
-        role="tab"
-        aria-controls="stats"
-        aria-selected="true"
-        className="inline-block w-full p-4 rounded-ss-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
-      >
-        Statistics
-      </button>
-    </li>
-    <li className="w-full">
-      <button
-        id="about-tab"
-        data-tabs-target="#about"
-        type="button"
-        role="tab"
-        aria-controls="about"
-        aria-selected="false"
-        className="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
-      >
-        Services
-      </button>
-    </li>
-    <li className="w-full">
-      <button
-        id="faq-tab"
-        data-tabs-target="#faq"
-        type="button"
-        role="tab"
-        aria-controls="faq"
-        aria-selected="false"
-        className="inline-block w-full p-4 rounded-se-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
-      >
-        FAQ
-      </button>
-    </li>
-  </ul>
-  <div
-    id="fullWidthTabContent"
-    className="border-t border-gray-200 dark:border-gray-600"
-  >
-    <div
-      className="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
-      id="stats"
-      role="tabpanel"
-      aria-labelledby="stats-tab"
-    >
-      <dl className="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-white sm:p-8">
-        <div className="flex flex-col items-center justify-center">
-          <dt className="mb-2 text-3xl font-extrabold">73M+</dt>
-          <dd className="text-gray-500 dark:text-gray-400">Developers</dd>
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <dt className="mb-2 text-3xl font-extrabold">100M+</dt>
-          <dd className="text-gray-500 dark:text-gray-400">
-            Public repositories
-          </dd>
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <dt className="mb-2 text-3xl font-extrabold">1000s</dt>
-          <dd className="text-gray-500 dark:text-gray-400">
-            Open source projects
-          </dd>
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <dt className="mb-2 text-3xl font-extrabold">1B+</dt>
-          <dd className="text-gray-500 dark:text-gray-400">Contributors</dd>
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <dt className="mb-2 text-3xl font-extrabold">90+</dt>
-          <dd className="text-gray-500 dark:text-gray-400">
-            Top Forbes companies
-          </dd>
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <dt className="mb-2 text-3xl font-extrabold">4M+</dt>
-          <dd className="text-gray-500 dark:text-gray-400">Organizations</dd>
-        </div>
-      </dl>
-    </div>
-    <div
-      className="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
-      id="about"
-      role="tabpanel"
-      aria-labelledby="about-tab"
-    >
-      <h2 className="mb-5 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-        We invest in the world’s potential
-      </h2>
-      {/* List */}
-      <ul role="list" className="space-y-4 text-gray-500 dark:text-gray-400">
-        <li className="flex space-x-2 rtl:space-x-reverse items-center">
-          <svg
-            className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-          </svg>
-          <span className="leading-tight">Dynamic reports and dashboards</span>
-        </li>
-        <li className="flex space-x-2 rtl:space-x-reverse items-center">
-          <svg
-            className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-          </svg>
-          <span className="leading-tight">Templates for everyone</span>
-        </li>
-        <li className="flex space-x-2 rtl:space-x-reverse items-center">
-          <svg
-            className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-          </svg>
-          <span className="leading-tight">Development workflow</span>
-        </li>
-        <li className="flex space-x-2 rtl:space-x-reverse items-center">
-          <svg
-            className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-          </svg>
-          <span className="leading-tight">Limitless business automation</span>
-        </li>
-      </ul>
-    </div>
-    <div
-      className="hidden p-4 bg-white rounded-lg dark:bg-gray-800"
-      id="faq"
-      role="tabpanel"
-      aria-labelledby="faq-tab"
-    >
-      <div
-        id="accordion-flush"
-        data-accordion="collapse"
-        data-active-classes="bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-        data-inactive-classes="text-gray-500 dark:text-gray-400"
-      >
-        <h2 id="accordion-flush-heading-1">
-          <button
-            type="button"
-            className="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
-            data-accordion-target="#accordion-flush-body-1"
-            aria-expanded="true"
-            aria-controls="accordion-flush-body-1"
-          >
-            <span>What is Flowbite?</span>
-            <svg
-              data-accordion-icon=""
-              className="w-3 h-3 rotate-180 shrink-0"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 10 6"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5 5 1 1 5"
-              />
-            </svg>
-          </button>
-        </h2>
-        <div
-          id="accordion-flush-body-1"
-          className="hidden"
-          aria-labelledby="accordion-flush-heading-1"
-        >
-          <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Flowbite is an open-source library of interactive components built
-              on top of Tailwind CSS including buttons, dropdowns, modals,
-              navbars, and more.
-            </p>
-            <p className="text-gray-500 dark:text-gray-400">
-              Check out this guide to learn how to{" "}
-              <a
-                href="/docs/getting-started/introduction/"
-                className="text-blue-600 dark:text-blue-500 hover:underline"
-              >
-                get started
-              </a>{" "}
-              and start developing websites even faster with components on top
-              of Tailwind CSS.
-            </p>
-          </div>
-        </div>
-        <h2 id="accordion-flush-heading-2">
-          <button
-            type="button"
-            className="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
-            data-accordion-target="#accordion-flush-body-2"
-            aria-expanded="false"
-            aria-controls="accordion-flush-body-2"
-          >
-            <span>Is there a Figma file available?</span>
-            <svg
-              data-accordion-icon=""
-              className="w-3 h-3 rotate-180 shrink-0"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 10 6"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5 5 1 1 5"
-              />
-            </svg>
-          </button>
-        </h2>
-        <div
-          id="accordion-flush-body-2"
-          className="hidden"
-          aria-labelledby="accordion-flush-heading-2"
-        >
-          <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Flowbite is first conceptualized and designed using the Figma
-              software so everything you see in the library has a design
-              equivalent in our Figma file.
-            </p>
-            <p className="text-gray-500 dark:text-gray-400">
-              Check out the{" "}
-              <a
-                href="https://flowbite.com/figma/"
-                className="text-blue-600 dark:text-blue-500 hover:underline"
-              >
-                Figma design system
-              </a>{" "}
-              based on the utility classes from Tailwind CSS and components from
-              Flowbite.
-            </p>
-          </div>
-        </div>
-        <h2 id="accordion-flush-heading-3">
-          <button
-            type="button"
-            className="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
-            data-accordion-target="#accordion-flush-body-3"
-            aria-expanded="false"
-            aria-controls="accordion-flush-body-3"
-          >
-            <span>
-              What are the differences between Flowbite and Tailwind UI?
-            </span>
-            <svg
-              data-accordion-icon=""
-              className="w-3 h-3 rotate-180 shrink-0"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 10 6"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5 5 1 1 5"
-              />
-            </svg>
-          </button>
-        </h2>
-        <div
-          id="accordion-flush-body-3"
-          className="hidden"
-          aria-labelledby="accordion-flush-heading-3"
-        >
-          <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              The main difference is that the core components from Flowbite are
-              open source under the MIT license, whereas Tailwind UI is a paid
-              product. Another difference is that Flowbite relies on smaller and
-              standalone components, whereas Tailwind UI offers sections of
-              pages.
-            </p>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              However, we actually recommend using both Flowbite, Flowbite Pro,
-              and even Tailwind UI as there is no technical reason stopping you
-              from using the best of two worlds.
-            </p>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Learn more about these technologies:
-            </p>
-            <ul className="ps-5 text-gray-500 list-disc dark:text-gray-400">
-              <li>
-                <a
-                  href="https://flowbite.com/pro/"
-                  className="text-blue-600 dark:text-blue-500 hover:underline"
+                <div className="sm:hidden">
+                  <label htmlFor="tabs" className="sr-only">
+                    Select tab
+                  </label>
+                  <select
+                    id="tabs"
+                    className="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option>Statistics</option>
+                    <option>Services</option>
+                    <option>FAQ</option>
+                  </select>
+                </div>
+                <ul
+                  className="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
+                  id="fullWidthTab"
+                  data-tabs-toggle="#fullWidthTabContent"
+                  role="tablist"
                 >
-                  Flowbite Pro
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://tailwindui.com/"
-                  rel="nofollow"
-                  className="text-blue-600 dark:text-blue-500 hover:underline"
+                  <li className="w-full">
+                    <button
+                      id="stats-tab"
+                      data-tabs-target="#stats"
+                      type="button"
+                      role="tab"
+                      aria-controls="stats"
+                      aria-selected="true"
+                      className="inline-block w-full p-4 rounded-ss-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
+                    >
+                      Statistics
+                    </button>
+                  </li>
+                  <li className="w-full">
+                    <button
+                      id="about-tab"
+                      data-tabs-target="#about"
+                      type="button"
+                      role="tab"
+                      aria-controls="about"
+                      aria-selected="false"
+                      className="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
+                    >
+                      Services
+                    </button>
+                  </li>
+                  <li className="w-full">
+                    <button
+                      id="faq-tab"
+                      data-tabs-target="#faq"
+                      type="button"
+                      role="tab"
+                      aria-controls="faq"
+                      aria-selected="false"
+                      className="inline-block w-full p-4 rounded-se-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
+                    >
+                      FAQ
+                    </button>
+                  </li>
+                </ul>
+                <div
+                  id="fullWidthTabContent"
+                  className="border-t border-gray-200 dark:border-gray-600"
                 >
-                  Tailwind UI
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                  <div
+                    className="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
+                    id="stats"
+                    role="tabpanel"
+                    aria-labelledby="stats-tab"
+                  >
+                    <dl className="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-white sm:p-8">
+                      <div className="flex flex-col items-center justify-center">
+                        <dt className="mb-2 text-3xl font-extrabold">73M+</dt>
+                        <dd className="text-gray-500 dark:text-gray-400">Developers</dd>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <dt className="mb-2 text-3xl font-extrabold">100M+</dt>
+                        <dd className="text-gray-500 dark:text-gray-400">
+                          Public repositories
+                        </dd>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <dt className="mb-2 text-3xl font-extrabold">1000s</dt>
+                        <dd className="text-gray-500 dark:text-gray-400">
+                          Open source projects
+                        </dd>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <dt className="mb-2 text-3xl font-extrabold">1B+</dt>
+                        <dd className="text-gray-500 dark:text-gray-400">Contributors</dd>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <dt className="mb-2 text-3xl font-extrabold">90+</dt>
+                        <dd className="text-gray-500 dark:text-gray-400">
+                          Top Forbes companies
+                        </dd>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <dt className="mb-2 text-3xl font-extrabold">4M+</dt>
+                        <dd className="text-gray-500 dark:text-gray-400">Organizations</dd>
+                      </div>
+                    </dl>
+                  </div>
+                  <div
+                    className="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
+                    id="about"
+                    role="tabpanel"
+                    aria-labelledby="about-tab"
+                  >
+                    <h2 className="mb-5 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+                      We invest in the world’s potential
+                    </h2>
+                    {/* List */}
+                    <ul role="list" className="space-y-4 text-gray-500 dark:text-gray-400">
+                      <li className="flex space-x-2 rtl:space-x-reverse items-center">
+                        <svg
+                          className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                        </svg>
+                        <span className="leading-tight">Dynamic reports and dashboards</span>
+                      </li>
+                      <li className="flex space-x-2 rtl:space-x-reverse items-center">
+                        <svg
+                          className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                        </svg>
+                        <span className="leading-tight">Templates for everyone</span>
+                      </li>
+                      <li className="flex space-x-2 rtl:space-x-reverse items-center">
+                        <svg
+                          className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                        </svg>
+                        <span className="leading-tight">Development workflow</span>
+                      </li>
+                      <li className="flex space-x-2 rtl:space-x-reverse items-center">
+                        <svg
+                          className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                        </svg>
+                        <span className="leading-tight">Limitless business automation</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    className="hidden p-4 bg-white rounded-lg dark:bg-gray-800"
+                    id="faq"
+                    role="tabpanel"
+                    aria-labelledby="faq-tab"
+                  >
+                    <div
+                      id="accordion-flush"
+                      data-accordion="collapse"
+                      data-active-classes="bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      data-inactive-classes="text-gray-500 dark:text-gray-400"
+                    >
+                      <h2 id="accordion-flush-heading-1">
+                        <button
+                          type="button"
+                          className="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
+                          data-accordion-target="#accordion-flush-body-1"
+                          aria-expanded="true"
+                          aria-controls="accordion-flush-body-1"
+                        >
+                          <span>What is Flowbite?</span>
+                          <svg
+                            data-accordion-icon=""
+                            className="w-3 h-3 rotate-180 shrink-0"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 10 6"
+                          >
+                            <path
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5 5 1 1 5"
+                            />
+                          </svg>
+                        </button>
+                      </h2>
+                      <div
+                        id="accordion-flush-body-1"
+                        className="hidden"
+                        aria-labelledby="accordion-flush-heading-1"
+                      >
+                        <div className="py-5 border-b border-gray-200 dark:border-gray-700">
+                          <p className="mb-2 text-gray-500 dark:text-gray-400">
+                            Flowbite is an open-source library of interactive components built
+                            on top of Tailwind CSS including buttons, dropdowns, modals,
+                            navbars, and more.
+                          </p>
+                          <p className="text-gray-500 dark:text-gray-400">
+                            Check out this guide to learn how to{" "}
+                            <a
+                              href="/docs/getting-started/introduction/"
+                              className="text-blue-600 dark:text-blue-500 hover:underline"
+                            >
+                              get started
+                            </a>{" "}
+                            and start developing websites even faster with components on top
+                            of Tailwind CSS.
+                          </p>
+                        </div>
+                      </div>
+                      <h2 id="accordion-flush-heading-2">
+                        <button
+                          type="button"
+                          className="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
+                          data-accordion-target="#accordion-flush-body-2"
+                          aria-expanded="false"
+                          aria-controls="accordion-flush-body-2"
+                        >
+                          <span>Is there a Figma file available?</span>
+                          <svg
+                            data-accordion-icon=""
+                            className="w-3 h-3 rotate-180 shrink-0"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 10 6"
+                          >
+                            <path
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5 5 1 1 5"
+                            />
+                          </svg>
+                        </button>
+                      </h2>
+                      <div
+                        id="accordion-flush-body-2"
+                        className="hidden"
+                        aria-labelledby="accordion-flush-heading-2"
+                      >
+                        <div className="py-5 border-b border-gray-200 dark:border-gray-700">
+                          <p className="mb-2 text-gray-500 dark:text-gray-400">
+                            Flowbite is first conceptualized and designed using the Figma
+                            software so everything you see in the library has a design
+                            equivalent in our Figma file.
+                          </p>
+                          <p className="text-gray-500 dark:text-gray-400">
+                            Check out the{" "}
+                            <a
+                              href="https://flowbite.com/figma/"
+                              className="text-blue-600 dark:text-blue-500 hover:underline"
+                            >
+                              Figma design system
+                            </a>{" "}
+                            based on the utility classes from Tailwind CSS and components from
+                            Flowbite.
+                          </p>
+                        </div>
+                      </div>
+                      <h2 id="accordion-flush-heading-3">
+                        <button
+                          type="button"
+                          className="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
+                          data-accordion-target="#accordion-flush-body-3"
+                          aria-expanded="false"
+                          aria-controls="accordion-flush-body-3"
+                        >
+                          <span>
+                            What are the differences between Flowbite and Tailwind UI?
+                          </span>
+                          <svg
+                            data-accordion-icon=""
+                            className="w-3 h-3 rotate-180 shrink-0"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 10 6"
+                          >
+                            <path
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5 5 1 1 5"
+                            />
+                          </svg>
+                        </button>
+                      </h2>
+                      <div
+                        id="accordion-flush-body-3"
+                        className="hidden"
+                        aria-labelledby="accordion-flush-heading-3"
+                      >
+                        <div className="py-5 border-b border-gray-200 dark:border-gray-700">
+                          <p className="mb-2 text-gray-500 dark:text-gray-400">
+                            The main difference is that the core components from Flowbite are
+                            open source under the MIT license, whereas Tailwind UI is a paid
+                            product. Another difference is that Flowbite relies on smaller and
+                            standalone components, whereas Tailwind UI offers sections of
+                            pages.
+                          </p>
+                          <p className="mb-2 text-gray-500 dark:text-gray-400">
+                            However, we actually recommend using both Flowbite, Flowbite Pro,
+                            and even Tailwind UI as there is no technical reason stopping you
+                            from using the best of two worlds.
+                          </p>
+                          <p className="mb-2 text-gray-500 dark:text-gray-400">
+                            Learn more about these technologies:
+                          </p>
+                          <ul className="ps-5 text-gray-500 list-disc dark:text-gray-400">
+                            <li>
+                              <a
+                                href="https://flowbite.com/pro/"
+                                className="text-blue-600 dark:text-blue-500 hover:underline"
+                              >
+                                Flowbite Pro
+                              </a>
+                            </li>
+                            <li>
+                              <a
+                                href="https://tailwindui.com/"
+                                rel="nofollow"
+                                className="text-blue-600 dark:text-blue-500 hover:underline"
+                              >
+                                Tailwind UI
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <section>
                 <section
@@ -1390,7 +1459,7 @@ const Home = () => {
                           <img
                             alt="Questions Image"
                             title="Questions Image"
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                            src="https://cdn.myscheme.in/images/questions.svg"
                             decoding="async"
                             data-nimg="intrinsic"
                             className="border-0 object-contain"
@@ -1438,183 +1507,183 @@ const Home = () => {
                           </h2>
                         </div>
                         <div className="py-4 first:pt-0 last:pb-0 undefined">
-      <div className="cursor-pointer undefined" onClick={() => setShowAnswer1(!showAnswer1)}>
-        <div className="flex flex-row items-center justify-between">
-          <p className="font-bold w-11/12">What is myScheme?</p>
-          <svg
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth={0}
-            viewBox="0 0 20 20"
-            aria-hidden="true"
-            className="ml-1"
-            height={25}
-            width={25}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </div>
-      </div>
-      <div className={`rounded-b mt-3 ${showAnswer1 ? '' : 'hidden'}`}>
-        <p className="text-base leading-relaxed">
-          myScheme is an e-Marketplace for Govt. schemes and services. Using myScheme you can find various government schemes, check your eligibility, and apply for the schemes.
-        </p>
-      </div>
-    </div>
+                          <div className="cursor-pointer undefined" onClick={() => setShowAnswer1(!showAnswer1)}>
+                            <div className="flex flex-row items-center justify-between">
+                              <p className="font-bold w-11/12">What is myScheme?</p>
+                              <svg
+                                stroke="currentColor"
+                                fill="currentColor"
+                                strokeWidth={0}
+                                viewBox="0 0 20 20"
+                                aria-hidden="true"
+                                className="ml-1"
+                                height={25}
+                                width={25}
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className={`rounded-b mt-3 ${showAnswer1 ? '' : 'hidden'}`}>
+                            <p className="text-base leading-relaxed">
+                              myScheme is an e-Marketplace for Govt. schemes and services. Using myScheme you can find various government schemes, check your eligibility, and apply for the schemes.
+                            </p>
+                          </div>
+                        </div>
                         <div className="py-4 first:pt-0 last:pb-0 undefined">
-        <div className="cursor-pointer undefined" onClick={() => setShowAnswer2(!showAnswer2)}>
-          <div className="flex flex-row items-center justify-between">
-            <p className="font-bold w-11/12">
-              How myScheme will help common citizens?
-            </p>
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth={0}
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-              className="ml-1"
-              height={25}
-              width={25}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-        </div>
-        <div className={`rounded-b mt-3 ${showAnswer2 ? '' : 'hidden'}`}>
-          <p className="text-base leading-relaxed">
-            myScheme will reduce the time and effort of citizens in
-            searching for appropriate government schemes.The easy
-            user interface of myScheme helps common people a lot in
-            discovering and applying for schemes.
-          </p>
-        </div>
-        </div>
+                          <div className="cursor-pointer undefined" onClick={() => setShowAnswer2(!showAnswer2)}>
+                            <div className="flex flex-row items-center justify-between">
+                              <p className="font-bold w-11/12">
+                                How myScheme will help common citizens?
+                              </p>
+                              <svg
+                                stroke="currentColor"
+                                fill="currentColor"
+                                strokeWidth={0}
+                                viewBox="0 0 20 20"
+                                aria-hidden="true"
+                                className="ml-1"
+                                height={25}
+                                width={25}
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className={`rounded-b mt-3 ${showAnswer2 ? '' : 'hidden'}`}>
+                            <p className="text-base leading-relaxed">
+                              myScheme will reduce the time and effort of citizens in
+                              searching for appropriate government schemes.The easy
+                              user interface of myScheme helps common people a lot in
+                              discovering and applying for schemes.
+                            </p>
+                          </div>
+                        </div>
                         <div className="py-4 first:pt-0 last:pb-0 undefined">
-        <div className="cursor-pointer undefined" onClick={() => setShowAnswer3(!showAnswer3)}>
-          <div className="flex flex-row items-center justify-between">
-            <p className="font-bold w-11/12">
-            Can I apply for the schemes through myScheme?
-            </p>
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth={0}
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-              className="ml-1"
-              height={25}
-              width={25}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-        </div>
-        <div className={`rounded-b mt-3 ${showAnswer3 ? '' : 'hidden'}`}>
-          <p className="text-base leading-relaxed">
-          For now, the platform shall direct you to the
+                          <div className="cursor-pointer undefined" onClick={() => setShowAnswer3(!showAnswer3)}>
+                            <div className="flex flex-row items-center justify-between">
+                              <p className="font-bold w-11/12">
+                                Can I apply for the schemes through myScheme?
+                              </p>
+                              <svg
+                                stroke="currentColor"
+                                fill="currentColor"
+                                strokeWidth={0}
+                                viewBox="0 0 20 20"
+                                aria-hidden="true"
+                                className="ml-1"
+                                height={25}
+                                width={25}
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className={`rounded-b mt-3 ${showAnswer3 ? '' : 'hidden'}`}>
+                            <p className="text-base leading-relaxed">
+                              For now, the platform shall direct you to the
                               application page of the scheme of your choice.It is
                               envisaged that in the upcoming phases, myScheme shall
                               have the feature to apply for schemes / services from
                               within the platform/ app.
-          </p>
-        </div>
-        </div>
+                            </p>
+                          </div>
+                        </div>
                         <div className="py-4 first:pt-0 last:pb-0 undefined">
-        <div className="cursor-pointer undefined" onClick={() => setShowAnswer4(!showAnswer4)}>
-          <div className="flex flex-row items-center justify-between">
-            <p className="font-bold w-11/12">
-            How does myScheme work? How do I check for my
+                          <div className="cursor-pointer undefined" onClick={() => setShowAnswer4(!showAnswer4)}>
+                            <div className="flex flex-row items-center justify-between">
+                              <p className="font-bold w-11/12">
+                                How does myScheme work? How do I check for my
                                 eligibility through myScheme ?
-            </p>
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth={0}
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-              className="ml-1"
-              height={25}
-              width={25}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-        </div>
-        <div className={`rounded-b mt-3 ${showAnswer4 ? '' : 'hidden'}`}>
-          <p className="text-base leading-relaxed">
-          myScheme offers a convenient three - step process for
+                              </p>
+                              <svg
+                                stroke="currentColor"
+                                fill="currentColor"
+                                strokeWidth={0}
+                                viewBox="0 0 20 20"
+                                aria-hidden="true"
+                                className="ml-1"
+                                height={25}
+                                width={25}
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className={`rounded-b mt-3 ${showAnswer4 ? '' : 'hidden'}`}>
+                            <p className="text-base leading-relaxed">
+                              myScheme offers a convenient three - step process for
                               the citizens to discover the government schemes for
-                              which they are eligible: <br/>
+                              which they are eligible: <br />
                               {/* */}
-                             <strong> Step 1 </strong> - The user enters his / her attributes such as
-                              demographic, income, social details, etc. <br/>
+                              <strong> Step 1 </strong> - The user enters his / her attributes such as
+                              demographic, income, social details, etc. <br />
                               {/* */}<strong> Step 2 </strong> - The myScheme findsthe relevant schemes
-                              from hundreds of schemes for the user. <br/>
+                              from hundreds of schemes for the user. <br />
                               {/* */}<strong> Step 3 </strong> - The user can select from the list of
                               eligible schemes and get more information from the
                               dedicated scheme page with detailed knowledge, FAQs, and
                               application process and traverse to the application URL
-                              to apply. <br/>
-          </p>
-        </div>
-        </div>
+                              to apply. <br />
+                            </p>
+                          </div>
+                        </div>
                         <div className="py-4 first:pt-0 last:pb-0 undefined">
-        <div className="cursor-pointer undefined" onClick={() => setShowAnswer5(!showAnswer5)}>
-          <div className="flex flex-row items-center justify-between">
-            <p className="font-bold w-11/12">
-            What all information about a particular scheme can I
+                          <div className="cursor-pointer undefined" onClick={() => setShowAnswer5(!showAnswer5)}>
+                            <div className="flex flex-row items-center justify-between">
+                              <p className="font-bold w-11/12">
+                                What all information about a particular scheme can I
                                 find on myScheme ?
-            </p>
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth={0}
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-              className="ml-1"
-              height={25}
-              width={25}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-        </div>
-        <div className={`rounded-b mt-3 ${showAnswer5 ? '' : 'hidden'}`}>
-          <p className="text-base leading-relaxed">
-          myScheme provides details on the eligibility criteria,
+                              </p>
+                              <svg
+                                stroke="currentColor"
+                                fill="currentColor"
+                                strokeWidth={0}
+                                viewBox="0 0 20 20"
+                                aria-hidden="true"
+                                className="ml-1"
+                                height={25}
+                                width={25}
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className={`rounded-b mt-3 ${showAnswer5 ? '' : 'hidden'}`}>
+                            <p className="text-base leading-relaxed">
+                              myScheme provides details on the eligibility criteria,
                               application process, and benefits being offered under
                               that scheme. myScheme also answers the Frequently Asked
                               Questions(FAQs) about the scheme.
-          </p>
-        </div>
-        </div>
-                        
+                            </p>
+                          </div>
+                        </div>
+
                         <a className="undefined block normal-case" href="/faqs">
                           <button
                             aria-label="View More"
@@ -1648,11 +1717,11 @@ const Home = () => {
               </section>
             </section>
           </main>
-       
-      
+
+
         </div>
       </>
-<Footer/>
+      <Footer />
     </div>
   );
 };

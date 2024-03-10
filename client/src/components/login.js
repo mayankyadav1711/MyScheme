@@ -145,7 +145,7 @@ const Login = () =>{
                             </span>
                         </button>
                         </form>
-                       <div className=" text-center"> <Link to="/forgotpassword" className="no-underline leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2 ">Forgot Password?</Link> </div>
+                       {/* <div className=" text-center"> <Link to="/forgotpassword" className="no-underline leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2 ">Forgot Password?</Link> </div> */}
                        <div className=" text-center"> <Link to="/register" className="no-underline leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2 ">Don't have an account? Sign Up</Link> </div>
 
                         <p class="mt-6 text-xs text-gray-600 text-center">

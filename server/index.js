@@ -1,8 +1,20 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 const { MONGOURI } = require('./config/keys')
+
+
+//cors policy 
+app.use(cors({
+  origin: [
+    "https://myscheme.vercel.app",
+    "http://localhost:3000",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 mongoose.connect(MONGOURI, {
   useNewUrlParser: true,

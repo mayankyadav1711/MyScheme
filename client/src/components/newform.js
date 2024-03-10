@@ -54,7 +54,7 @@ const NewForm = () => {
       <section>
         <div className="bg-gradient-to-r h-100 from-green-600 to-gray-600 font-[sans-serif] p-6">
           <div className="container mx-auto flex flex-col justify-center items-center">
-            <h2 className="text-white text-3xl font-bold mb-4">
+            <h2 className="text-white text-5xl font-bold mb-4">
               ADD NEW SCHEME HERE
             </h2>
             <p className="text-white text-base text-center mb-6">
@@ -67,20 +67,20 @@ const NewForm = () => {
         <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
           <div className="container max-w-screen-lg mx-auto">
             <div>
-              <h2 className="font-semibold text-xl text-gray-600">ADD Details Of New Scheme </h2>
-              <p className="text-gray-500 mb-6">
+              <h2 className="font-semibold text-4xl text-gray-600">ADD Details Of New Scheme </h2>
+              <p className="text-gray-500 text-2xl mb-6">
                 This form could only be accessed by the admin, add details of the new scheme in the given form.
               </p>
              
 
               <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
-  <div className="grid gap-4">
+  <div className="grid gap-4 pt-10">
 
     {/* Scheme Full Name */}
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="schemeFullName"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
         Scheme Full Name
       </label>
@@ -100,7 +100,7 @@ const NewForm = () => {
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="schemeImageLink"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
         Scheme Image Link
       </label>
@@ -120,7 +120,7 @@ const NewForm = () => {
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="schemeDetails"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
         Scheme Details
       </label>
@@ -140,7 +140,7 @@ const NewForm = () => {
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="shortDetail"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
         Short Detail
       </label>
@@ -160,7 +160,7 @@ const NewForm = () => {
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="benefits"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
         Benefits
       </label>
@@ -180,20 +180,20 @@ const NewForm = () => {
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="state"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
-        State
+        
       </label>
       <select
         name="state"
         id="state"
-        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        className="block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
         value={formData.state}
         onChange={handleChange}
         required
       >
         <option value="" disabled>Select State</option>
-    
+        <option value="All">All</option>
   <option value="andhra pradesh">Andhra Pradesh</option>
   <option value="arunachal pradesh">Arunachal Pradesh</option>
   <option value="assam">Assam</option>
@@ -237,24 +237,26 @@ const NewForm = () => {
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="ministry"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
-        Ministry
+      
       </label>
       <select
         name="ministry"
         id="ministry"
-        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        className="block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
         value={formData.ministry}
         onChange={handleChange}
         required
       >
         <option value="" disabled>Select Ministry</option>
+        <option value="all">All</option>
         <option value="nptel">NPTEL</option>
       <option value="ayush">AYUSH</option>
       <option value="aicte">AICTE</option>
       <option value="isro">ISRO</option>
       <option value="kvpy">KVPY</option>
+      
       </select>
     </div>
 
@@ -262,19 +264,20 @@ const NewForm = () => {
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="gender"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
-        Gender
+        
       </label>
       <select
         name="gender"
         id="gender"
-        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        className="block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
         value={formData.gender}
         onChange={handleChange}
         required
       >
         <option value="" disabled>Select Gender</option>
+        <option value="all">All</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
         <option value="other">Other</option>
@@ -285,19 +288,20 @@ const NewForm = () => {
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="caste"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
-        Caste
+        
       </label>
       <select
         name="caste"
         id="caste"
-        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        className="block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
         value={formData.caste}
         onChange={handleChange}
         required
       >
         <option value="" disabled>Select Caste</option>
+        <option value="all">All</option>
         <option value="general">GENERAL</option>
         <option value="obc">OBC</option>
         <option value="st">ST</option>
@@ -312,7 +316,7 @@ const NewForm = () => {
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="age"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
         Age
       </label>
@@ -320,7 +324,7 @@ const NewForm = () => {
         type="number"
         name="age"
         id="age"
-        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        className="block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
         placeholder=""
         value={formData.age}
         onChange={handleChange}
@@ -332,7 +336,7 @@ const NewForm = () => {
     <div className="relative z-0 w-full mb-5 group">
       <label
         htmlFor="originalSchemeLink"
-        className="text-sm text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
+        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
         Original Scheme Link
       </label>
@@ -340,7 +344,7 @@ const NewForm = () => {
         type="url"
         name="originalSchemeLink"
         id="originalSchemeLink"
-        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        className="block py-2.5 px-0 w-full text-xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
         placeholder=""
         value={formData.originalSchemeLink}
         onChange={handleChange}
