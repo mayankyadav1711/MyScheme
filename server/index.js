@@ -9,7 +9,7 @@ const { MONGOURI } = require('./config/keys')
 //cors policy 
 app.use(cors({
   origin: [
-    "https://myscheme.vercel.app",
+    "https://myschemeproject.vercel.app",
     "http://localhost:3000",
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
