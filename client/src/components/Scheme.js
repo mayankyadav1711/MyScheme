@@ -29,7 +29,7 @@ const Scheme = () => {
   
     const fetchSchemes = async () => {
       try {
-        const response = await fetch("/get-schemes");
+        const response = await fetch("https://myscheme-backend.vercel.app/get-schemes");
         const data = await response.json();
         setSchemes(data);
       } catch (error) {

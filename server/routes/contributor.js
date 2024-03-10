@@ -20,7 +20,7 @@ const { EMAIL, GPASS } = require("../config/keys");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "mykyadav17112003@gmail.com",
+    user: "govschmehub@gmail.com",
     pass: GPASS,
   },
 });
@@ -238,8 +238,8 @@ router.post("/contact",  async (req, res) => {
     await contacts.save();
 
     transporter.sendMail({
-      from: "mykyadav17112003@gmail.com", // Your email address
-      to: "mykyadav2003@gmail.com", // Your email address
+      from: "govschmehub@gmail.com", // Your email address
+      to: "govschmehub@gmail.com", // Your email address
       subject: "Someone tried to reach you (Contact Us Form)",
       html: `
         <h1>New Contact Submitted</h1>

@@ -13,7 +13,7 @@ const {EMAIL,GPASS} = require('../config/keys')
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "mykyadav17112003@gmail.com",
+    user: "govschmehub@gmail.com",
     pass: GPASS,
   },
 });
@@ -69,7 +69,7 @@ router.post("/signup", (req, res) => {
               .save()
               .then(() => {
                 transporter.sendMail({
-                  from: "mykyadav17112003@gmail.com", // Your email address
+                  from: "govschmehub@gmail.com", // Your email address
                   to: savedUser.email, // Your email address
                   subject: "🎁 OTP Verification for MyScheme",
                   html: `
@@ -116,7 +116,7 @@ router.post("/signup", (req, res) => {
               .save()
               .then((user) => {
                 transporter.sendMail({
-                  from: "mykyadav17112003@gmail.com", // Your email address
+                  from: "govschmehub@gmail.com", // Your email address
                   to: user.email, // Your email address
                   subject: "🎁 OTP Verification for MyScheme",
                   html: `
@@ -198,7 +198,7 @@ router.post("/verify-otp", (req, res) => {
 
         // Send a confirmation email for successful registration
         transporter.sendMail({
-          from: "mykyadav17112003@gmail.com", // Your email address
+          from: "govschmehub@gmail.com", // Your email address
           to: user.email, // Array of email addresses // Your email address
           subject: "Registration Successfully",
          
@@ -287,7 +287,7 @@ router.post("/reset-password", (req, res) => {
       user.expireToken = Date.now() + 3600000;
       user.save().then((result) => {
         transporter.sendMail({
-          from: "mykyadav17112003@gmail.com",
+          from: "govschmehub@gmail.com",
           to: user.email,
           subject: "Reset Password (no reply) ",
           html: `<html>
