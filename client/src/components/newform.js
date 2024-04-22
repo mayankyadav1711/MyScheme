@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./Footer";
@@ -8,18 +8,20 @@ const NewForm = () => {
     schemeImageLink: "",
     schemeDetails: "",
     shortDetail: "",
-    benefits:"",
+    benefits: "",
     city: "",
     state: "",
     ministry: "",
     gender: "",
     caste: "",
     age: "",
-    originalSchemeLink:""
+    originalSchemeLink: "",
+    documentsRequired: [], // Added documentsRequired field
   });
 
   const handleSubmit = async () => {
     try {
+   
       const response = await fetch("https://myscheme-backend.vercel.app/new-scheme", {
         method: "POST",
         headers: {
@@ -41,6 +43,18 @@ const NewForm = () => {
       // Handle error, show error message, etc.
     }
   };
+
+  const handleCheckboxChange = (e) => {
+    const { name, value, checked } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: checked
+        ? [...(prevFormData[name] || []), value]
+        : prevFormData[name].filter((item) => item !== value),
+    }));
+ 
+  };
+  
 
   const handleChange = (e) => {
     setFormData({
@@ -142,7 +156,7 @@ const NewForm = () => {
         htmlFor="shortDetail"
         className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
       >
-        Short Detail
+        Short Detail 
       </label>
       <textarea
         name="shortDetail"
@@ -156,25 +170,7 @@ const NewForm = () => {
       />
     </div>
 
-    {/* Benefits */}
-    <div className="relative z-0 w-full mb-5 group">
-      <label
-        htmlFor="benefits"
-        className="text-4xl text-gray-500 dark:text-gray-400 absolute transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-start"
-      >
-        Benefits
-      </label>
-      <textarea
-        name="benefits"
-        id="benefits"
-        rows="4"
-        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        placeholder=""
-        value={formData.benefits}
-        onChange={handleChange}
-        required
-      />
-    </div>
+  
 
     {/* State */}
     <div className="relative z-0 w-full mb-5 group">
@@ -258,6 +254,143 @@ const NewForm = () => {
       <option value="kvpy">KVPY</option>
       
       </select>
+    </div>
+    {/* Documents Required */}
+    <div className="relative z-0 w-full mb-5 group">
+              <label
+                htmlFor="documentsRequired"
+                className="text-2xl text-gray-900 dark:text-gray-900 mb-2 block"
+              >
+                Documents Required
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <label className="inline-flex items-center">
+                  <input
+                    type="checkbox"
+                    name="documentsRequired"
+                    value="Aadhar card"
+                    onChange={handleCheckboxChange}
+                    className="h-5 w-5 text-blue-600 "
+                  />
+                  <span className="ml-2 text-gray-900 dark:text-gray-900">Aadhar card</span>
+                </label>
+                <label className="inline-flex items-center">
+                  <input
+                    type="checkbox"
+                    name="documentsRequired"
+                    value="Pan card"
+                    onChange={handleCheckboxChange}
+                    className="h-5 w-5 text-blue-600"
+                  />
+                  <span className="ml-2 text-gray-900 dark:text-gray-900">Pan card</span>
+                </label>
+                <label className="inline-flex items-center">
+  <input
+    type="checkbox"
+    name="documentsRequired"
+    value="Ration Card"
+    onChange={handleCheckboxChange}
+    className="h-5 w-5 text-blue-600"
+  />
+  <span className="ml-2 text-gray-900 dark:text-gray-900">Ration Card</span>
+</label>
+
+<label className="inline-flex items-center">
+  <input
+    type="checkbox"
+    name="documentsRequired"
+    value="12th Marksheet"
+    onChange={handleCheckboxChange}
+    className="h-5 w-5 text-blue-600"
+  />
+  <span className="ml-2 text-gray-900 dark:text-gray-900">12th Marksheet</span>
+</label>
+
+<label className="inline-flex items-center">
+  <input
+    type="checkbox"
+    name="documentsRequired"
+    value="10th Marksheet"
+    onChange={handleCheckboxChange}
+    className="h-5 w-5 text-blue-600"
+  />
+  <span className="ml-2 text-gray-900 dark:text-gray-900">10th Marksheet</span>
+</label>
+<label className="inline-flex items-center">
+  <input
+    type="checkbox"
+    name="documentsRequired"
+    value="Driving License"
+    onChange={handleCheckboxChange}
+    className="h-5 w-5 text-blue-600"
+  />
+  <span className="ml-2 text-gray-900 dark:text-gray-900">Driving License</span>
+</label>
+
+<label className="inline-flex items-center">
+  <input
+    type="checkbox"
+    name="documentsRequired"
+    value="Passport"
+    onChange={handleCheckboxChange}
+    className="h-5 w-5 text-blue-600"
+  />
+  <span className="ml-2 text-gray-900 dark:text-gray-900">Passport</span>
+</label>
+
+<label className="inline-flex items-center">
+  <input
+    type="checkbox"
+    name="documentsRequired"
+    value="Voter ID"
+    onChange={handleCheckboxChange}
+    className="h-5 w-5 text-blue-600"
+  />
+  <span className="ml-2 text-gray-900 dark:text-gray-900">Voter ID</span>
+</label>
+
+<label className="inline-flex items-center">
+  <input
+    type="checkbox"
+    name="documentsRequired"
+    value="Birth Certificate"
+    onChange={handleCheckboxChange}
+    className="h-5 w-5 text-blue-600"
+  />
+  <span className="ml-2 text-gray-900 dark:text-gray-900">Birth Certificate</span>
+</label>
+
+<label className="inline-flex items-center">
+  <input
+    type="checkbox"
+    name="documentsRequired"
+    value="Income Certificate"
+    onChange={handleCheckboxChange}
+    className="h-5 w-5 text-blue-600"
+  />
+  <span className="ml-2 text-gray-900 dark:text-gray-900">Income Certificate</span>
+</label>
+                {/* Add more checkbox options for other documents */}
+              </div>
+            </div>
+    <div className="relative z-0 w-full mb-5 group">
+   
+    <label
+                htmlFor="benefits"
+                className="text-2xl text-gray-700 dark:text-gray-300 mb-2 block"
+              >
+                Benefits
+              </label>
+      <textarea
+        name="benefits"
+        id="benefits"
+        rows="4"
+        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=""
+        value={formData.benefits}
+        onChange={handleChange}
+        required
+      />
     </div>
 
     {/* Gender */}

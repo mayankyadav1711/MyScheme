@@ -287,7 +287,7 @@ const Home = () => {
                   </div>
                 </section>
               </section>
-              <section>
+              <Link to="/scheme"> <section>
                 <section
                   id="catStatesMinistries"
                   className="relative bg-no-repeat py-12 md:py-20 null"
@@ -324,7 +324,7 @@ const Home = () => {
                           />
                           <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
                         Agriculture,Rural And Environment
-                      </h2>
+                        </h2>
                         </div>
                         <div>
                           <img
@@ -334,7 +334,7 @@ const Home = () => {
                           />
                           <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
                         Banking,Financial Services and Insurance
-                      </h2>
+                       </h2>
                         </div>
                         <div>
                           <img
@@ -344,7 +344,7 @@ const Home = () => {
                           />
                           <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
                         Business and Intership
-                      </h2>
+                       </h2>
                         </div>
                       </div>
                       <div className="grid gap-6">
@@ -375,8 +375,8 @@ const Home = () => {
                             alt=""
                           />
                           <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
-                        Women and Child
-                      </h2>
+                             Women and Child
+                          </h2>
                         </div>
                       </div>
                     </div>
@@ -481,7 +481,7 @@ const Home = () => {
                     </div>
                   </div>
                 </section>
-              </section>
+              </section></Link>
               <section>
                 <section
                   id="howitworks"
@@ -973,6 +973,7 @@ const Home = () => {
                             <img
                               alt="Video about myScheme"
                               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqyS05c4SOItquc0Une1dVGfZ-1nf76D9QIA&usqp=CAU"
+                              href="https://www.youtube.com/watch?v=IFlS8l119Nw"
                               decoding="async"
                               data-nimg="fill"
                               className="border-0 w-full h-full rounded-xl"

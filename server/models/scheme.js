@@ -42,6 +42,10 @@ const schemeSchema = new mongoose.Schema({
   originalSchemeLink: {
     type: String, 
   },
+  documentsRequired: {
+    type: [String], // Array of strings
+    default: [],   // Default to an empty array
+  },
   timestamp: {
     type: Date,
     default: Date.now,

@@ -76,15 +76,27 @@ const Scheme = () => {
       
         // Apply other filters
         Object.keys(filters).forEach((filter) => {
-            if (filters[filter]) {
-              filtered = filtered.filter((scheme) => {
-                if (filter === "age") {
-                  // Convert the age to a string before using toLowerCase
-                  return scheme[filter].toString().toLowerCase() === filters[filter].toString().toLowerCase();
-                } else {
-                  return scheme[filter].toString().toLowerCase() === filters[filter].toLowerCase();
+          if (filters[filter]) {
+            filtered = filtered.filter((scheme) => {
+              if (filter === "age") {
+                const age = parseInt(scheme[filter], 10);
+                const filterValue = parseInt(filters[filter], 10);
+                switch (filters[filter]) {
+                  case "9":
+                    return age < 10;
+                  case "17":
+                    return age >= 10 && age < 18;
+                  case "19":
+                    return age >= 18 && age < 50;
+                  case "50":
+                    return age >= 50;
+                  default:
+                    return true;
                 }
-              });
+              } else {
+                return scheme[filter].toString().toLowerCase() === filters[filter].toLowerCase();
+              }
+            });
             }
           });
           
@@ -189,27 +201,25 @@ const Scheme = () => {
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
   {/* Filter by Age */}
   <div className="flex flex-col">
-    <label
-      htmlFor="filterAge"
-      className="text-sm font-medium text-green-900"
-    >
-      FILTER BY AGE
-    </label>
-    <select
-      id="filterAge"
-      className="block w-full px-2 py-2 mt-2 bg-green-100 border border-green-100 rounded-md shadow-sm outline-none cursor-pointer focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50"
-      onChange={(e) => handleFilterChange("age", e.target.value)}
-      value={filters.age}
-    >
-      <option value="">All</option>
-      <option value="18">18</option>
-      <option value="20">20</option>
-      <option value="22">22</option>
-      <option value="24">24</option>
-      <option value="26">26</option>
-      <option value="28">28</option>
-    </select>
-  </div>
+  <label
+    htmlFor="filterAge"
+    className="text-sm font-medium text-green-900"
+  >
+    FILTER BY AGE
+  </label>
+  <select
+    id="filterAge"
+    className="block w-full px-2 py-2 mt-2 bg-green-100 border border-green-100 rounded-md shadow-sm outline-none cursor-pointer focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50"
+    onChange={(e) => handleFilterChange("age", e.target.value)}
+    value={filters.age}
+  >
+    <option value="">All</option>
+    <option value="9">Age below 10</option>
+    <option value="17">Below 18</option>
+    <option value="19">Above 18</option>
+    <option value="50">Above 50</option>
+  </select>
+</div>
 
   {/* Filter by Gender */}
   <div className="flex flex-col">
@@ -419,9 +429,7 @@ const Scheme = () => {
           <div className="font-bold text-xl mb-2">
             {scheme.schemeFullName}
           </div>
-          <p className="text-gray-700 text-base">
-            {scheme.shortDetail}
-          </p>
+          
         </div>
         <div className="flex justify-center items-center mt-4 mb-4">
           <Link

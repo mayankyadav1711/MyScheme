@@ -178,10 +178,10 @@ const  Contactus = () => {
                         Sales questions
                       </p>
                       <p className="text-neutral-500 dark:text-neutral-200">
-                        sales@example.com
+                        abc@example.com
                       </p>
                       <p className="text-neutral-500 dark:text-neutral-200">
-                        +1 234-567-89
+                        +91 234-567-89
                       </p>
                     </div>
                   </div>
@@ -209,10 +209,10 @@ const  Contactus = () => {
                     <div className="ml-6 grow">
                       <p className="mb-2 font-bold dark:text-white">Press</p>
                       <p className="text-neutral-500 dark:text-neutral-200">
-                        press@example.com
+                        xyz@example.com
                       </p>
                       <p className="text-neutral-500 dark:text-neutral-200">
-                        +1 234-567-89
+                        +91 234-567-89
                       </p>
                     </div>
                   </div>
@@ -242,10 +242,10 @@ const  Contactus = () => {
                         Bug report
                       </p>
                       <p className="text-neutral-500 dark:text-neutral-200">
-                        bugs@example.com
+                        pqr@example.com
                       </p>
                       <p className="text-neutral-500 dark:text-neutral-200">
-                        +1 234-567-89
+                        +91 234-567-89
                       </p>
                     </div>
                   </div>

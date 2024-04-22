@@ -126,113 +126,28 @@ const InScheme = () => {
                             Documents Required :
                           </h2>
                           <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">
-                            <ul className="space-y-4 text-left text-gray-500 dark:text-gray-400">
-                              <li className="flex items-center space-x-3 rtl:space-x-reverse">
-                                <svg
-                                  className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                                  aria-hidden="true"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 16 12"
-                                >
-                                  <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M1 5.917 5.724 10.5 15 1.5"
-                                  />
-                                </svg>
-                                <span>Adhar Card</span>
-                              </li>
-                              <li className="flex items-center space-x-3 rtl:space-x-reverse">
-                                <svg
-                                  className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                                  aria-hidden="true"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 16 12"
-                                >
-                                  <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M1 5.917 5.724 10.5 15 1.5"
-                                  />
-                                </svg>
-                                <span>Adhar Card</span>
-                              </li>
-                              <li className="flex items-center space-x-3 rtl:space-x-reverse">
-                                <svg
-                                  className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                                  aria-hidden="true"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 16 12"
-                                >
-                                  <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M1 5.917 5.724 10.5 15 1.5"
-                                  />
-                                </svg>
-                                <span>
-                                  Marksheets:{" "}
-                                  <span className="font-semibold text-gray-900 dark:text-white">
-                                    HSC And SSC
-                                  </span>
-                                </span>
-                              </li>
-                              <li className="flex items-center space-x-3 rtl:space-x-reverse">
-                                <svg
-                                  className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                                  aria-hidden="true"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 16 12"
-                                >
-                                  <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M1 5.917 5.724 10.5 15 1.5"
-                                  />
-                                </svg>
-                                <span>
-                                  Premium support:{" "}
-                                  <span className="font-semibold text-gray-900 dark:text-white">
-                                    6 months
-                                  </span>
-                                </span>
-                              </li>
-                              <li className="flex items-center space-x-3 rtl:space-x-reverse">
-                                <svg
-                                  className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                                  aria-hidden="true"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 16 12"
-                                >
-                                  <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M1 5.917 5.724 10.5 15 1.5"
-                                  />
-                                </svg>
-                                <span>
-                                  Free updates:{" "}
-                                  <span className="font-semibold text-gray-900 dark:text-white">
-                                    6 months
-                                  </span>
-                                </span>
-                              </li>
-                            </ul>
+                          <ul className="space-y-4 text-left text-gray-500 dark:text-gray-400">
+    {schemeDetails?.documentsRequired.map((document, index) => (
+      <li key={index} className="flex items-center space-x-3 rtl:space-x-reverse">
+        <svg
+          className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 16 12"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M1 5.917 5.724 10.5 15 1.5"
+          />
+        </svg>
+        <span>{document}</span>
+      </li>
+    ))}
+  </ul>
                           </p>
                         </div>
                       </div>
@@ -254,13 +169,10 @@ const InScheme = () => {
                             Design
                           </a>
                           <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
-                            eligibility Criteria :
+                            Eligibility Criteria :
                           </h2>
                           <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">
-                            Static websites are now used to bootstrap lots of
-                            websites and are becoming the basis for a variety of
-                            tools that even influence both web designers and
-                            developers.
+                          {schemeDetails?.shortDetail}
                           </p>
                         </div>
                         <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
@@ -294,14 +206,69 @@ const InScheme = () => {
                                 STUDENTS FROM :
                               </h2>
                               <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-                                <li>B tech </li>
-                                <li>M tech</li>
-                                <li>MBBS</li>
+                                <li>{schemeDetails?.caste}</li>
+                                
                               </ul>
                             </>
                           </p>
                         </div>
-
+                        <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
+                          <a
+                            href="#"
+                            className="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 mb-2"
+                          >
+                            <svg
+                              className="w-2.5 h-2.5 me-1.5"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              viewBox="0 0 18 18"
+                            >
+                              <path d="M17 11h-2.722L8 17.278a5.512 5.512 0 0 1-.9.722H17a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1ZM6 0H1a1 1 0 0 0-1 1v13.5a3.5 3.5 0 1 0 7 0V1a1 1 0 0 0-1-1ZM3.5 15.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM16.132 4.9 12.6 1.368a1 1 0 0 0-1.414 0L9 3.55v9.9l7.132-7.132a1 1 0 0 0 0-1.418Z" />
+                            </svg>
+                            Design
+                          </a>
+                          <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
+                           State
+                          </h2>
+                          <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">
+                          {schemeDetails?.state}
+                          </p>
+                        </div>
+                        <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
+                          <a
+                            href="#"
+                            className="bg-purple-100 text-purple-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-purple-400 mb-2"
+                          >
+                            <svg
+                              className="w-2.5 h-2.5 me-1.5"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 20 16"
+                            >
+                              <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 4 1 8l4 4m10-8 4 4-4 4M11 1 9 15"
+                              />
+                            </svg>
+                            Code
+                          </a>
+                          <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
+                            GOVERMENT MINISTRY
+                          </h2>
+                          <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">
+                            <>
+                              <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+                              {schemeDetails?.ministry}
+                              </h2>
+                             
+                            </>
+                          </p>
+                        </div>
                         <Link to={schemeDetails?.originalSchemeLink}>
                           <button
                             type="button"
@@ -311,6 +278,7 @@ const InScheme = () => {
                           </button>
                         </Link>
                       </div>
+                      
                     </div>
                   </section>
                 </div>

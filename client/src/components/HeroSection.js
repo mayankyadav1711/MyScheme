@@ -18,7 +18,7 @@ function HeroSection() {
                 </a>
               </div>
               <div class=" lg:mt-2 lg:col-span-5 ">
-                           <img src="https://www.clipartmax.com/png/middle/216-2168554_luxurious-residential-property-in-india-mixed-use-development-diagram.png" alt="mockup" />
+                           <img src="https://i.ibb.co/2nNYjmj/removal-ai-c905b196-b34b-4251-b70b-d7c5d26166fa-image.png" alt="mockup" />
               </div>
             </div>
           </section>
