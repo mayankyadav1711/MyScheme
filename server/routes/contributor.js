@@ -116,62 +116,7 @@ router.get("/scheme/:_id", async (req, res) => {
 
 
 
-router.post("/doubt", requireLogin, async (req, res) => {
-  try {
-    const {
-      code,
-      semester,
-      subjectName,
-      unitName,
-      author,
-      doubt,
-      // Add other required fields here
-    } = req.body;
-    if (!doubt) {
-      return res
-        .status(422)
-        .json({ error: "Please fill in all required fields." });
-    }
 
-    // Assuming you have user authentication and can get the logged-in user's ID
-
-    // Create a new contribution
-    const doubts = new Doubt({
-      code,
-      semester,
-      subjectName,
-      unitName,
-      author,
-      doubt,
-      postedBy: req.user,
-    });
-
-    // Save the contribution
-    await doubts.save();
-
-    transporter.sendMail({
-      from: "", // Your email address
-      to: "mykyadav2003@gmail.com", // Your email address
-      subject: "New Doubt Submitted",
-      html: `
-        <h1>New Doubt Submitted</h1>
-        <p>Code: ${code}</p>
-        <p>Semester: ${semester}</p>
-        <p>Subject: ${subjectName}</p>
-        <p>Unit: ${unitName}</p>
-        <p>Author: ${author}</p>
-        <p>Doubt: ${doubt}</p>
-        <p>Posted By Name: ${req.user.name}</p>
-        <p>Posted By Email: ${req.user.email}</p>
-      `,
-    });
-
-    res.status(201).json({ message: "Doubt submitted successfully." });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error submitting contribution." });
-  }
-});
 router.post("/contact", async (req, res) => {
   try {
     const { name, email, message } = req.body;
