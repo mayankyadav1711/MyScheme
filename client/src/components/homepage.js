@@ -1,1732 +1,1253 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/no-redundant-roles */
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import Footer from "./Footer";
+import {
+  ChevronRight,
+  Users,
+  BarChart2,
+  TrendingUp,
+  Award,
+  Check,
+  FileText,
+  Search,
+  Zap,
+  Calendar,
+  Download,
+  ThumbsUp,
+  Star,
+  ArrowRight,
+  ChevronLeft,
+  MapPin,
+  PhoneCall,
+  Mail,
+  Clock,
+  AlertCircle,
+  FilePlus,
+  Book,
+  Shield,
+  Heart,
+  Briefcase,
+  Home,
+  Leaf,
+  GraduationCap,
+  ArrowDown,
+  CheckCircle,
+  ExternalLink,
+  ChevronDown,
+} from "lucide-react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
+} from "recharts";
 import Navbar from "./Navbar";
-import HeroSection from "./HeroSection";
+import Footer from "./Footer";
 
+// Sample data for charts
+const schemeStats = [
+  { name: "Health", beneficiaries: 4500000 },
+  { name: "Education", beneficiaries: 3200000 },
+  { name: "Agriculture", beneficiaries: 5800000 },
+  { name: "Housing", beneficiaries: 2100000 },
+  { name: "Employment", beneficiaries: 3700000 },
+  { name: "Social Welfare", beneficiaries: 4100000 },
+];
 
-const Home = () => {
-  const [showAnswer1, setShowAnswer1] = useState(false);
-  const [showAnswer2, setShowAnswer2] = useState(false);
-  const [showAnswer3, setShowAnswer3] = useState(false);
-  const [showAnswer4, setShowAnswer4] = useState(false);
-  const [showAnswer5, setShowAnswer5] = useState(false);
+const populationData = [
+  { name: "Covered", value: 65 },
+  { name: "Not Covered", value: 35 },
+];
+
+const growthData = [
+  { year: "2018", schemes: 20, coverage: 42 },
+  { year: "2019", schemes: 28, coverage: 48 },
+  { year: "2020", schemes: 35, coverage: 53 },
+  { year: "2021", schemes: 42, coverage: 57 },
+  { year: "2022", schemes: 50, coverage: 61 },
+  { year: "2023", schemes: 58, coverage: 65 },
+  { year: "2024", schemes: 65, coverage: 68 },
+];
+
+const quarterlyData = [
+  { quarter: "Q1 2023", disbursement: 15000 },
+  { quarter: "Q2 2023", disbursement: 23000 },
+  { quarter: "Q3 2023", disbursement: 18500 },
+  { quarter: "Q4 2023", disbursement: 27500 },
+  { quarter: "Q1 2024", disbursement: 19800 },
+  { quarter: "Q2 2024", disbursement: 29000 },
+];
+
+const COLORS = ["#10B981", "#D1D5DB"];
+const AREA_COLORS = ["#047857", "#059669", "#10B981"];
+
+// Testimonials
+const testimonials = [
+  {
+    id: 1,
+    name: "Rajesh Kumar",
+    location: "Bihar",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    text: "The PM Kisan scheme information on this platform helped me claim my benefits that I was unaware of. My farming has improved significantly since receiving the financial support.",
+    scheme: "PM Kisan Samman Nidhi",
+    age: 45,
+    occupation: "Farmer",
+  },
+  {
+    id: 2,
+    name: "Priya Sharma",
+    location: "Madhya Pradesh",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    text: "I was able to apply for a scholarship for my daughter through this website. The process was simple and now she can continue her education without financial burden on our family.",
+    scheme: "National Scholarship Portal",
+    age: 38,
+    occupation: "Teacher",
+  },
+  {
+    id: 3,
+    name: "Mohammed Ismail",
+    location: "Kerala",
+    image: "https://randomuser.me/api/portraits/men/67.jpg",
+    text: "The PMAY housing scheme details were clearly explained here. After applying, I finally have a home that I can call my own. The step-by-step guidance made the application process very easy.",
+    scheme: "Pradhan Mantri Awas Yojana",
+    age: 52,
+    occupation: "Shop Owner",
+  },
+  {
+    id: 4,
+    name: "Sunita Devi",
+    location: "Rajasthan",
+    image: "https://randomuser.me/api/portraits/women/59.jpg",
+    text: "Thanks to the Ujjwala Yojana information on this portal, I now have a clean cooking solution. My family's health has improved, and I spend less time collecting firewood.",
+    scheme: "Pradhan Mantri Ujjwala Yojana",
+    age: 40,
+    occupation: "Homemaker",
+  },
+];
+
+// Featured schemes
+const featuredSchemes = [
+  {
+    id: 1,
+    title: "PM Kisan Samman Nidhi",
+    description:
+      "Financial benefit of ₹6000 per year for farmer families, paid in three equal installments of ₹2000.",
+    icon: <FileText size={24} className="text-green-500" />,
+    color: "bg-green-50",
+    link: "https://i.ibb.co/q3FrW0rX/image.png",
+    beneficiaries: "11+ crore",
+    category: "Agriculture",
+  },
+  {
+    id: 2,
+    title: "Ayushman Bharat",
+    description:
+      "Health insurance cover of ₹5 lakh per family per year for secondary and tertiary care hospitalization.",
+    icon: <Users size={24} className="text-blue-500" />,
+    color: "bg-blue-50",
+    link: "https://i.ibb.co/q3FrW0rX/image.png",
+    beneficiaries: "50+ crore",
+    category: "Healthcare",
+  },
+  {
+    id: 3,
+    title: "PM Awas Yojana",
+    description:
+      "Housing for all by 2022 with financial assistance up to ₹2.67 lakh per house for eligible families.",
+    icon: <Home size={24} className="text-purple-500" />,
+    color: "bg-purple-50",
+    link: "https://i.ibb.co/q3FrW0rX/image.png",
+    beneficiaries: "2.2+ crore",
+    category: "Housing",
+  },
+  {
+    id: 4,
+    title: "Skill India Mission",
+    description:
+      "Training and skill development for youth employment and entrepreneurship opportunities.",
+    icon: <Briefcase size={24} className="text-orange-500" />,
+    color: "bg-orange-50",
+    link: "https://i.ibb.co/q3FrW0rX/image.png",
+    beneficiaries: "1.3+ crore",
+    category: "Employment",
+  },
+  {
+    id: 5,
+    title: "National Scholarship Portal",
+    description:
+      "Centralized platform for various scholarship schemes for students from minority communities and economically weaker sections.",
+    icon: <GraduationCap size={24} className="text-indigo-500" />,
+    color: "bg-indigo-50",
+    link: "https://i.ibb.co/q3FrW0rX/image.png",
+    beneficiaries: "1.8+ crore",
+    category: "Education",
+  },
+  {
+    id: 6,
+    title: "PM Ujjwala Yojana",
+    description:
+      "Providing LPG connections to women from BPL households to ensure access to clean cooking fuel.",
+    icon: <Leaf size={24} className="text-red-500" />,
+    color: "bg-red-50",
+    link: "https://i.ibb.co/q3FrW0rX/image.png",
+    beneficiaries: "9+ crore",
+    category: "Social Welfare",
+  },
+];
+
+// Categories
+const categories = [
+  {
+    name: "Agriculture",
+    icon: <Leaf size={24} />,
+    count: 28,
+    color: "bg-green-100 text-green-800",
+  },
+  {
+    name: "Education",
+    icon: <GraduationCap size={24} />,
+    count: 35,
+    color: "bg-blue-100 text-blue-800",
+  },
+  {
+    name: "Healthcare",
+    icon: <Heart size={24} />,
+    count: 22,
+    color: "bg-red-100 text-red-800",
+  },
+  {
+    name: "Housing",
+    icon: <Home size={24} />,
+    count: 15,
+    color: "bg-purple-100 text-purple-800",
+  },
+  {
+    name: "Employment",
+    icon: <Briefcase size={24} />,
+    count: 19,
+    color: "bg-yellow-100 text-yellow-800",
+  },
+  {
+    name: "Social Welfare",
+    icon: <Users size={24} />,
+    count: 31,
+    color: "bg-indigo-100 text-indigo-800",
+  },
+  {
+    name: "Financial Aid",
+    icon: <BarChart2 size={24} />,
+    count: 17,
+    color: "bg-orange-100 text-orange-800",
+  },
+  {
+    name: "Skill Dev ",
+    icon: <Award size={24} />,
+    count: 12,
+    color: "bg-teal-100 text-teal-800",
+  },
+];
+
+// Key benefits
+const benefits = [
+  {
+    id: 1,
+    title: "Easy Access",
+    description:
+      "Find all government schemes in one place with simple navigation and user-friendly interface",
+    icon: <Zap className="w-6 h-6 text-yellow-500" />,
+  },
+  {
+    id: 2,
+    title: "Updated Content",
+    description:
+      "Get the latest information about eligibility criteria and application process updated regularly",
+    icon: <Calendar className="w-6 h-6 text-blue-500" />,
+  },
+  {
+    id: 3,
+    title: "Downloadable Forms",
+    description:
+      "Access and download all necessary application forms easily in multiple formats",
+    icon: <Download className="w-6 h-6 text-purple-500" />,
+  },
+  {
+    id: 4,
+    title: "Success Stories",
+    description:
+      "Learn from real beneficiaries who have successfully utilized schemes to improve their lives",
+    icon: <ThumbsUp className="w-6 h-6 text-green-500" />,
+  },
+];
+
+// How it works steps
+const steps = [
+  {
+    id: 1,
+    title: "Browse Schemes",
+    description:
+      "Explore various government schemes filtered by category, eligibility, or benefits",
+    icon: <Search className="w-8 h-8 text-green-500" />,
+  },
+  {
+    id: 2,
+    title: "Check Eligibility",
+    description:
+      "Find out if you qualify for specific schemes based on your profile and requirements",
+    icon: <CheckCircle className="w-8 h-8 text-green-500" />,
+  },
+  {
+    id: 3,
+    title: "Get Documentation",
+    description:
+      "Access complete list of required documents and downloadable application forms",
+    icon: <FilePlus className="w-8 h-8 text-green-500" />,
+  },
+  {
+    id: 4,
+    title: "Apply Online",
+    description:
+      "Submit your application through the official portal with our step-by-step guidance",
+    icon: <ExternalLink className="w-8 h-8 text-green-500" />,
+  },
+];
+
+// FAQs
+const faqs = [
+  {
+    question: "How do I know if I am eligible for a government scheme?",
+    answer:
+      "Each scheme has specific eligibility criteria that you can check on the respective scheme page. You can also use our eligibility finder tool which asks a few questions and suggests schemes you might qualify for based on your responses.",
+  },
+  {
+    question: "Are all schemes available nationwide?",
+    answer:
+      "Not all schemes are available in every state. Some are central government schemes that apply across India, while others are state-specific. The scheme details page clearly mentions the geographical coverage of each scheme.",
+  },
+  {
+    question: "Can I apply for multiple schemes simultaneously?",
+    answer:
+      "Yes, you can apply for multiple schemes as long as you meet the eligibility criteria for each. There is no limit to how many schemes you can benefit from unless specifically mentioned in the scheme guidelines.",
+  },
+  {
+    question: "How often is the information updated on this platform?",
+    answer:
+      "We update our database as soon as new information is released by the government authorities. For major schemes, updates are typically implemented within 24-48 hours of official announcements.",
+  },
+  {
+    question: "What should I do if my application is rejected?",
+    answer:
+      "If your application is rejected, you can check the reason for rejection which is usually provided. Address the issues mentioned and reapply. You can also contact the scheme administrator directly through the contact information provided on our platform.",
+  },
+  {
+    question:
+      "Is there any fee for accessing or applying through this platform?",
+    answer:
+      "No, our platform is completely free to use. We do not charge any fees for providing information or guidance on government schemes. Beware of fraudulent websites that may ask for payment for these services.",
+  },
+];
+
+// News updates
+const newsUpdates = [
+  {
+    id: 1,
+    title: "PM Kisan 15th Installment Released",
+    date: "March 15, 2025",
+    summary:
+      "The 15th installment of PM Kisan has been released, benefiting over 11 crore farmers across India.",
+    link: "/news/pm-kisan-15th-installment",
+  },
+  {
+    id: 2,
+    title: "Ayushman Bharat Coverage Expanded",
+    date: "February 28, 2025",
+    summary:
+      "The government has expanded Ayushman Bharat to include additional medical procedures and treatments.",
+    link: "/news/ayushman-bharat-expansion",
+  },
+  {
+    id: 3,
+    title: "New Education Scholarship Announced",
+    date: "February 10, 2025",
+    summary:
+      "A new scholarship for STEM education has been announced for economically disadvantaged students.",
+    link: "/news/stem-scholarship-announcement",
+  },
+  {
+    id: 4,
+    title: "Rural Employment Scheme Budget Increased",
+    date: "January 25, 2025",
+    summary:
+      "The annual budget allocation for MGNREGA has been increased by 20% for the financial year 2025-26.",
+    link: "/news/mgnrega-budget-increase",
+  },
+];
+
+export default function HomePage() {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  // Manual testimonial navigation
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      nextTestimonial();
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [currentTestimonial]);
+
+  // Format large numbers with commas
+  const formatNumber = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  // Toggle FAQ
+  const toggleFaq = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
 
   return (
-    <div>
+    <>
+    <Navbar />
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="relative bg-white pt-24 pb-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center">
+            {/* Left content */}
+            <div className="lg:w-1/2 lg:pr-12 mb-10 lg:mb-0">
+              <div className="text-left">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                  Empowering Citizens through
+                  <span className="text-green-600 block mt-2">
+                    Government Schemes
+                  </span>
+                </h1>
+                <p className="mt-6 text-lg text-gray-600 max-w-lg">
+                  Discover government schemes that can transform your life. Easy
+                  access to information, eligibility criteria, and application
+                  procedures.
+                </p>
 
-      <>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="/_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2FusefulLinks%2Fdi.png&w=96&q=75 1x, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2FusefulLinks%2Fdi.png&w=256&q=75 2x"
-        />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="https://cdn.myscheme.in/images/emblem-black.svg 640w, https://cdn.myscheme.in/images/emblem-black.svg 750w, https://cdn.myscheme.in/images/emblem-black.svg 828w, https://cdn.myscheme.in/images/emblem-black.svg 1080w, https://cdn.myscheme.in/images/emblem-black.svg 1200w, https://cdn.myscheme.in/images/emblem-black.svg 1920w, https://cdn.myscheme.in/images/emblem-black.svg 2048w, https://cdn.myscheme.in/images/emblem-black.svg 3840w"
-          imagesizes="100vw"
-        />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="https://cdn.myscheme.in/images/myscheme-logo.svg 640w, https://cdn.myscheme.in/images/myscheme-logo.svg 750w, https://cdn.myscheme.in/images/myscheme-logo.svg 828w, https://cdn.myscheme.in/images/myscheme-logo.svg 1080w, https://cdn.myscheme.in/images/myscheme-logo.svg 1200w, https://cdn.myscheme.in/images/myscheme-logo.svg 1920w, https://cdn.myscheme.in/images/myscheme-logo.svg 2048w, https://cdn.myscheme.in/images/myscheme-logo.svg 3840w"
-          imagesizes="100vw"
-        />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="/_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2FusefulLinks%2Fdi.png&w=64&q=75 1x, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2FusefulLinks%2Fdi.png&w=128&q=75 2x"
-        />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="https://cdn.myscheme.in/images/icons/language.svg 1x, https://cdn.myscheme.in/images/icons/language.svg 2x"
-        />
-        <title>myScheme</title>
-        <link
-          rel="apple-touch-icon"
-          sizes="60x60"
-          href="/images/favico/apple-icon-60x60.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="72x72"
-          href="/images/favico/apple-icon-72x72.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="76x76"
-          href="/images/favico/apple-icon-76x76.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="114x114"
-          href="/images/favico/apple-icon-114x114.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="120x120"
-          href="/images/favico/apple-icon-120x120.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="144x144"
-          href="/images/favico/apple-icon-144x144.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="152x152"
-          href="/images/favico/apple-icon-152x152.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/images/favico/apple-icon-180x180.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="192x192"
-          href="/images/favico/android-icon-192x192.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/images/favico/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="96x96"
-          href="/images/favico/favicon-96x96.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/images/favico/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/images/favico/manifest.json" />
-        <meta content="https://myscheme.gov.in" property="og:url" />
-        <meta
-          property="og:title"
-          content="myScheme - One-stop search and discovery platform of the Government schemes"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://cdn.myscheme.in/images/logo.png" />
-        <meta
-          property="og:image:secure_url"
-          content="https://cdn.myscheme.in/images/logo.png"
-        />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content={475} />
-        <meta property="og:image:height" content={86} />
-        <meta
-          property="og:image:alt"
-          content="myScheme - One-stop search and discovery platform of the Government schemes"
-        />
-        <meta
-          property="og:site_name"
-          content="myScheme - One-stop search and discovery platform of the Government schemes"
-        />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-          property="og:description"
-          content="myScheme is a National Platform that aims to offer one-stop search and discovery of the Government schemes."
-        />
-        <meta name="twitter:card" content="summary" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta
-          name="description"
-          content="myScheme is a National Platform that aims to offer one-stop search and discovery of the Government schemes."
-          url=""
-        />
-        <meta
-          name="keywords"
-          content="myScheme, Government Schemes, Government Scheme, GovernmentScheme, GovernmentSchemes, Find Government Scheme, Gov Scheme Platform, Gov Scheme"
-        />
-        <meta name="theme-color" content="#16A34A" />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="/_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F2-full.webp&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F2-full.webp&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F2-full.webp&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F2-full.webp&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F2-full.webp&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F2-full.webp&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F2-full.webp&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F2-full.webp&w=3840&q=75 3840w"
-          imagesizes="100vw"
-        />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="/_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F2.webp&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F2.webp&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F2.webp&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F2.webp&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F2.webp&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F2.webp&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F2.webp&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F2.webp&w=3840&q=75 3840w"
-          imagesizes="100vw"
-        />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="/_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F1-full.webp&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F1-full.webp&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F1-full.webp&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F1-full.webp&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F1-full.webp&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F1-full.webp&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F1-full.webp&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F1-full.webp&w=3840&q=75 3840w"
-          imagesizes="100vw"
-        />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="/_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F1.webp&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F1.webp&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F1.webp&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F1.webp&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F1.webp&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F1.webp&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F1.webp&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F1.webp&w=3840&q=75 3840w"
-          imagesizes="100vw"
-        />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="/_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F3-full.webp&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F3-full.webp&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F3-full.webp&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F3-full.webp&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F3-full.webp&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F3-full.webp&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F3-full.webp&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2F3-full.webp&w=3840&q=75 3840w"
-          imagesizes="100vw"
-        />
-        <link
-          rel="preload"
-          as="image"
-          imagesrcset="/_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F3.webp&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F3.webp&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F3.webp&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F3.webp&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F3.webp&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F3.webp&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F3.webp&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fslideshow%2Fmobile%2F3.webp&w=3840&q=75 3840w"
-          imagesizes="100vw"
-        />
-        <meta name="next-head-count" content={46} />
-        <link
-          rel="preload"
-          href="https://cdn.myscheme.in/_next/static/css/dbd43b58cb9169ab.css"
-          as="style"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdn.myscheme.in/_next/static/css/dbd43b58cb9169ab.css"
-          data-n-g=""
-        />
-        <link
-          rel="preload"
-          href="https://cdn.myscheme.in/_next/static/css/f905e3f5554554b8.css"
-          as="style"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdn.myscheme.in/_next/static/css/f905e3f5554554b8.css"
-          data-n-p=""
-        />
-        <noscript data-n-css="" />
-        <div id="__next">
-          <Navbar />
-          <HeroSection />
-
-
-          <main className="">
-            <section className="relative bg-white bg-no-repeat bg-right-top-8 w-full">
-              <section>
-                <div className="relative">
-                  <section
-                    id="hero"
-                    className="landingComp relative parallax-wrap flex items-center justify-start bg-cover lg:bg-center bg-gradient-to-b from-green-50 to-white"
-                  >
-                    <div className="relative flex flex-1 flex-col w-screen items-center overflow-hidden pt-0 pb-10 lg:pt-0 lg:pb-0">
-
-                      <div className="flex flex-col bg-cover bg-gradient-to-b from-green-50 to-white h-full w-full items-center justify-center pt-10">
-                        <ul className="relative z-10 flex flex-wrap text-sm items-center font-mono lg:tracking-loose justify-center items-center flex flex-row gap-2">
-                          <li
-                            title=""
-                            className="text-lg 2xl:text-3xl lg:text-xl tracking-tight text-black opacity-90"
-                          >
-                            #GOVERNMENTSCHEMES
-                          </li>
-                          <li
-                            title=""
-                            className="text-lg 2xl:text-3xl lg:text-xl tracking-tight text-black opacity-90"
-                          >
-                            /
-                          </li>
-                          <li
-                            title=""
-                            className="text-lg 2xl:text-3xl lg:text-xl tracking-tight text-black opacity-90"
-                          >
-                            #SCHEMESFORYOU
-                          </li>
-                        </ul>
-
-                        <Link to="/scheme">
-                          <button
-                            aria-label="Find Schemes For You"
-                            className="px-7 py-3 text-lg rounded-md undefined undefined green bg-secondary text-white hover:bg-primary transition ease-in-out font-medium leading-none block mt-5 relative undefined"
-                            title="Find Schemes For You"
-                          >
-                            Find Schemes For You
-                            <svg
-                              aria-hidden="true"
-                              focusable="false"
-                              data-prefix="fas"
-                              data-icon="arrow-right-long"
-                              className="svg-inline--fa fa-arrow-right-long fa-xl ml-2 inline-block"
-                              role="img"
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 512 512"
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"
-                              ></path>
-                            </svg>
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  </section>
+                <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                  <button className="px-8 py-3 bg-green-600 text-white font-medium rounded-lg shadow-lg hover:bg-green-700 transition-all duration-300 flex items-center justify-center">
+                    <span>Explore Schemes</span>
+                    <ChevronRight size={20} className="ml-2" />
+                  </button>
+                  <button className="px-8 py-3 bg-gray-100 text-gray-800 font-medium rounded-lg hover:bg-gray-200 transition-all duration-300">
+                    Learn More
+                  </button>
                 </div>
-              </section>
-              <section>
-                <section
-                  id="schemeCount"
-                  className="relative bg-no-repeat py-12 md:py-20 !pt-2 md:!pt-10 lg:!pt-16 !pb-0 !pt-0"
-                >
-                  <div className="container mx-auto px-8 lg:px-0 2xl:w-3/5 lg:w-5/6 relative lg:!w-3/5">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 justify-center items-stretch" />
-                  </div>
-                </section>
-              </section>
-              <Link to="/scheme"> <section>
-                <section
-                  id="catStatesMinistries"
-                  className="relative bg-no-repeat py-12 md:py-20 null"
-                >
-                  <div className="container mx-auto px-8 lg:px-0 2xl:w-3/5 lg:w-5/6 relative">
-                    <div className="mb-4 md:mb-8 flex flex-col items-center justify-start w-full">
-                      <p className="flex text-sm font-bold md:text-base items-center gap-3 md:gap-6 text-darkIndigo-300 text-center mb-5 md:mb-10">
-                        <span className="bg-green-100 text-green-700 cursor-pointer rounded px-3 py-2 block leading-none">
-                          Categories
-                        </span>
-                        <span className="cursor-pointer rounded px-3 py-2 block leading-none">
-                          States/UTs
-                        </span>
-                        <span className="cursor-pointer rounded px-3 py-2 block leading-none">
-                          Central
-                          {/* */}
-                          {/* */}Ministries
-                        </span>
+              </div>
+            </div>
+
+            {/* Right image */}
+            <div className="lg:w-1/2 flex justify-center lg:justify-end relative">
+              <div className="relative">
+                {/* Main image */}
+                <img
+                  src="https://i.ibb.co/q3FrW0rX/image.png"
+                  alt="Citizens benefiting from government schemes"
+                  className="rounded-lg shadow-xl max-w-full h-auto object-cover"
+                  style={{ maxHeight: "550px" }}
+                  onError={(e) => {
+                    // Fallback in case the image URL doesn't work
+                    e.target.src =
+                      "https://images.unsplash.com/photo-1568292342316-60aa3d36f4b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8aW5kaWElMjBwZW9wbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60";
+                  }}
+                />
+
+                {/* Decorative elements */}
+                <div className="absolute -left-6 -bottom-6 w-64 h-24 bg-green-50 rounded-lg -z-10"></div>
+                <div className="absolute -right-6 -top-6 w-32 h-32 bg-blue-50 rounded-lg -z-10"></div>
+
+                {/* Stats card overlay */}
+                <div className="absolute -right-8 -bottom-10 bg-white rounded-lg shadow-lg p-4 border border-gray-100">
+                  <div className="flex items-center space-x-4">
+                    <div className="p-2 bg-green-100 rounded-full">
+                      <Users size={20} className="text-green-600" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">
+                        Total Beneficiaries
                       </p>
-                      <h2 className="text-2xl md:text-3xl font-extrabold leading-snug">
-                        Find schemes based
-                      </h2>
-                      <h2 className="text-2xl md:text-3xl font-extrabold leading-snug">
-                        on categories
-                      </h2>
-                    </div>
-                    <div className="grid grid-cols-2 md:grid-cols-10 gap-6">
-                      <div className="grid gap-6">
-                        <div>
-                          <img
-                            className="h-auto max-w-full rounded-lg"
-                            src="https://cdn.myscheme.in/images/categories/Agriculture.svg"
-                            alt=""
-                          />
-                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
-                        Agriculture,Rural And Environment
-                        </h2>
-                        </div>
-                        <div>
-                          <img
-                            className="h-auto max-w-full rounded-lg"
-                            src="https://cdn.myscheme.in/images/categories/Banking.svg"
-                            alt=""
-                          />
-                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
-                        Banking,Financial Services and Insurance
-                       </h2>
-                        </div>
-                        <div>
-                          <img
-                            className="h-auto max-w-full rounded-lg"
-                            src="https://cdn.myscheme.in/images/categories/Business.svg"
-                            alt=""
-                          />
-                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
-                        Business and Intership
-                       </h2>
-                        </div>
-                      </div>
-                      <div className="grid gap-6">
-                        <div>
-                          <img
-                            className="h-auto max-w-full rounded-lg"
-                            src="https://cdn.myscheme.in/images/categories/Education.svg"
-                            alt=""
-                          />
-                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
-                        Education and Learning
-                      </h2>
-                        </div>
-                        <div>
-                          <img
-                            className="h-auto max-w-full rounded-lg"
-                            src="https://cdn.myscheme.in/images/categories/Health.svg"
-                            alt=""
-                          />
-                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
-                        Health and Wellness
-                      </h2>
-                        </div>
-                        <div>
-                          <img
-                            className="h-auto max-w-full rounded-lg"
-                            src="https://cdn.myscheme.in/images/categories/Women.svg"
-                            alt=""
-                          />
-                          <h2 className="text-0.5xl md:text-0.5xl font-bold leading-snug">
-                             Women and Child
-                          </h2>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bg-white z-0 relative mx-auto text-center lg:text-left justify-center rounded-xl">
-                      <div className="absolute opacity-70 -bottom-10 -left-10 w-36 h-40 -z-10 bg-repeat bg-shape-one" />
-                      <div className="absolute opacity-70 -top-10 -right-5 lg:-right-10 w-36 h-40 -z-10 bg-repeat categories-bg-2"></div>
-                      <div className="bg-white p-2 md:p-4 relative">
-                        <div className="absolute -bottom-10 -right-5 lg:-right-10 -z-10 opacity-50">
-                          <span
-                            style={{
-                              boxSizing: "border-box",
-                              display: "inline-block",
-                              overflow: "hidden",
-                              width: "initial",
-                              height: "initial",
-                              background: "none",
-                              opacity: 1,
-                              border: 0,
-                              margin: 0,
-                              padding: 0,
-                              position: "relative",
-                              maxWidth: "100%"
-                            }}
-                          >
-                            <span
-                              style={{
-                                boxSizing: "border-box",
-                                display: "block",
-                                width: "initial",
-                                height: "initial",
-                                background: "none",
-                                opacity: 1,
-                                border: 0,
-                                margin: 0,
-                                padding: 0,
-                                maxWidth: "100%"
-                              }}
-                            >
-                              <img
-                                style={{
-                                  display: "block",
-                                  maxWidth: "100%",
-                                  width: "initial",
-                                  height: "initial",
-                                  background: "none",
-                                  opacity: 1,
-                                  border: 0,
-                                  margin: 0,
-                                  padding: 0
-                                }}
-                                alt=""
-                                aria-hidden="true"
-                                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
-                              />
-                            </span>
-                            <img
-                              alt="bg-shape"
-                              title="bg-shape"
-                              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                              decoding="async"
-                              data-nimg="intrinsic"
-                              className="border-0"
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                bottom: 0,
-                                right: 0,
-                                boxSizing: "border-box",
-                                padding: 0,
-                                border: "none",
-                                margin: "auto",
-                                display: "block",
-                                width: 0,
-                                height: 0,
-                                minWidth: "100%",
-                                maxWidth: "100%",
-                                minHeight: "100%",
-                                maxHeight: "100%",
-                                objectFit: "contain"
-                              }}
-                            />
-                            <noscript>
-                              &lt;img srcset="
-                              /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fshapes%2Fblue-bg-shape.png&amp;amp;w=128&amp;amp;q=75
-                              1x,
-                              /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fshapes%2Fblue-bg-shape.png&amp;amp;w=256&amp;amp;q=75
-                              2x " alt="bg-shape" title="bg-shape"
-                              src="/_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fshapes%2Fblue-bg-shape.png&amp;amp;w=256&amp;amp;q=75"
-                              decoding="async" data-nimg="intrinsic" style=" position:
-                              absolute; top: 0; left: 0; bottom: 0; right: 0;
-                              box-sizing: border-box; padding: 0; border: none;
-                              margin: auto; display: block; width: 0; height: 0;
-                              min-width: 100%; max-width: 100%; min-height: 100%;
-                              max-height: 100%; object-fit: contain; "
-                              class="border-0" loading="lazy" /&gt;
-                            </noscript>
-                          </span>
-                        </div>
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-5 md:gap-x-10 gap-y-6" />
-                      </div>
+                      <p className="text-lg font-bold text-gray-900">250M+</p>
                     </div>
                   </div>
-                </section>
-              </section></Link>
-              <section>
-                <section
-                  id="howitworks"
-                  className="relative bg-no-repeat py-12 md:py-20 bg-gradient-to-t from-green-50 to-white z-0 relative after:absolute after:-bottom-6 after:right-0 lg:after:right-0 after:w-full after:h-0 after:border-green-50 after:border-[40px] after:border-solid after:-z-10 after:rotate-[2deg] after:transform mb-20"
-                >
-                  <div className="container mx-auto px-8 lg:px-0 2xl:w-3/5 lg:w-5/6 relative">
-                    <div className="mb-20 flex flex-col items-center justify-start w-full">
-                      <p className="text-xl text-darkIndigo-300 text-center mb-2">
-                        How it works
-                      </p>
-                      <h2 className="text-3xl sm:text-4xl text-center px-8 font-extrabold leading-snug">
-                        Easy steps to apply
-                      </h2>
-                      <h2 className="text-3xl sm:text-4xl text-center px-8 font-extrabold leading-snug">
-                        for Government Schemes
-                      </h2>
-                    </div>
-                    <div className="grid grid-cols-1 md:flex flex-wrap gap-4 justify-between items-center relative z-0 !block lg:!flex flex-nowrap lg:!gap-x-[40px] !gap-y-10 lg:!gap-y-0 after:bg-gray-100 after:absolute after:top-0 lg:after:top-1/2 after:left-1/2 lg:after:left-0 after:w-0.5 after:h-full lg:after:w-full lg:after:h-0.5 after:-z-10 mb-10 lg:mb-0">
-                      <div className="absolute rounded-full w-20 h-20 z-0 bg-green-100 -bottom-7 -right-1 lg:-right-7" />
-                      <div className="absolute opacity-70 -top-16 -left-20 w-36 h-40 z-0 bg-repeat bg-shape-one" />
-                      <div className="flex-1">
-                        <div className="relative bg-white flex z-10 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:animate-bounceOnce p-8 false">
-                          <div className="relative z-20 bg-white w-full h-full rounded-lg flex flex-col items-center gap-3">
-                            <div className="h-16">
-                              <span
-                                style={{
-                                  boxSizing: "border-box",
-                                  display: "inline-block",
-                                  overflow: "hidden",
-                                  width: "initial",
-                                  height: "initial",
-                                  background: "none",
-                                  opacity: 1,
-                                  border: 0,
-                                  margin: 0,
-                                  padding: 0,
-                                  position: "relative",
-                                  maxWidth: "100%"
-                                }}
-                              >
-                                <span
-                                  style={{
-                                    boxSizing: "border-box",
-                                    display: "block",
-                                    width: "initial",
-                                    height: "initial",
-                                    background: "none",
-                                    opacity: 1,
-                                    border: 0,
-                                    margin: 0,
-                                    padding: 0,
-                                    maxWidth: "100%"
-                                  }}
-                                >
-                                  <img
-                                    style={{
-                                      display: "block",
-                                      maxWidth: "100%",
-                                      width: "initial",
-                                      height: "initial",
-                                      background: "none",
-                                      opacity: 1,
-                                      border: 0,
-                                      margin: 0,
-                                      padding: 0
-                                    }}
-                                    alt=""
-                                    aria-hidden="true"
-                                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2761%27%20height=%2761%27/%3e"
-                                  />
-                                </span>
-                                <img
-                                  alt="[object Object]"
-                                  title="[object Object]"
-                                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                  decoding="async"
-                                  data-nimg="intrinsic"
-                                  className="border-0"
-                                  style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    bottom: 0,
-                                    right: 0,
-                                    boxSizing: "border-box",
-                                    padding: 0,
-                                    border: "none",
-                                    margin: "auto",
-                                    display: "block",
-                                    width: 0,
-                                    height: 0,
-                                    minWidth: "100%",
-                                    maxWidth: "100%",
-                                    minHeight: "100%",
-                                    maxHeight: "100%",
-                                    objectFit: "cover"
-                                  }}
-                                />
-                                <noscript>
-                                  &lt;img srcset="
-                                  https://cdn.myscheme.in/images/icons/check.svg 1x,
-                                  https://cdn.myscheme.in/images/icons/check.svg 2x "
-                                  alt="[object Object]" title="[object Object]"
-                                  src="https://cdn.myscheme.in/images/icons/check.svg"
-                                  decoding="async" data-nimg="intrinsic" style="
-                                  position: absolute; top: 0; left: 0; bottom: 0;
-                                  right: 0; box-sizing: border-box; padding: 0;
-                                  border: none; margin: auto; display: block; width:
-                                  0; height: 0; min-width: 100%; max-width: 100%;
-                                  min-height: 100%; max-height: 100%; object-fit:
-                                  cover; " class="border-0" loading="lazy" /&gt;
-                                </noscript>
-                              </span>
-                            </div>
-                            < img src="https://cdn.myscheme.in/images/icons/check.svg" />
-                            <h3 className="text-xl font-semibold text-green-600">
-                              Enter Details
-                            </h3>
-                            <span className="text-center">
-                              <span>
-                                Start by entering your
-                                <strong> basic details!</strong>
-                              </span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex justify-center items-center gap-0 transform rotate-90 lg:rotate-0">
-                        <svg
-                          stroke="currentColor"
-                          fill="currentColor"
-                          strokeWidth={0}
-                          viewBox="0 0 192 512"
-                          className="text-darkIndigo-50"
-                          height={40}
-                          width={40}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                        </svg>
-                        <svg
-                          stroke="currentColor"
-                          fill="none"
-                          strokeWidth={2}
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                          className="text-darkIndigo-50 -ml-12"
-                          height={80}
-                          width={80}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </div>
-                      <div className="flex-1">
-                        <div className="relative bg-white flex z-10 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:animate-bounceOnce p-8 false">
-                          <div className="relative z-20 bg-white w-full h-full rounded-lg flex flex-col items-center gap-3">
-                            <div className="h-16">
-                              <span
-                                style={{
-                                  boxSizing: "border-box",
-                                  display: "inline-block",
-                                  overflow: "hidden",
-                                  width: "initial",
-                                  height: "initial",
-                                  background: "none",
-                                  opacity: 1,
-                                  border: 0,
-                                  margin: 0,
-                                  padding: 0,
-                                  position: "relative",
-                                  maxWidth: "100%"
-                                }}
-                              >
-                                <span
-                                  style={{
-                                    boxSizing: "border-box",
-                                    display: "block",
-                                    width: "initial",
-                                    height: "initial",
-                                    background: "none",
-                                    opacity: 1,
-                                    border: 0,
-                                    margin: 0,
-                                    padding: 0,
-                                    maxWidth: "100%"
-                                  }}
-                                >
-                                  <img
-                                    style={{
-                                      display: "block",
-                                      maxWidth: "100%",
-                                      width: "initial",
-                                      height: "initial",
-                                      background: "none",
-                                      opacity: 1,
-                                      border: 0,
-                                      margin: 0,
-                                      padding: 0
-                                    }}
-                                    alt=""
-                                    aria-hidden="true"
-                                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2761%27%20height=%2761%27/%3e"
-                                  />
-                                </span>
-                                <img
-                                  alt="[object Object]"
-                                  title="[object Object]"
-                                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                  decoding="async"
-                                  data-nimg="intrinsic"
-                                  className="border-0"
-                                  style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    bottom: 0,
-                                    right: 0,
-                                    boxSizing: "border-box",
-                                    padding: 0,
-                                    border: "none",
-                                    margin: "auto",
-                                    display: "block",
-                                    width: 0,
-                                    height: 0,
-                                    minWidth: "100%",
-                                    maxWidth: "100%",
-                                    minHeight: "100%",
-                                    maxHeight: "100%",
-                                    objectFit: "cover"
-                                  }}
-                                />
-                                <noscript>
-                                  &lt;img srcset="
-                                  https://cdn.myscheme.in/images/icons/search.svg 1x,
-                                  https://cdn.myscheme.in/images/icons/search.svg 2x "
-                                  alt="[object Object]" title="[object Object]"
-                                  src="https://cdn.myscheme.in/images/icons/search.svg"
-                                  decoding="async" data-nimg="intrinsic" style="
-                                  position: absolute; top: 0; left: 0; bottom: 0;
-                                  right: 0; box-sizing: border-box; padding: 0;
-                                  border: none; margin: auto; display: block; width:
-                                  0; height: 0; min-width: 100%; max-width: 100%;
-                                  min-height: 100%; max-height: 100%; object-fit:
-                                  cover; " class="border-0" loading="lazy" /&gt;
-                                </noscript>
-                              </span>
-                            </div>
-                            < img src="https://cdn.myscheme.in/images/icons/search.svg" />
-                            <h3 className="text-xl font-semibold text-green-600">
-                              Search
-                            </h3>
-                            <span className="text-center">
-                              <span>
-                                Our search engine will
-                                <strong> find the relevant schemes</strong>!
-                              </span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex justify-center items-center gap-0 transform rotate-90 lg:rotate-0">
-                        <svg
-                          stroke="currentColor"
-                          fill="currentColor"
-                          strokeWidth={0}
-                          viewBox="0 0 192 512"
-                          className="text-darkIndigo-50"
-                          height={40}
-                          width={40}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                        </svg>
-                        <svg
-                          stroke="currentColor"
-                          fill="none"
-                          strokeWidth={2}
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                          className="text-darkIndigo-50 -ml-12"
-                          height={80}
-                          width={80}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </div>
-                      <div className="flex-1">
-                        <div className="relative bg-white flex z-10 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:animate-bounceOnce p-8 false">
-                          <div className="relative z-20 bg-white w-full h-full rounded-lg flex flex-col items-center gap-3">
-                            <div className="h-16">
-                              <span
-                                style={{
-                                  boxSizing: "border-box",
-                                  display: "inline-block",
-                                  overflow: "hidden",
-                                  width: "initial",
-                                  height: "initial",
-                                  background: "none",
-                                  opacity: 1,
-                                  border: 0,
-                                  margin: 0,
-                                  padding: 0,
-                                  position: "relative",
-                                  maxWidth: "100%"
-                                }}
-                              >
-                                <span
-                                  style={{
-                                    boxSizing: "border-box",
-                                    display: "block",
-                                    width: "initial",
-                                    height: "initial",
-                                    background: "none",
-                                    opacity: 1,
-                                    border: 0,
-                                    margin: 0,
-                                    padding: 0,
-                                    maxWidth: "100%"
-                                  }}
-                                >
-                                  <img
-                                    style={{
-                                      display: "block",
-                                      maxWidth: "100%",
-                                      width: "initial",
-                                      height: "initial",
-                                      background: "none",
-                                      opacity: 1,
-                                      border: 0,
-                                      margin: 0,
-                                      padding: 0
-                                    }}
-                                    alt=""
-                                    aria-hidden="true"
-                                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2747%27%20height=%2761%27/%3e"
-                                  />
-                                </span>
-                                <img
-                                  alt="[object Object]"
-                                  title="[object Object]"
-                                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                  decoding="async"
-                                  data-nimg="intrinsic"
-                                  className="border-0"
-                                  style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    bottom: 0,
-                                    right: 0,
-                                    boxSizing: "border-box",
-                                    padding: 0,
-                                    border: "none",
-                                    margin: "auto",
-                                    display: "block",
-                                    width: 0,
-                                    height: 0,
-                                    minWidth: "100%",
-                                    maxWidth: "100%",
-                                    minHeight: "100%",
-                                    maxHeight: "100%",
-                                    objectFit: "cover"
-                                  }}
-                                />
-                                <noscript>
-                                  &lt;img srcset="
-                                  https://cdn.myscheme.in/images/icons/apply.svg 1x,
-                                  https://cdn.myscheme.in/images/icons/apply.svg 2x "
-                                  alt="[object Object]" title="[object Object]"
-                                  src="https://cdn.myscheme.in/images/icons/apply.svg"
-                                  decoding="async" data-nimg="intrinsic" style="
-                                  position: absolute; top: 0; left: 0; bottom: 0;
-                                  right: 0; box-sizing: border-box; padding: 0;
-                                  border: none; margin: auto; display: block; width:
-                                  0; height: 0; min-width: 100%; max-width: 100%;
-                                  min-height: 100%; max-height: 100%; object-fit:
-                                  cover; " class="border-0" loading="lazy" /&gt;
-                                </noscript>
-                              </span>
-                            </div>
-                            < img src="https://cdn.myscheme.in/images/icons/apply.svg" />
-                            <h3 className="text-xl font-semibold text-green-600">
-                              Select &amp; Apply
-                            </h3>
-                            <span className="text-center">
-                              <span>
-                                <strong>Select and apply</strong> for the best suited
-                                scheme
-                              </span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </section>
-              <section>
-                <section
-                  id="about"
-                  className="relative bg-no-repeat py-12 md:py-20 relative z-0"
-                >
-                  <div className="container mx-auto px-8 lg:px-0 2xl:w-3/5 lg:w-5/6 relative">
-                    <div className="flex flex-col lg:flex-row items-center">
-                      <div className="flex flex-1 mr-2">
-                        <div>
-                          <h3 className="text-3xl font-heading font-bold text-green-600 mb-6">
-                            About
-                          </h3>
-                          <p className="text-slate-600 mb-6 2xl:mb-12 text-lg !leading-relaxed">
-                            myScheme is a National Platform that aims to offer
-                            one-stop search and discovery of the Government schemes.
-                          </p>
-                          <p className="text-slate-600 text-lg !leading-relaxed">
-                            It provides an innovative, technology-based solution to
-                            discover scheme information based upon the eligibility of
-                            the citizen.
-                          </p>
-                          <p className="text-slate-600 text-lg !leading-relaxed">
-                            The platform helps the citizen to find the right
-                            Government schemes for them. It also guides on how to
-                            apply for different Government schemes. Thus no need to
-                            visit multiple Government websites.
-                          </p>
-                          <a
-                            className="undefined mt-8 block normal-case"
-                            href="/about"
-                          >
-                            <button
-                              aria-label="View More"
-                              className="flex items-center px-5 py-2.5 text-base rounded-md undefined undefined border border-solid !bg-transparent text-secondary hover:text-primary border-primary hover:border-primary green transition ease-in-out font-medium leading-none mt-6 undefined"
-                              title=""
-                            >
-                              View More
-                              <svg
-                                stroke="currentColor"
-                                fill="none"
-                                strokeWidth={2}
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                                className="ml-2 inline-block w-6 h-6"
-                                height="1em"
-                                width="1em"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                />
-                              </svg>
-                            </button>
-                          </a>
-                        </div>
-                      </div>
-                      <div className="flex flex-1 w-full mt-4 lg:mt-0 lg:ml-4 items-center justify-center">
-                        <div className="rounded-xl w-[90%] h-[300px] my-6 relative before:absolute before:-bottom-2 before:-left-2 before:w-full before:h-full before:bg-green-300 before:rounded-xl before:-z-1">
-                          <div className="absolute rounded-bl-xl w-[96%] h-[96%] -z-1 border-0 border-b-2 border-l-2 border-solid border-green-200 -bottom-3.5 -left-3.5"></div>
-                          <div className="absolute rounded-bl-2xl w-[94%] h-[94%] -z-1 border-0 border-b-2 border-l-2 border-solid border-green-200 -bottom-5 -left-5"></div>
-                          <span
-                            style={{
-                              boxSizing: "border-box",
-                              display: "block",
-                              overflow: "hidden",
-                              width: "initial",
-                              height: "initial",
-                              background: "none",
-                              opacity: 1,
-                              border: 0,
-                              margin: 0,
-                              padding: 0,
-                              position: "absolute",
-                              top: 0,
-                              left: 0,
-                              bottom: 0,
-                              right: 0
-                            }}
-                          >
-                            <img
-                              alt="Video about myScheme"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqyS05c4SOItquc0Une1dVGfZ-1nf76D9QIA&usqp=CAU"
-                              href="https://www.youtube.com/watch?v=IFlS8l119Nw"
-                              decoding="async"
-                              data-nimg="fill"
-                              className="border-0 w-full h-full rounded-xl"
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                bottom: 0,
-                                right: 0,
-                                boxSizing: "border-box",
-                                padding: 0,
-                                border: "none",
-                                margin: "auto",
-                                display: "block",
-                                width: 0,
-                                height: 0,
-                                minWidth: "100%",
-                                maxWidth: "100%",
-                                minHeight: "100%",
-                                maxHeight: "100%"
-                              }}
-                            />
-                            <noscript>
-                              &lt;img srcset="
-                              /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fyt_about.jpg&amp;amp;w=640&amp;amp;q=75
-                              640w,
-                              /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fyt_about.jpg&amp;amp;w=750&amp;amp;q=75
-                              750w,
-                              /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fyt_about.jpg&amp;amp;w=828&amp;amp;q=75
-                              828w,
-                              /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fyt_about.jpg&amp;amp;w=1080&amp;amp;q=75
-                              1080w,
-                              /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fyt_about.jpg&amp;amp;w=1200&amp;amp;q=75
-                              1200w,
-                              /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fyt_about.jpg&amp;amp;w=1920&amp;amp;q=75
-                              1920w,
-                              /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fyt_about.jpg&amp;amp;w=2048&amp;amp;q=75
-                              2048w,
-                              /_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fyt_about.jpg&amp;amp;w=3840&amp;amp;q=75
-                              3840w " alt="Video about myScheme" sizes="100vw"
-                              src="/_next/image?url=https%3A%2F%2Fcdn.myscheme.in%2Fimages%2Fyt_about.jpg&amp;amp;w=3840&amp;amp;q=75"
-                              decoding="async" data-nimg="fill" style=" position:
-                              absolute; top: 0; left: 0; bottom: 0; right: 0;
-                              box-sizing: border-box; padding: 0; border: none;
-                              margin: auto; display: block; width: 0; height: 0;
-                              min-width: 100%; max-width: 100%; min-height: 100%;
-                              max-height: 100%; " class="border-0 w-full h-full
-                              rounded-xl" loading="lazy" /&gt;
-                            </noscript>
-                          </span>
-                          <div className="rounded-xl absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                            <div className="flex flex-col items-center justify-center">
-                              <div className="cursor-pointer w-16 h-16 rounded-full bg-green-500 flex items-center justify-center">
-                                <svg
-                                  stroke="currentColor"
-                                  fill="currentColor"
-                                  strokeWidth={0}
-                                  viewBox="0 0 448 512"
-                                  className="text-white"
-                                  height={20}
-                                  width={20}
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path>
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </section>
-              <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <div className="sm:hidden">
-                  <label htmlFor="tabs" className="sr-only">
-                    Select tab
-                  </label>
-                  <select
-                    id="tabs"
-                    className="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option>Statistics</option>
-                    <option>Services</option>
-                    <option>FAQ</option>
-                  </select>
                 </div>
-                <ul
-                  className="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
-                  id="fullWidthTab"
-                  data-tabs-toggle="#fullWidthTabContent"
-                  role="tablist"
-                >
-                  <li className="w-full">
-                    <button
-                      id="stats-tab"
-                      data-tabs-target="#stats"
-                      type="button"
-                      role="tab"
-                      aria-controls="stats"
-                      aria-selected="true"
-                      className="inline-block w-full p-4 rounded-ss-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
-                    >
-                      Statistics
-                    </button>
-                  </li>
-                  <li className="w-full">
-                    <button
-                      id="about-tab"
-                      data-tabs-target="#about"
-                      type="button"
-                      role="tab"
-                      aria-controls="about"
-                      aria-selected="false"
-                      className="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
-                    >
-                      Services
-                    </button>
-                  </li>
-                  <li className="w-full">
-                    <button
-                      id="faq-tab"
-                      data-tabs-target="#faq"
-                      type="button"
-                      role="tab"
-                      aria-controls="faq"
-                      aria-selected="false"
-                      className="inline-block w-full p-4 rounded-se-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
-                    >
-                      FAQ
-                    </button>
-                  </li>
-                </ul>
-                <div
-                  id="fullWidthTabContent"
-                  className="border-t border-gray-200 dark:border-gray-600"
-                >
-                  <div
-                    className="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
-                    id="stats"
-                    role="tabpanel"
-                    aria-labelledby="stats-tab"
-                  >
-                    <dl className="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-white sm:p-8">
-                      <div className="flex flex-col items-center justify-center">
-                        <dt className="mb-2 text-3xl font-extrabold">73M+</dt>
-                        <dd className="text-gray-500 dark:text-gray-400">Developers</dd>
-                      </div>
-                      <div className="flex flex-col items-center justify-center">
-                        <dt className="mb-2 text-3xl font-extrabold">100M+</dt>
-                        <dd className="text-gray-500 dark:text-gray-400">
-                          Public repositories
-                        </dd>
-                      </div>
-                      <div className="flex flex-col items-center justify-center">
-                        <dt className="mb-2 text-3xl font-extrabold">1000s</dt>
-                        <dd className="text-gray-500 dark:text-gray-400">
-                          Open source projects
-                        </dd>
-                      </div>
-                      <div className="flex flex-col items-center justify-center">
-                        <dt className="mb-2 text-3xl font-extrabold">1B+</dt>
-                        <dd className="text-gray-500 dark:text-gray-400">Contributors</dd>
-                      </div>
-                      <div className="flex flex-col items-center justify-center">
-                        <dt className="mb-2 text-3xl font-extrabold">90+</dt>
-                        <dd className="text-gray-500 dark:text-gray-400">
-                          Top Forbes companies
-                        </dd>
-                      </div>
-                      <div className="flex flex-col items-center justify-center">
-                        <dt className="mb-2 text-3xl font-extrabold">4M+</dt>
-                        <dd className="text-gray-500 dark:text-gray-400">Organizations</dd>
-                      </div>
-                    </dl>
-                  </div>
-                  <div
-                    className="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
-                    id="about"
-                    role="tabpanel"
-                    aria-labelledby="about-tab"
-                  >
-                    <h2 className="mb-5 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                      We invest in the world’s potential
-                    </h2>
-                    {/* List */}
-                    <ul role="list" className="space-y-4 text-gray-500 dark:text-gray-400">
-                      <li className="flex space-x-2 rtl:space-x-reverse items-center">
-                        <svg
-                          className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                        </svg>
-                        <span className="leading-tight">Dynamic reports and dashboards</span>
-                      </li>
-                      <li className="flex space-x-2 rtl:space-x-reverse items-center">
-                        <svg
-                          className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                        </svg>
-                        <span className="leading-tight">Templates for everyone</span>
-                      </li>
-                      <li className="flex space-x-2 rtl:space-x-reverse items-center">
-                        <svg
-                          className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                        </svg>
-                        <span className="leading-tight">Development workflow</span>
-                      </li>
-                      <li className="flex space-x-2 rtl:space-x-reverse items-center">
-                        <svg
-                          className="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                        </svg>
-                        <span className="leading-tight">Limitless business automation</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div
-                    className="hidden p-4 bg-white rounded-lg dark:bg-gray-800"
-                    id="faq"
-                    role="tabpanel"
-                    aria-labelledby="faq-tab"
-                  >
-                    <div
-                      id="accordion-flush"
-                      data-accordion="collapse"
-                      data-active-classes="bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                      data-inactive-classes="text-gray-500 dark:text-gray-400"
-                    >
-                      <h2 id="accordion-flush-heading-1">
-                        <button
-                          type="button"
-                          className="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
-                          data-accordion-target="#accordion-flush-body-1"
-                          aria-expanded="true"
-                          aria-controls="accordion-flush-body-1"
-                        >
-                          <span>What is Flowbite?</span>
-                          <svg
-                            data-accordion-icon=""
-                            className="w-3 h-3 rotate-180 shrink-0"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 10 6"
-                          >
-                            <path
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5 5 1 1 5"
-                            />
-                          </svg>
-                        </button>
-                      </h2>
-                      <div
-                        id="accordion-flush-body-1"
-                        className="hidden"
-                        aria-labelledby="accordion-flush-heading-1"
-                      >
-                        <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-                          <p className="mb-2 text-gray-500 dark:text-gray-400">
-                            Flowbite is an open-source library of interactive components built
-                            on top of Tailwind CSS including buttons, dropdowns, modals,
-                            navbars, and more.
-                          </p>
-                          <p className="text-gray-500 dark:text-gray-400">
-                            Check out this guide to learn how to{" "}
-                            <a
-                              href="/docs/getting-started/introduction/"
-                              className="text-blue-600 dark:text-blue-500 hover:underline"
-                            >
-                              get started
-                            </a>{" "}
-                            and start developing websites even faster with components on top
-                            of Tailwind CSS.
-                          </p>
-                        </div>
-                      </div>
-                      <h2 id="accordion-flush-heading-2">
-                        <button
-                          type="button"
-                          className="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
-                          data-accordion-target="#accordion-flush-body-2"
-                          aria-expanded="false"
-                          aria-controls="accordion-flush-body-2"
-                        >
-                          <span>Is there a Figma file available?</span>
-                          <svg
-                            data-accordion-icon=""
-                            className="w-3 h-3 rotate-180 shrink-0"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 10 6"
-                          >
-                            <path
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5 5 1 1 5"
-                            />
-                          </svg>
-                        </button>
-                      </h2>
-                      <div
-                        id="accordion-flush-body-2"
-                        className="hidden"
-                        aria-labelledby="accordion-flush-heading-2"
-                      >
-                        <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-                          <p className="mb-2 text-gray-500 dark:text-gray-400">
-                            Flowbite is first conceptualized and designed using the Figma
-                            software so everything you see in the library has a design
-                            equivalent in our Figma file.
-                          </p>
-                          <p className="text-gray-500 dark:text-gray-400">
-                            Check out the{" "}
-                            <a
-                              href="https://flowbite.com/figma/"
-                              className="text-blue-600 dark:text-blue-500 hover:underline"
-                            >
-                              Figma design system
-                            </a>{" "}
-                            based on the utility classes from Tailwind CSS and components from
-                            Flowbite.
-                          </p>
-                        </div>
-                      </div>
-                      <h2 id="accordion-flush-heading-3">
-                        <button
-                          type="button"
-                          className="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
-                          data-accordion-target="#accordion-flush-body-3"
-                          aria-expanded="false"
-                          aria-controls="accordion-flush-body-3"
-                        >
-                          <span>
-                            What are the differences between Flowbite and Tailwind UI?
-                          </span>
-                          <svg
-                            data-accordion-icon=""
-                            className="w-3 h-3 rotate-180 shrink-0"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 10 6"
-                          >
-                            <path
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5 5 1 1 5"
-                            />
-                          </svg>
-                        </button>
-                      </h2>
-                      <div
-                        id="accordion-flush-body-3"
-                        className="hidden"
-                        aria-labelledby="accordion-flush-heading-3"
-                      >
-                        <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-                          <p className="mb-2 text-gray-500 dark:text-gray-400">
-                            The main difference is that the core components from Flowbite are
-                            open source under the MIT license, whereas Tailwind UI is a paid
-                            product. Another difference is that Flowbite relies on smaller and
-                            standalone components, whereas Tailwind UI offers sections of
-                            pages.
-                          </p>
-                          <p className="mb-2 text-gray-500 dark:text-gray-400">
-                            However, we actually recommend using both Flowbite, Flowbite Pro,
-                            and even Tailwind UI as there is no technical reason stopping you
-                            from using the best of two worlds.
-                          </p>
-                          <p className="mb-2 text-gray-500 dark:text-gray-400">
-                            Learn more about these technologies:
-                          </p>
-                          <ul className="ps-5 text-gray-500 list-disc dark:text-gray-400">
-                            <li>
-                              <a
-                                href="https://flowbite.com/pro/"
-                                className="text-blue-600 dark:text-blue-500 hover:underline"
-                              >
-                                Flowbite Pro
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href="https://tailwindui.com/"
-                                rel="nofollow"
-                                className="text-blue-600 dark:text-blue-500 hover:underline"
-                              >
-                                Tailwind UI
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+
+                {/* Schemes card overlay */}
+                <div className="absolute -left-10 top-10 bg-white rounded-lg shadow-lg p-4 border border-gray-100">
+                  <div className="flex items-center space-x-4">
+                    <div className="p-2 bg-blue-100 rounded-full">
+                      <FileText size={20} className="text-blue-600" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Active Schemes</p>
+                      <p className="text-lg font-bold text-gray-900">150+</p>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
 
-              <section>
-                <section
-                  id="faqs"
-                  className="relative bg-no-repeat py-12 md:py-20 bg-gradient-to-b from-green-50 to-white relative z-0 after:absolute after:-top-6 after:left-0 lg:after:-left-10 after:w-full after:h-0 after:border-green-50 after:border-[40px] after:border-solid after:-z-10 after:rotate-[2deg] after:transform mt-20 !min-h-[10px]"
+        {/* Wave divider */}
+        <div className="absolute bottom-0 left-0 right-0 h-12 overflow-hidden">
+          <svg
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            className="w-full h-full"
+          >
+            <path
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.11,130.83,141.14,214.86,131.81,289.41,123.92,268.09,76.91,321.39,56.44Z"
+              fill="#f9fafb"
+            ></path>
+          </svg>
+        </div>
+      </section>
+
+      {/* Key Categories Section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-gray-900">
+              Explore by Category
+            </h2>
+            <p className="mt-2 text-gray-600">
+              Find the perfect scheme based on your needs
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+            {categories.map((category, index) => (
+              <Link
+                key={index}
+                to={`/category/${category.name
+                  .toLowerCase()
+                  .replace(/\s+/g, "-")}`}
+                className="flex flex-col items-center justify-center p-4 rounded-lg transition-transform hover:scale-105"
+              >
+                <div
+                  className={`w-14 h-14 rounded-full mb-3 flex items-center justify-center ${category.color}`}
                 >
-                  <div className="container mx-auto px-8 lg:px-0 2xl:w-3/5 lg:w-5/6 relative">
-                    <div className="grid grid-cols-1 md:flex flex-wrap gap-4 justify-between items-center !block lg:!flex !gap-10 lg:!gap-20">
-                      <div className="hidden lg:block z-0 relative before:content[*] before:h-3/4 before:w-3/4 before:absolute before:-top-10 before:-left-5 lg:before:-left-10 before:bg-green-shape before:-z-1">
-                        <span
-                          style={{
-                            boxSizing: "border-box",
-                            display: "inline-block",
-                            overflow: "hidden",
-                            width: "initial",
-                            height: "initial",
-                            background: "none",
-                            opacity: 1,
-                            border: 0,
-                            margin: 0,
-                            padding: 0,
-                            position: "relative",
-                            maxWidth: "100%"
-                          }}
-                        >
-                          <span
-                            style={{
-                              boxSizing: "border-box",
-                              display: "block",
-                              width: "initial",
-                              height: "initial",
-                              background: "none",
-                              opacity: 1,
-                              border: 0,
-                              margin: 0,
-                              padding: 0,
-                              maxWidth: "100%"
-                            }}
-                          >
-                            <img
-                              style={{
-                                display: "block",
-                                maxWidth: "100%",
-                                width: "initial",
-                                height: "initial",
-                                background: "none",
-                                opacity: 1,
-                                border: 0,
-                                margin: 0,
-                                padding: 0
-                              }}
-                              alt=""
-                              aria-hidden="true"
-                              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27480%27%20height=%27480%27/%3e"
-                            />
-                          </span>
-                          <img
-                            alt="Questions Image"
-                            title="Questions Image"
-                            src="https://cdn.myscheme.in/images/questions.svg"
-                            decoding="async"
-                            data-nimg="intrinsic"
-                            className="border-0 object-contain"
-                            style={{
-                              position: "absolute",
-                              top: 0,
-                              left: 0,
-                              bottom: 0,
-                              right: 0,
-                              boxSizing: "border-box",
-                              padding: 0,
-                              border: "none",
-                              margin: "auto",
-                              display: "block",
-                              width: 0,
-                              height: 0,
-                              minWidth: "100%",
-                              maxWidth: "100%",
-                              minHeight: "100%",
-                              maxHeight: "100%"
-                            }}
-                          />
-                          <noscript>
-                            &lt;img srcset="
-                            https://cdn.myscheme.in/images/questions.svg 1x,
-                            https://cdn.myscheme.in/images/questions.svg 2x "
-                            alt="Questions Image" title="Questions Image"
-                            src="https://cdn.myscheme.in/images/questions.svg"
-                            decoding="async" data-nimg="intrinsic" style=" position:
-                            absolute; top: 0; left: 0; bottom: 0; right: 0;
-                            box-sizing: border-box; padding: 0; border: none; margin:
-                            auto; display: block; width: 0; height: 0; min-width:
-                            100%; max-width: 100%; min-height: 100%; max-height: 100%;
-                            " class="border-0 object-contain" loading="lazy" /&gt;
-                          </noscript>
+                  {category.icon}
+                </div>
+                <h3 className="text-sm font-medium text-gray-900">
+                  {category.name}
+                </h3>
+                <span className="text-xs text-gray-500">
+                  {category.count} schemes
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Making a Nationwide Impact
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+              Millions of citizens across India have benefited from various
+              government schemes. Here's how we're tracking progress.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                Beneficiaries by Sector (in millions)
+              </h3>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={schemeStats}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                    <XAxis dataKey="name" tick={{ fill: "#6B7280" }} />
+                    <YAxis tick={{ fill: "#6B7280" }} />
+                    <Tooltip
+                      formatter={(value) => [
+                        `${formatNumber(value)} beneficiaries`,
+                        "Beneficiaries",
+                      ]}
+                      contentStyle={{
+                        backgroundColor: "#fff",
+                        borderRadius: "8px",
+                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                      }}
+                    />
+                    <Bar
+                      dataKey="beneficiaries"
+                      fill="#10B981"
+                      radius={[4, 4, 0, 0]}
+                      barSize={40}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                Population Coverage (%)
+              </h3>
+              <div className="h-80 flex items-center justify-center">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={populationData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      outerRadius={120}
+                      innerRadius={70}
+                      fill="#8884d8"
+                      dataKey="value"
+                      nameKey="name"
+                      label={({ name, value }) => `${name}: ${value}%`}
+                    >
+                      {populationData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      formatter={(value) => [`${value}%`, "Coverage"]}
+                      contentStyle={{
+                        backgroundColor: "#fff",
+                        borderRadius: "8px",
+                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                      }}
+                    />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                Growth Over Years
+              </h3>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart
+                    data={growthData}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                    <XAxis dataKey="year" tick={{ fill: "#6B7280" }} />
+                    <YAxis tick={{ fill: "#6B7280" }} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "#fff",
+                        borderRadius: "8px",
+                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                      }}
+                    />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="schemes"
+                      stroke="#10B981"
+                      strokeWidth={2}
+                      dot={{ r: 4 }}
+                      name="Total Schemes"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="coverage"
+                      stroke="#6366F1"
+                      strokeWidth={2}
+                      dot={{ r: 4 }}
+                      name="Population Coverage (%)"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                Fund Disbursement (₹ Crore)
+              </h3>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart
+                    data={quarterlyData}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  >
+                    <defs>
+                      <linearGradient
+                        id="disbursementGradient"
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop
+                          offset="5%"
+                          stopColor="#10B981"
+                          stopOpacity={0.8}
+                        />
+                        <stop
+                          offset="95%"
+                          stopColor="#10B981"
+                          stopOpacity={0.1}
+                        />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                    <XAxis dataKey="quarter" tick={{ fill: "#6B7280" }} />
+                    <YAxis tick={{ fill: "#6B7280" }} />
+                    <Tooltip
+                      formatter={(value) => [
+                        `₹${formatNumber(value)} crore`,
+                        "Disbursement",
+                      ]}
+                      contentStyle={{
+                        backgroundColor: "#fff",
+                        borderRadius: "8px",
+                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                      }}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="disbursement"
+                      stroke="#10B981"
+                      fillOpacity={1}
+                      fill="url(#disbursementGradient)"
+                      name="Fund Disbursement"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Link
+              to="/statistics"
+              className="inline-flex items-center justify-center space-x-2 bg-green-100 text-green-800 px-6 py-3 rounded-lg font-medium hover:bg-green-200 transition-colors"
+            >
+              <span>View Detailed Statistics</span>
+              <ChevronRight size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Schemes */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Featured Schemes
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+              Explore some of the most impactful government initiatives designed
+              to improve lives across India.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredSchemes.map((scheme) => (
+              <div
+                key={scheme.id}
+                className={`${scheme.color} rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300`}
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div>{scheme.icon}</div>
+                  <span className="inline-block px-2 py-1 text-xs font-medium bg-white/50 text-gray-700 rounded-full">
+                    {scheme.category}
+                  </span>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {scheme.title}
+                </h3>
+                <p className="text-gray-600 mb-4">{scheme.description}</p>
+                <div className="flex items-center text-gray-500 text-sm mb-4">
+                  <Users size={16} className="mr-1" />
+                  <span>{scheme.beneficiaries} beneficiaries</span>
+                </div>
+                <Link
+                  to={scheme.link}
+                  className="inline-flex items-center text-gray-700 font-medium hover:text-green-600"
+                >
+                  <span>Learn more</span>
+                  <ArrowRight size={16} className="ml-1" />
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              to="/schemes"
+              className="inline-flex items-center justify-center space-x-2 bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+            >
+              <span>View All Schemes</span>
+              <ChevronRight size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      {/* How It Works - Redesigned */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900">
+              How MyScheme Works
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+              Four simple steps to find and access government schemes tailored
+              to your needs
+            </p>
+          </div>
+
+          {/* Main content */}
+          <div className="relative">
+            {/* Desktop horizontal process */}
+            <div className="hidden lg:block">
+              {/* Horizontal line */}
+              <div className="absolute top-1/2 left-0 w-full h-1 bg-green-200 transform -translate-y-1/2 rounded-full"></div>
+
+              <div className="grid grid-cols-4 gap-8">
+                {steps.map((step, index) => (
+                  <div key={step.id} className="relative">
+                    {/* Circle node */}
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                      <div className="w-16 h-16 rounded-full bg-white shadow-md border-4 border-green-500 flex items-center justify-center">
+                        <span className="text-xl font-bold text-green-600">
+                          {step.id}
                         </span>
                       </div>
-                      <div className="flex-1">
-                        <div className="mb-10">
-                          <p className="text-xl text-darkIndigo-300 text-left mb-2">
-                            Frequently Asked Questions
-                          </p>
-                          <h2 className="text-3xl sm:text-4xl text-left font-extrabold leading-snug">
-                            Checkout our knowledge base for some of your answers!
-                          </h2>
-                        </div>
-                        <div className="py-4 first:pt-0 last:pb-0 undefined">
-                          <div className="cursor-pointer undefined" onClick={() => setShowAnswer1(!showAnswer1)}>
-                            <div className="flex flex-row items-center justify-between">
-                              <p className="font-bold w-11/12">What is myScheme?</p>
-                              <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth={0}
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className="ml-1"
-                                height={25}
-                                width={25}
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className={`rounded-b mt-3 ${showAnswer1 ? '' : 'hidden'}`}>
-                            <p className="text-base leading-relaxed">
-                              myScheme is an e-Marketplace for Govt. schemes and services. Using myScheme you can find various government schemes, check your eligibility, and apply for the schemes.
-                            </p>
-                          </div>
-                        </div>
-                        <div className="py-4 first:pt-0 last:pb-0 undefined">
-                          <div className="cursor-pointer undefined" onClick={() => setShowAnswer2(!showAnswer2)}>
-                            <div className="flex flex-row items-center justify-between">
-                              <p className="font-bold w-11/12">
-                                How myScheme will help common citizens?
-                              </p>
-                              <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth={0}
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className="ml-1"
-                                height={25}
-                                width={25}
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className={`rounded-b mt-3 ${showAnswer2 ? '' : 'hidden'}`}>
-                            <p className="text-base leading-relaxed">
-                              myScheme will reduce the time and effort of citizens in
-                              searching for appropriate government schemes.The easy
-                              user interface of myScheme helps common people a lot in
-                              discovering and applying for schemes.
-                            </p>
-                          </div>
-                        </div>
-                        <div className="py-4 first:pt-0 last:pb-0 undefined">
-                          <div className="cursor-pointer undefined" onClick={() => setShowAnswer3(!showAnswer3)}>
-                            <div className="flex flex-row items-center justify-between">
-                              <p className="font-bold w-11/12">
-                                Can I apply for the schemes through myScheme?
-                              </p>
-                              <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth={0}
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className="ml-1"
-                                height={25}
-                                width={25}
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className={`rounded-b mt-3 ${showAnswer3 ? '' : 'hidden'}`}>
-                            <p className="text-base leading-relaxed">
-                              For now, the platform shall direct you to the
-                              application page of the scheme of your choice.It is
-                              envisaged that in the upcoming phases, myScheme shall
-                              have the feature to apply for schemes / services from
-                              within the platform/ app.
-                            </p>
-                          </div>
-                        </div>
-                        <div className="py-4 first:pt-0 last:pb-0 undefined">
-                          <div className="cursor-pointer undefined" onClick={() => setShowAnswer4(!showAnswer4)}>
-                            <div className="flex flex-row items-center justify-between">
-                              <p className="font-bold w-11/12">
-                                How does myScheme work? How do I check for my
-                                eligibility through myScheme ?
-                              </p>
-                              <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth={0}
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className="ml-1"
-                                height={25}
-                                width={25}
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className={`rounded-b mt-3 ${showAnswer4 ? '' : 'hidden'}`}>
-                            <p className="text-base leading-relaxed">
-                              myScheme offers a convenient three - step process for
-                              the citizens to discover the government schemes for
-                              which they are eligible: <br />
-                              {/* */}
-                              <strong> Step 1 </strong> - The user enters his / her attributes such as
-                              demographic, income, social details, etc. <br />
-                              {/* */}<strong> Step 2 </strong> - The myScheme findsthe relevant schemes
-                              from hundreds of schemes for the user. <br />
-                              {/* */}<strong> Step 3 </strong> - The user can select from the list of
-                              eligible schemes and get more information from the
-                              dedicated scheme page with detailed knowledge, FAQs, and
-                              application process and traverse to the application URL
-                              to apply. <br />
-                            </p>
-                          </div>
-                        </div>
-                        <div className="py-4 first:pt-0 last:pb-0 undefined">
-                          <div className="cursor-pointer undefined" onClick={() => setShowAnswer5(!showAnswer5)}>
-                            <div className="flex flex-row items-center justify-between">
-                              <p className="font-bold w-11/12">
-                                What all information about a particular scheme can I
-                                find on myScheme ?
-                              </p>
-                              <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth={0}
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className="ml-1"
-                                height={25}
-                                width={25}
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className={`rounded-b mt-3 ${showAnswer5 ? '' : 'hidden'}`}>
-                            <p className="text-base leading-relaxed">
-                              myScheme provides details on the eligibility criteria,
-                              application process, and benefits being offered under
-                              that scheme. myScheme also answers the Frequently Asked
-                              Questions(FAQs) about the scheme.
-                            </p>
-                          </div>
-                        </div>
+                    </div>
 
-                        <a className="undefined block normal-case" href="/faqs">
-                          <button
-                            aria-label="View More"
-                            className="flex items-center px-5 py-2.5 text-base rounded-md undefined undefined border border-solid !bg-transparent text-secondary hover:text-primary border-primary hover:border-primary green transition ease-in-out font-medium leading-none mt-6 undefined"
-                            title=""
-                          >
-                            View More
-                            <svg
-                              stroke="currentColor"
-                              fill="none"
-                              strokeWidth={2}
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                              className="ml-2 inline-block w-6 h-6"
-                              height="1em"
-                              width="1em"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"
-                              />
-                            </svg>
-                          </button>
-                        </a>
+                    {/* Card above or below the line */}
+                    <div
+                      className={`bg-white rounded-xl shadow-lg p-6 border border-gray-100 mt-8 ${
+                        index % 2 === 0 ? "mt-12" : "mt-20"
+                      }`}
+                    >
+                      <div className="flex flex-col items-center text-center">
+                        <div className="mb-4 p-3 bg-green-100 rounded-full">
+                          {step.icon}
+                        </div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                          {step.title}
+                        </h3>
+                        <p className="text-gray-600">{step.description}</p>
                       </div>
                     </div>
                   </div>
-                </section>
-              </section>
-            </section>
-          </main>
+                ))}
+              </div>
+            </div>
 
+            {/* Mobile vertical process */}
+            <div className="lg:hidden">
+              {/* Vertical line */}
+              <div className="absolute top-0 bottom-0 left-8 w-1 bg-green-200"></div>
 
+              <div className="space-y-12">
+                {steps.map((step) => (
+                  <div key={step.id} className="relative">
+                    {/* Circle node */}
+                    <div className="absolute top-0 left-8 transform -translate-x-1/2">
+                      <div className="w-14 h-14 rounded-full bg-white shadow-md border-4 border-green-500 flex items-center justify-center">
+                        <span className="text-lg font-bold text-green-600">
+                          {step.id}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Card */}
+                    <div className="ml-16 bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                      <div className="flex items-start">
+                        <div className="mr-4 p-3 bg-green-100 rounded-full flex-shrink-0">
+                          {step.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                            {step.title}
+                          </h3>
+                          <p className="text-gray-600">{step.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom feature cards */}
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="p-2 bg-green-100 rounded-full mr-3">
+                  <Clock size={20} className="text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Quick & Easy
+                </h3>
+              </div>
+              <p className="text-gray-600">
+                Find relevant schemes in minutes instead of hours. Our
+                simplified process saves you time and frustration.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="p-2 bg-blue-100 rounded-full mr-3">
+                  <Shield size={20} className="text-blue-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Verified Information
+                </h3>
+              </div>
+              <p className="text-gray-600">
+                All scheme details are verified from official government sources
+                and updated regularly for accuracy.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="p-2 bg-yellow-100 rounded-full mr-3">
+                  <AlertCircle size={20} className="text-yellow-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Expert Support
+                </h3>
+              </div>
+              <p className="text-gray-600">
+                Get personalized guidance from our scheme experts when you need
+                additional assistance.
+              </p>
+            </div>
+          </div>
+
+          {/* CTA banner */}
+          <div className="mt-10 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8 border border-gray-200 shadow-inner">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="mb-6 md:mb-0 md:mr-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Need help with your application?
+                </h3>
+                <p className="text-gray-600">
+                  Our customer support team can guide you through every step of
+                  the process.
+                </p>
+              </div>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center space-x-2 bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors shadow-md whitespace-nowrap"
+              >
+                <span>Get Support</span>
+                <ChevronRight size={20} />
+              </Link>
+            </div>
+          </div>
         </div>
-      </>
-      <Footer />
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Why Use MyScheme
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+              We simplify your journey to finding and applying for the right
+              government schemes.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {benefits.map((benefit) => (
+              <div
+                key={benefit.id}
+                className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="bg-gray-50 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+                  {benefit.icon}
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {benefit.title}
+                </h3>
+                <p className="text-gray-600">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 bg-green-50 rounded-xl p-8 border border-green-100">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="md:w-2/3 mb-6 md:mb-0">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Need personalized help?
+                </h3>
+                <p className="text-gray-600">
+                  Our team of experts can guide you through the application
+                  process, answer your questions, and help you maximize your
+                  benefits.
+                </p>
+              </div>
+              <div>
+                <Link
+                  to="/assistance"
+                  className="inline-flex items-center justify-center space-x-2 bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+                >
+                  <span>Get Expert Assistance</span>
+                  <ChevronRight size={20} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest News & Updates */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Latest News & Updates
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+              Stay informed about the latest announcements and changes in
+              government schemes.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {newsUpdates.map((news) => (
+              <div
+                key={news.id}
+                className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="bg-green-600 text-white text-sm font-semibold px-4 py-2">
+                  {news.date}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {news.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{news.summary}</p>
+                  <Link
+                    to={news.link}
+                    className="inline-flex items-center text-green-600 font-medium hover:text-green-700"
+                  >
+                    <span>Read more</span>
+                    <ArrowRight size={16} className="ml-1" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              to="/news"
+              className="inline-flex items-center justify-center space-x-2 bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+            >
+              <span>Browse All News</span>
+              <ChevronRight size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Success Stories
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+              Hear from citizens who have benefited from government schemes and
+              transformed their lives.
+            </p>
+          </div>
+
+          <div className="relative bg-white rounded-xl shadow-lg border border-gray-100 p-6 md:p-10 overflow-hidden">
+            <div className="flex flex-col md:flex-row gap-8 items-center">
+              <div className="md:w-1/3 flex flex-col items-center md:items-start">
+                <img
+                  src={testimonials[currentTestimonial].image}
+                  alt={testimonials[currentTestimonial].name}
+                  className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-green-100"
+                />
+                <h3 className="text-xl font-semibold text-gray-900">
+                  {testimonials[currentTestimonial].name}
+                </h3>
+                <p className="text-gray-600 mb-2">
+                  {testimonials[currentTestimonial].location}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="inline-block bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">
+                    {testimonials[currentTestimonial].scheme}
+                  </span>
+                  <span className="inline-block bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full">
+                    {testimonials[currentTestimonial].occupation}
+                  </span>
+                </div>
+              </div>
+
+              <div className="md:w-2/3">
+                <div className="relative">
+                  <svg
+                    className="absolute -top-5 -left-5 w-12 h-12 text-green-200 transform -rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    {testimonials[currentTestimonial].text}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute bottom-4 right-4 flex space-x-2">
+              <button
+                onClick={prevTestimonial}
+                className="p-2 rounded-full bg-gray-100 hover:bg-green-100 transition-colors"
+              >
+                <ChevronLeft size={20} className="text-gray-600" />
+              </button>
+              <button
+                onClick={nextTestimonial}
+                className="p-2 rounded-full bg-gray-100 hover:bg-green-100 transition-colors"
+              >
+                <ChevronRight size={20} className="text-gray-600" />
+              </button>
+            </div>
+
+            <div className="absolute bottom-4 left-4 flex space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-3 h-3 rounded-full ${
+                    currentTestimonial === index
+                      ? "bg-green-600"
+                      : "bg-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              to="/success-stories"
+              className="inline-flex items-center justify-center space-x-2 bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+            >
+              <span>Read More Success Stories</span>
+              <ChevronRight size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-4 text-lg text-gray-600">
+              Find answers to common questions about government schemes and our
+              platform.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-lg shadow-md border border-gray-100 overflow-hidden"
+              >
+                <button
+                  className="w-full flex items-center justify-between p-4 text-left focus:outline-none"
+                  onClick={() => toggleFaq(index)}
+                >
+                  <h3 className="text-lg font-medium text-gray-900">
+                    {faq.question}
+                  </h3>
+                  <ChevronDown
+                    size={20}
+                    className={`text-gray-500 transition-transform ${
+                      openFaqIndex === index ? "transform rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                <div
+                  className={`px-4 pb-4 ${
+                    openFaqIndex === index ? "block" : "hidden"
+                  }`}
+                >
+                  <p className="text-gray-600">{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              to="/faqs"
+              className="inline-flex items-center justify-center space-x-2 text-green-600 font-medium hover:text-green-700"
+            >
+              <span>View All FAQs</span>
+              <ChevronRight size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
+    <Footer />
+    </>
   );
-};
-
-export default Home;
-
-
+}

@@ -33,8 +33,6 @@ const Routing = () => {
       "/otp",
       "/resetpassword",
       "/forgotpassword",
-     
-      
     ]; // Add the paths that don't require login
     const isAllowedPath = allowedPaths.some((path) =>
       window.location.pathname.startsWith(path)
@@ -46,8 +44,6 @@ const Routing = () => {
     dispatch({ type: "USER", payload: user });
   }, [dispatch, navigate]);
 
-
-
   return (
     <>
       <Routes>
@@ -57,8 +53,8 @@ const Routing = () => {
         <Route path="/resetpassword/:token" element={<ResetPassword />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/otp" element={<OTP />} />
-        <Route path="/scheme" element={<Scheme/>} />
-    
+        <Route path="/scheme" element={<Scheme />} />
+
         <Route path="/inscheme/:_id" element={<InScheme />} />
         <Route path="/about" element={<Aboutus />} />
         <Route path="/contact" element={<Contactus />} />

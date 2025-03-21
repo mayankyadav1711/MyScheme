@@ -1,335 +1,332 @@
-import React, {  useEffect, useState } from "react";
-import {  useNavigate,useParams  } from "react-router-dom";
+import React from "react";
 import Footer from "./Footer";
-import jatan from "./images/jatan.jpeg"
-import jay from "./images/jay.jpeg"
-import kashish from "./images/kashish.jpeg"
-import krishna from "./images/krishna.jpeg"
 import Navbar from "./Navbar";
+import { 
+  Users, 
+  FileText, 
+  Clock, 
+  Award, 
+  CheckCircle, 
+  Target, 
+  Heart, 
+  ChevronRight,
+  Linkedin,
+  Twitter,
+  Github,
+  Mail
+} from "lucide-react";
 
-const  Aboutus = () => {
-  
+const AboutUs = () => {
+  // Team members data
+  const teamMembers = [
+    {
+      id: 1,
+      name: "Rahul Sharma",
+      role: "Founder & Lead Developer",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+      description: "With over 8 years of experience in government tech solutions",
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com"
+    },
+    {
+      id: 2,
+      name: "Priya Patel",
+      role: "UX/UI Designer",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80",
+      description: "User experience specialist passionate about accessible design",
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com"
+    },
+    {
+      id: 3,
+      name: "Vikram Singh",
+      role: "Backend Developer",
+      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+      description: "Expert in database design and API development for government systems",
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com"
+    },
+    {
+      id: 4,
+      name: "Ananya Desai",
+      role: "Content Specialist",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80",
+      description: "Creates clear, accessible information about government schemes",
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com"
+    }
+  ];
+
+  // Core values data
+  const coreValues = [
+    {
+      title: "Accessibility",
+      description: "Making government services easily accessible to all citizens regardless of digital literacy or location",
+      icon: <CheckCircle className="w-8 h-8 text-green-500" />
+    },
+    {
+      title: "Transparency",
+      description: "Providing clear, accurate information about government schemes and application processes",
+      icon: <Target className="w-8 h-8 text-blue-500" />
+    },
+    {
+      title: "Efficiency",
+      description: "Streamlining processes to save citizens time and reduce frustration when accessing services",
+      icon: <Clock className="w-8 h-8 text-purple-500" />
+    },
+    {
+      title: "Inclusion",
+      description: "Ensuring our platform serves all citizens, including those from underserved communities",
+      icon: <Heart className="w-8 h-8 text-red-500" />
+    }
+  ];
+
+  // Statistics data
+  const statistics = [
+    {
+      value: "200+",
+      label: "Government Schemes",
+      icon: <FileText className="w-10 h-10 text-green-500" />
+    },
+    {
+      value: "3,590+",
+      label: "Citizens Helped",
+      icon: <Users className="w-10 h-10 text-blue-500" />
+    },
+    {
+      value: "28+",
+      label: "States Covered",
+      icon: <Award className="w-10 h-10 text-purple-500" />
+    },
+    {
+      value: "24/7",
+      label: "Support Available",
+      icon: <Clock className="w-10 h-10 text-yellow-500" />
+    }
+  ];
+
   return (
     <>
-
-<section className="py-10 lg:py-20 bg-stone-100 font-poppins dark:bg-gray-800">
-  <div className="max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
-    <div className="flex flex-wrap ">
-      <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0 ">
-        <div className="lg:max-w-md">
-          <div className="px-4 pl-4 mb-6 border-l-4 border-teal-500">
-            <span className="text-sm text-gray-600 uppercase dark:text-gray-400">
-              Who we are?
-            </span>
-            <h1 className="mt-2 text-3xl font-black text-gray-700 md:text-5xl dark:text-gray-300">
-              About Us
+      <Navbar />
+      
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-b from-green-50 to-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 text-xs font-medium text-green-700 bg-green-100 rounded-full">
+              <span>About MyScheme</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Making Government Schemes <span className="text-green-600">Accessible to All</span>
             </h1>
-          </div>
-          <p className="px-4 mb-10 text-base leading-7 text-gray-500 dark:text-gray-400">
-          Our vision is to make citizens life easier. 
-          Our mission is to streamline the government user interface for government schemes and benefits.
-          Reduce time and effort required to find and avail a government scheme
-          </p>
-          <div className="flex flex-wrap items-center">
-            <div className="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
-              <div className="p-6 bg-white dark:bg-gray-900">
-                <span className="text-teal-500 dark:text-teal-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={16}
-                    height={16}
-                    className="w-10 h-10"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
-                    <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
-                  </svg>
-                </span>
-                <p className="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">
-                  20
-                </p>
-                <h2 className="text-sm text-gray-700 dark:text-gray-400">
-                  Projects and Plans
-                </h2>
-              </div>
-            </div>
-            <div className="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
-              <div className="p-6 bg-white dark:bg-gray-900">
-                <span className="text-teal-500 dark:text-teal-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={16}
-                    height={16}
-                    className="w-10 h-10"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    <path
-                      fillRule="evenodd"
-                      d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"
-                    />
-                    <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
-                  </svg>
-                </span>
-                <p className="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">
-                  3,590
-                </p>
-                <h2 className="text-sm text-gray-700 dark:text-gray-400">
-                  Helped people
-                </h2>
-              </div>
-            </div>
-            <div className="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
-              <div className="p-6 bg-white dark:bg-gray-900">
-                <span className="text-teal-500 dark:text-teal-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={16}
-                    height={16}
-                    className="w-10 h-10"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                  </svg>
-                </span>
-                <p className="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">
-                  4
-                </p>
-                <h2 className="text-sm text-gray-700 dark:text-gray-400">
-                  Volunteer
-                </h2>
-              </div>
-            </div>
-            <div className="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
-              <div className="p-6 bg-white dark:bg-gray-900">
-                <span className="text-teal-500 dark:text-teal-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={16}
-                    height={16}
-                    className="w-10 h-10"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
-                  </svg>
-                </span>
-                <p className="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">
-                  100
-                </p>
-                <h2 className="text-sm text-gray-700 dark:text-gray-400">
-                  Timing
-                </h2>
-              </div>
-            </div>
+            <p className="text-lg text-gray-600 mb-8">
+              We're on a mission to simplify government services and empower citizens across India by providing easy access to information about schemes and benefits.
+            </p>
           </div>
         </div>
-      </div>
-      <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
-        <img
-          src="https://i.postimg.cc/9MW8G96J/pexels-the-coach-space-2977565.jpg"
-          alt=""
-          className="relative z-40 object-cover w-full h-full rounded"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-  <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-        <div>
-          <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            Core Team
-          </p>
-        </div>
-        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-          <span className="relative inline-block">
-            <svg
-              viewBox="0 0 52 24"
-              fill="currentColor"
-              className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
-            >
-              <defs>
-                <pattern
-                  id="1d4040f3-9f3e-4ac7-b117-7d4009658ced"
-                  x="0"
-                  y="0"
-                  width=".135"
-                  height=".30"
-                >
-                  <circle cx="1" cy="1" r=".7" />
-                </pattern>
-              </defs>
-              <rect
-                fill="url(#1d4040f3-9f3e-4ac7-b117-7d4009658ced)"
-                width="52"
-                height="24"
-              />
-            </svg>
-            <span className="relative">Welcome</span>
-          </span>{' '}
-          our talented team of professionals
-        </h2>
-        <p className="text-base text-gray-700 md:text-lg">
-        </p>
-      </div>
-      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
-          <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-            <img
-              className="object-cover w-full h-56 md:h-64 xl:h-80"
-               src="https://1.bp.blogspot.com/-8c7QTLoyajs/YLjr2V6KYRI/AAAAAAAACO8/ViVPQpLWVM0jGh3RZhh-Ha1-1r3Oj62wQCNcBGAsYHQ/s16000/team-1-3.jpg"
-               alt ="Person"
-            />
-            <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-              <p className="mb-1 text-lg font-bold text-gray-100">
-               Vin Diesel
+      </section>
+      
+      {/* Our Mission Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="md:w-1/2 order-2 md:order-1">
+              <div className="border-l-4 border-green-500 pl-4 mb-6">
+                <span className="text-sm font-medium text-green-600 uppercase">Our Mission</span>
+                <h2 className="text-3xl font-bold text-gray-900 mt-2">Bridging the Gap Between Citizens and Government</h2>
+              </div>
+              
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Our vision is to make citizens' lives easier by streamlining the government user interface for schemes and benefits. We're dedicated to reducing the time and effort required to find and avail government schemes.
               </p>
-              <p className="mb-4 text-xs text-gray-100"></p>
-              <p className="mb-4 text-xs tracking-wide text-gray-400">
+              
+              <p className="text-gray-600 mb-8 leading-relaxed">
+                We believe that every citizen deserves easy access to government benefits they're entitled to, regardless of their technical knowledge or location. Our platform serves as a bridge, connecting people with opportunities that can transform their lives.
+              </p>
+              
+              <a href="/contact" className="inline-flex items-center text-green-600 font-medium hover:text-green-700">
+                <span>Learn more about our approach</span>
+                <ChevronRight size={16} className="ml-1" />
+              </a>
+            </div>
+            
+            <div className="md:w-1/2 order-1 md:order-2 mb-8 md:mb-0">
+              <div className="relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
+                  alt="Our mission" 
+                  className="rounded-lg shadow-lg object-cover w-full h-auto"
+                />
+                <div className="absolute -left-5 -bottom-5 bg-green-500 h-24 w-24 rounded-lg -z-10"></div>
+                <div className="absolute -right-5 -top-5 bg-blue-100 h-16 w-16 rounded-lg -z-10"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Statistics Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">Our Impact</h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+              We're proud of the difference we've made in thousands of citizens' lives through our platform
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {statistics.map((stat, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-md border border-gray-100 text-center">
+                <div className="flex justify-center mb-4">
+                  {stat.icon}
+                </div>
+                <p className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</p>
+                <p className="text-gray-600">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Core Values Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">Our Core Values</h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+              These principles guide everything we do as we work to make government services more accessible
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {coreValues.map((value, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                <div className="mb-4">
+                  {value.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{value.title}</h3>
+                <p className="text-gray-600">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Team Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="inline-block px-3 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full mb-4">
+              Our Team
+            </span>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet the People Behind MyScheme</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our talented team of professionals is dedicated to simplifying government services for all citizens
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member) => (
+              <div key={member.id} className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 transition-all duration-300 hover:shadow-lg">
+                <div className="h-64 overflow-hidden">
+                  <img 
+                    src={member.image} 
+                    alt={member.name} 
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
                 
-              </p>
-              <div className="flex items-center justify-center space-x-3">
-                <a
-                  href="/"
-                  className="text-white transition-colors duration-300 hover:text-teal-accent-400"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
-                    <path d="M24,4.6c-0.9,0.4-1.8,0.7-2.8,0.8c1-0.6,1.8-1.6,2.2-2.7c-1,0.6-2,1-3.1,1.2c-0.9-1-2.2-1.6-3.6-1.6 c-2.7,0-4.9,2.2-4.9,4.9c0,0.4,0,0.8,0.1,1.1C7.7,8.1,4.1,6.1,1.7,3.1C1.2,3.9,1,4.7,1,5.6c0,1.7,0.9,3.2,2.2,4.1 C2.4,9.7,1.6,9.5,1,9.1c0,0,0,0,0,0.1c0,2.4,1.7,4.4,3.9,4.8c-0.4,0.1-0.8,0.2-1.3,0.2c-0.3,0-0.6,0-0.9-0.1c0.6,2,2.4,3.4,4.6,3.4 c-1.7,1.3-3.8,2.1-6.1,2.1c-0.4,0-0.8,0-1.2-0.1c2.2,1.4,4.8,2.2,7.5,2.2c9.1,0,14-7.5,14-14c0-0.2,0-0.4,0-0.6 C22.5,6.4,23.3,5.5,24,4.6z" />
-                  </svg>
-                </a>
-                <a
-                  href="/"
-                  className="text-white transition-colors duration-300 hover:text-teal-accent-400"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
-                    <path d="M22,0H2C0.895,0,0,0.895,0,2v20c0,1.105,0.895,2,2,2h11v-9h-3v-4h3V8.413c0-3.1,1.893-4.788,4.659-4.788 c1.325,0,2.463,0.099,2.795,0.143v3.24l-1.918,0.001c-1.504,0-1.795,0.715-1.795,1.763V11h4.44l-1,4h-3.44v9H22c1.105,0,2-0.895,2-2 V2C24,0.895,23.105,0,22,0z" />
-                  </svg>
-                </a>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
+                  <p className="text-green-600 text-sm font-medium mb-3">{member.role}</p>
+                  <p className="text-gray-600 text-sm mb-4">{member.description}</p>
+                  
+                  <div className="flex space-x-3">
+                    <a 
+                      href={member.linkedin} 
+                      className="text-gray-400 hover:text-blue-600 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Linkedin size={18} />
+                    </a>
+                    <a 
+                      href={member.twitter} 
+                      className="text-gray-400 hover:text-blue-400 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Twitter size={18} />
+                    </a>
+                    <a 
+                      href={member.github} 
+                      className="text-gray-400 hover:text-gray-700 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github size={18} />
+                    </a>
+                    <a 
+                      href={`mailto:contact@myscheme.gov.in`} 
+                      className="text-gray-400 hover:text-green-600 transition-colors"
+                    >
+                      <Mail size={18} />
+                    </a>
+                  </div>
+                </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-green-600 to-green-700 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="dots-cta" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="3" cy="3" r="1.5" fill="white" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dots-cta)" />
+          </svg>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-white mb-6">Want to Join Our Mission?</h2>
+            <p className="text-lg text-green-100 max-w-2xl mx-auto mb-8">
+              Whether you're looking to collaborate, provide feedback, or join our team, we'd love to hear from you.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <a 
+                href="/contact" 
+                className="inline-flex items-center justify-center px-6 py-3 bg-white text-green-700 font-medium rounded-lg hover:bg-green-50 transition-colors shadow-md"
+              >
+                <span>Contact Us</span>
+                <ChevronRight size={20} className="ml-2" />
+              </a>
+              <a 
+                href="/careers" 
+                className="inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-white text-white font-medium rounded-lg hover:bg-white/10 transition-colors"
+              >
+                <span>View Careers</span>
+              </a>
             </div>
           </div>
         </div>
-        <div>
-          <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-            <img
-              className="object-cover w-full h-56 md:h-64 xl:h-80"
-              src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg"
-              alt="Person"
-            />
-            <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-              <p className="mb-1 text-lg font-bold text-gray-100">
-                Gal Gadot
-              </p>
-              <p className="mb-4 text-xs text-gray-100"></p>
-              <p className="mb-4 text-xs tracking-wide text-gray-400">
-                
-              </p>
-              <div className="flex items-center justify-center space-x-3">
-                <a
-                  href="/"
-                  className="text-white transition-colors duration-300 hover:text-teal-accent-400"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
-                    <path d="M24,4.6c-0.9,0.4-1.8,0.7-2.8,0.8c1-0.6,1.8-1.6,2.2-2.7c-1,0.6-2,1-3.1,1.2c-0.9-1-2.2-1.6-3.6-1.6 c-2.7,0-4.9,2.2-4.9,4.9c0,0.4,0,0.8,0.1,1.1C7.7,8.1,4.1,6.1,1.7,3.1C1.2,3.9,1,4.7,1,5.6c0,1.7,0.9,3.2,2.2,4.1 C2.4,9.7,1.6,9.5,1,9.1c0,0,0,0,0,0.1c0,2.4,1.7,4.4,3.9,4.8c-0.4,0.1-0.8,0.2-1.3,0.2c-0.3,0-0.6,0-0.9-0.1c0.6,2,2.4,3.4,4.6,3.4 c-1.7,1.3-3.8,2.1-6.1,2.1c-0.4,0-0.8,0-1.2-0.1c2.2,1.4,4.8,2.2,7.5,2.2c9.1,0,14-7.5,14-14c0-0.2,0-0.4,0-0.6 C22.5,6.4,23.3,5.5,24,4.6z" />
-                  </svg>
-                </a>
-                <a
-                  href="/"
-                  className="text-white transition-colors duration-300 hover:text-teal-accent-400"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
-                    <path d="M22,0H2C0.895,0,0,0.895,0,2v20c0,1.105,0.895,2,2,2h11v-9h-3v-4h3V8.413c0-3.1,1.893-4.788,4.659-4.788 c1.325,0,2.463,0.099,2.795,0.143v3.24l-1.918,0.001c-1.504,0-1.795,0.715-1.795,1.763V11h4.44l-1,4h-3.44v9H22c1.105,0,2-0.895,2-2 V2C24,0.895,23.105,0,22,0z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-            <img
-              className="object-cover w-full h-56 md:h-64 xl:h-80"
-              src="https://1.bp.blogspot.com/-8c7QTLoyajs/YLjr2V6KYRI/AAAAAAAACO8/ViVPQpLWVM0jGh3RZhh-Ha1-1r3Oj62wQCNcBGAsYHQ/s16000/team-1-3.jpg"
-              alt="Person"
-            />
-            <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-              <p className="mb-1 text-lg font-bold text-gray-100">
-                Vin Diesel
-              </p>
-              <p className="mb-4 text-xs text-gray-100"></p>
-              <p className="mb-4 text-xs tracking-wide text-gray-400">
-                
-              </p>
-              <div className="flex items-center justify-center space-x-3">
-                <a
-                  href="/"
-                  className="text-white transition-colors duration-300 hover:text-teal-accent-400"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
-                    <path d="M24,4.6c-0.9,0.4-1.8,0.7-2.8,0.8c1-0.6,1.8-1.6,2.2-2.7c-1,0.6-2,1-3.1,1.2c-0.9-1-2.2-1.6-3.6-1.6 c-2.7,0-4.9,2.2-4.9,4.9c0,0.4,0,0.8,0.1,1.1C7.7,8.1,4.1,6.1,1.7,3.1C1.2,3.9,1,4.7,1,5.6c0,1.7,0.9,3.2,2.2,4.1 C2.4,9.7,1.6,9.5,1,9.1c0,0,0,0,0,0.1c0,2.4,1.7,4.4,3.9,4.8c-0.4,0.1-0.8,0.2-1.3,0.2c-0.3,0-0.6,0-0.9-0.1c0.6,2,2.4,3.4,4.6,3.4 c-1.7,1.3-3.8,2.1-6.1,2.1c-0.4,0-0.8,0-1.2-0.1c2.2,1.4,4.8,2.2,7.5,2.2c9.1,0,14-7.5,14-14c0-0.2,0-0.4,0-0.6 C22.5,6.4,23.3,5.5,24,4.6z" />
-                  </svg>
-                </a>
-                <a
-                  href="/"
-                  className="text-white transition-colors duration-300 hover:text-teal-accent-400"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
-                    <path d="M22,0H2C0.895,0,0,0.895,0,2v20c0,1.105,0.895,2,2,2h11v-9h-3v-4h3V8.413c0-3.1,1.893-4.788,4.659-4.788 c1.325,0,2.463,0.099,2.795,0.143v3.24l-1.918,0.001c-1.504,0-1.795,0.715-1.795,1.763V11h4.44l-1,4h-3.44v9H22c1.105,0,2-0.895,2-2 V2C24,0.895,23.105,0,22,0z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-            <img
-              className="object-cover w-full h-56 md:h-64 xl:h-80"
-              src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg"
-              alt="Person"
-            />
-            <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-              <p className="mb-1 text-lg font-bold text-gray-100">
-                Gal Gadot
-              </p>
-              <p className="mb-4 text-xs text-gray-100"></p>
-              <p className="mb-4 text-xs tracking-wide text-gray-400">
-                
-              </p>
-              <div className="flex items-center justify-center space-x-3">
-                <a
-                  href="/"
-                  className="text-white transition-colors duration-300 hover:text-teal-accent-400"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
-                    <path d="M24,4.6c-0.9,0.4-1.8,0.7-2.8,0.8c1-0.6,1.8-1.6,2.2-2.7c-1,0.6-2,1-3.1,1.2c-0.9-1-2.2-1.6-3.6-1.6 c-2.7,0-4.9,2.2-4.9,4.9c0,0.4,0,0.8,0.1,1.1C7.7,8.1,4.1,6.1,1.7,3.1C1.2,3.9,1,4.7,1,5.6c0,1.7,0.9,3.2,2.2,4.1 C2.4,9.7,1.6,9.5,1,9.1c0,0,0,0,0,0.1c0,2.4,1.7,4.4,3.9,4.8c-0.4,0.1-0.8,0.2-1.3,0.2c-0.3,0-0.6,0-0.9-0.1c0.6,2,2.4,3.4,4.6,3.4 c-1.7,1.3-3.8,2.1-6.1,2.1c-0.4,0-0.8,0-1.2-0.1c2.2,1.4,4.8,2.2,7.5,2.2c9.1,0,14-7.5,14-14c0-0.2,0-0.4,0-0.6 C22.5,6.4,23.3,5.5,24,4.6z" />
-                  </svg>
-                </a>
-                <a
-                  href="/"
-                  className="text-white transition-colors duration-300 hover:text-teal-accent-400"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
-                    <path d="M22,0H2C0.895,0,0,0.895,0,2v20c0,1.105,0.895,2,2,2h11v-9h-3v-4h3V8.413c0-3.1,1.893-4.788,4.659-4.788 c1.325,0,2.463,0.099,2.795,0.143v3.24l-1.918,0.001c-1.504,0-1.795,0.715-1.795,1.763V11h4.44l-1,4h-3.44v9H22c1.105,0,2-0.895,2-2 V2C24,0.895,23.105,0,22,0z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
- 
-      </div>
-    </div>
-
-   <Footer/>
-</>
+      </section>
+      
+      <Footer />
+    </>
   );
-}
+};
 
-
-export default Aboutus;
+export default AboutUs;
